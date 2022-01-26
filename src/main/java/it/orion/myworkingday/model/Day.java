@@ -1,4 +1,4 @@
 package it.orion.myworkingday.model;
 
-public class Model {
+public class Day {
 }
