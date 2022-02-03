@@ -3,11 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="it.orion.myworkingday.controller.grafico.WorkerControllerG">
-   <Button fx:id="calendarButton" layoutX="182.0" layoutY="90.0" mnemonicParsing="false"
-           onAction="#onCalendarButtonClick" text="Calendar"/>
-   <Button fx:id="dayButton" layoutX="363.0" layoutY="90.0" mnemonicParsing="false" onAction="#onDayButtonClick"
-           text="Day"/>
-   <Label layoutX="276.0" layoutY="45.0" text="WORKER"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.orion.myworkingday.controller.grafico.WorkerControllerG">
+   <Button fx:id="calendarButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#onCalendarButtonClick" text="Back" />
+   <Label layoutX="276.0" layoutY="66.0" text="WORKER" />
 </AnchorPane>

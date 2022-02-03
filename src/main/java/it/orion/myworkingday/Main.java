@@ -15,31 +15,32 @@ public class Main extends Application {
 
         // Load FXML of all pages
         FXMLLoader calendarFxml = getFxmlLoader("calendarView.fxml");
-        FXMLLoader dayFxml = getFxmlLoader("dayView.fxml");
-        FXMLLoader workerFxml = getFxmlLoader("workerView.fxml");
+        //FXMLLoader dayFxml = getFxmlLoader("dayView.fxml");
+        //FXMLLoader workerFxml = getFxmlLoader("workerView.fxml");
 
         // Create a Scene for each page
         Scene calendarScene = getScene(calendarFxml);
-        Scene dayScene = getScene(dayFxml);
-        Scene workerScene = getScene(workerFxml);
+        //Scene dayScene = getScene(dayFxml);
+        //Scene workerScene = getScene(workerFxml);
 
         // Get Controller Reference for each FXML
         CalendarControllerG calendarController = calendarFxml.getController();
-        DayControllerG dayController = dayFxml.getController();
-        WorkerControllerG workerController = workerFxml.getController();
+        //DayControllerG dayController = dayFxml.getController();
+        //WorkerControllerG workerController = workerFxml.getController();
 
         // Pass Stage to the controllers
         calendarController.setStage(stage);
-        dayController.setStage(stage);
-        workerController.setStage(stage);
+        //dayController.setStage(stage);
+        //workerController.setStage(stage);
 
         // Pass all Scene References to the controllers
-        calendarController.setScenes(dayScene, workerScene);
-        dayController.setScenes(calendarScene, workerScene);
-        workerController.setScenes(calendarScene, dayScene);
+        //calendarController.setScenes(dayScene, workerScene);
+        //dayController.setScenes(calendarScene, workerScene);
+        //workerController.setScenes(calendarScene, dayScene);
 
         // Set the Windows Title and show the Stage
         stage.setTitle("My Working Day");
+        stage.setResizable(false);
         stage.setScene(calendarScene);
         stage.show();
     }

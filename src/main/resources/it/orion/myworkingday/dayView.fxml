@@ -2,12 +2,18 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="it.orion.myworkingday.controller.grafico.DayControllerG">
-   <Button fx:id="calendarButton" layoutX="200.0" layoutY="111.0" mnemonicParsing="false"
-           onAction="#onCalendarButtonClick" text="Calendar"/>
-   <Button fx:id="workerButton" layoutX="335.0" layoutY="111.0" mnemonicParsing="false" onAction="#onWorkerButtonClick"
-           text="Worker"/>
-   <Label layoutX="289.0" layoutY="50.0" text="DAY"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.orion.myworkingday.controller.grafico.DayControllerG">
+   <StackPane prefHeight="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+      <children>
+         <Label fx:id="selectedDate" StackPane.alignment="CENTER">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font></Label>
+         <Line opacity="0.75" startX="200.0" StackPane.alignment="BOTTOM_CENTER" />
+      </children>
+   </StackPane>
+   <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#onCalendarButtonClick" text="Back" />
 </AnchorPane>

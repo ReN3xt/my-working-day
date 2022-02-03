@@ -1,35 +1,52 @@
 package it.orion.myworkingday.controller.grafico;
 
+import it.orion.myworkingday.model.Calendar;
+import it.orion.myworkingday.model.Day;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
 
 public class DayControllerG {
 
-    private Scene calendarScene, workerScene;
+    Day day;
+
+    Calendar calendar;
+
+    public void setCalendarModel (Calendar calendar){
+        this.calendar = calendar;
+    }
+
+    private Scene calendarScene;
     private Stage stage;
 
     @FXML
-    private Button calendarButton, workerButton;
+    private Label selectedDate;
+
+    public void initialize() {
+
+        day = new Day();
+
+        selectedDate.textProperty().bind(day.selectedDateProperty());
+    }
 
     @FXML
     protected void onCalendarButtonClick() {
         stage.setScene(calendarScene);
     }
 
-    @FXML
-    protected void onWorkerButtonClick() {
-        stage.setScene(workerScene);
-    }
-
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
-    public void setScenes (Scene calendarScene, Scene workerScene) {
+    public void setCalendarScene(Scene calendarScene) {
         this.calendarScene = calendarScene;
-        this.workerScene = workerScene;
+    }
+
+    public void loadDate(String day, String month, String year){
+        this.day.setDay(day);
+        this.day.setMonth(month);
+        this.day.setYear(year);
+        this.day.updateSelectedDate();
     }
 }
