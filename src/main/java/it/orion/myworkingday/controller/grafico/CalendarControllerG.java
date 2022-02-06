@@ -160,9 +160,6 @@ public class CalendarControllerG {
     @FXML
     private Button workerButton;
 
-    @FXML
-    private Button dayButton;
-
     public void initialize() {
 
         //Get Model
@@ -233,6 +230,13 @@ public class CalendarControllerG {
     }
 
     @FXML
+    protected void onResetClick() {
+        CalendarController calendarController = new CalendarController();
+
+        calendarController.resetCalendar(calendar);
+    }
+
+    @FXML
     protected void onPrevMonthClick() {
         CalendarController calendarController = new CalendarController();
 
@@ -286,22 +290,20 @@ public class CalendarControllerG {
     @FXML
     protected void onDayButtonClick(ActionEvent e) throws IOException {
 
-        if (dayScene == null) {
-            // Load FXML of Day View
-            FXMLLoader dayFxml = getFxmlLoader("dayView.fxml");
+        // Load FXML of Day View
+        FXMLLoader dayFxml = getFxmlLoader("dayView.fxml");
 
-            // Create a Scene for Day View
-            setDayScene(getScene(dayFxml));
+        // Create a Scene for Day View
+        setDayScene(getScene(dayFxml));
 
-            // Get Day View Controller Reference
-            dayController = dayFxml.getController();
+        // Get Day View Controller Reference
+        dayController = dayFxml.getController();
 
-            // Pass Stage to Day Controller
-            dayController.setStage(stage);
+        // Pass Stage to Day Controller
+        dayController.setStage(stage);
 
-            // Pass Calendar Scene Reference to Day Controller
-            dayController.setCalendarScene(dayButton.getScene());
-        }
+        // Pass Calendar Scene Reference to Day Controller
+        dayController.setCalendarScene(day1.getScene());
 
         dayController.loadDate(((Button) e.getSource()).getText(), monthText.getText(), yearText.getText());
 

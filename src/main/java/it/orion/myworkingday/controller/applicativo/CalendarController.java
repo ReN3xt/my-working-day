@@ -3,6 +3,7 @@ package it.orion.myworkingday.controller.applicativo;
 import it.orion.myworkingday.model.Calendar;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 public class CalendarController {
 
@@ -23,9 +24,9 @@ public class CalendarController {
                 calendar.setDaysVisibility(i,false);
             }
         }
+
+        calendar.updateDateLabel();
     }
-
-
 
     public void updateSelectedDate(Calendar calendar, String type, String operation) {
         if(type.equals("month")) {
@@ -41,6 +42,12 @@ public class CalendarController {
                 calendar.setPrevYear();
             }
         }
+
+        updateCalendar(calendar);
+    }
+
+    public void resetCalendar(Calendar calendar) {
+        calendar.setCurrentDate(LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 1));
 
         updateCalendar(calendar);
     }

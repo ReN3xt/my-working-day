@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.orion.myworkingday.controller.grafico.CalendarControllerG">
-    <Button fx:id="dayButton" layoutX="102.0" layoutY="361.0" mnemonicParsing="false" onAction="#onDayButtonClick" text="Day" />
     <Button fx:id="workerButton" layoutX="531.0" layoutY="361.0" mnemonicParsing="false" onAction="#onWorkerButtonClick" text="Worker" />
     <StackPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
         <children>
@@ -31,6 +30,7 @@
                     <Button fx:id="nextYear" mnemonicParsing="false" onAction="#onNextYearClick" text="&gt;" GridPane.columnIndex="6" />
                 </children>
             </GridPane>
+         <Button mnemonicParsing="false" onAction="#onResetClick" text="Reset" />
         </children>
     </StackPane>
     <StackPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">

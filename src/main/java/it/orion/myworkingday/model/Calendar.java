@@ -31,6 +31,7 @@ public class Calendar {
     public StringProperty monthProperty() {
         return month;
     }
+
     public StringProperty daysProperty(int i) {
         this.days[i] = new SimpleStringProperty();
         return days[i];
@@ -43,25 +44,21 @@ public class Calendar {
 
     public void setPrevMonth() {
         setCurrentDate(currentDate.minusMonths(1));
-        updateDate();
     }
 
     public void setNextMonth() {
         setCurrentDate(currentDate.plusMonths(1));
-        updateDate();
     }
 
     public void setPrevYear() {
         setCurrentDate(currentDate.minusYears(1));
-        updateDate();
     }
 
     public void setNextYear() {
         setCurrentDate(currentDate.plusYears(1));
-        updateDate();
     }
 
-    public void updateDate() {
+    public void updateDateLabel() {
         month.set(String.valueOf(currentDate.getMonth()));
         year.set(String.valueOf(currentDate.getYear()));
     }
