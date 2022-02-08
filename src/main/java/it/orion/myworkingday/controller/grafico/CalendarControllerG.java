@@ -305,7 +305,9 @@ public class CalendarControllerG {
         // Pass Calendar Scene Reference to Day Controller
         dayController.setCalendarScene(day1.getScene());
 
-        dayController.loadDate(((Button) e.getSource()).getText(), monthText.getText(), yearText.getText());
+        dayController.setCalendar(calendar);
+
+        dayController.loadDay(((Button) e.getSource()).getText());
 
         stage.setScene(dayScene);
     }
@@ -314,13 +316,14 @@ public class CalendarControllerG {
         return new FXMLLoader(Main.class.getResource(fxml));
     }
 
+    public Scene getScene(FXMLLoader fxml) throws IOException {
+        return new Scene(fxml.load());
+    }
+
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
-    public Scene getScene(FXMLLoader fxml) throws IOException {
-        return new Scene(fxml.load());
-    }
 
     public void setDayScene(Scene dayScene) {
         this.dayScene = dayScene;

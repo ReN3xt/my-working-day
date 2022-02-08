@@ -65,7 +65,6 @@ public class Calendar {
 
     public void setCurrentDate(LocalDate currentDate) {
         this.currentDate = currentDate;
-        System.out.println(this.currentDate.lengthOfMonth());
     }
 
     public void setDays(int i, int j) {

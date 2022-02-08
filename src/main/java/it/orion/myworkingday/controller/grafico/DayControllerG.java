@@ -1,5 +1,7 @@
 package it.orion.myworkingday.controller.grafico;
 
+import it.orion.myworkingday.controller.applicativo.DayControllerA;
+import it.orion.myworkingday.controller.applicativo.LoadDataController;
 import it.orion.myworkingday.model.Calendar;
 import it.orion.myworkingday.model.Day;
 import javafx.fxml.FXML;
@@ -19,6 +21,9 @@ public class DayControllerG {
 
     @FXML
     private Button editButton;
+
+    @FXML
+    private Button cancelButton;
 
     @FXML
     private Button saveButton;
@@ -139,7 +144,6 @@ public class DayControllerG {
 
 
     public void initialize() {
-
         day = new Day();
 
         initializePropertyBinding();
@@ -184,20 +188,21 @@ public class DayControllerG {
         notes.disableProperty().bind(day.notesDisableProperty());
 
         reminders.disableProperty().bind(day.remindersDisableProperty());
+
     }
 
     private void toggleButtonPropertyBinding() {
         workingDayButton.disableProperty().bind(day.workingDayButtonDisableProperty());
-        workingDayButton.selectedProperty().bind(day.workingDayButtonSelectProperty());
+        workingDayButton.selectedProperty().bindBidirectional(day.workingDayButtonSelectProperty());
 
         restButton.disableProperty().bind(day.restButtonDisableProperty());
-        restButton.selectedProperty().bind(day.restButtonSelectProperty());
+        restButton.selectedProperty().bindBidirectional(day.restButtonSelectProperty());
 
         sickLeaveButton.disableProperty().bind(day.sickLeaveButtonDisableProperty());
-        sickLeaveButton.selectedProperty().bind(day.sickLeaveButtonSelectProperty());
+        sickLeaveButton.selectedProperty().bindBidirectional(day.sickLeaveButtonSelectProperty());
 
         holidayButton.disableProperty().bind(day.holidayButtonDisableProperty());
-        holidayButton.selectedProperty().bind(day.holidayButtonSelectProperty());
+        holidayButton.selectedProperty().bindBidirectional(day.holidayButtonSelectProperty());
     }
 
     private void comboBoxPropertyBinding() {
@@ -240,33 +245,35 @@ public class DayControllerG {
 
     private void buttonPropertyBinding() {
         editButton.disableProperty().bind(day.editButtonDisableProperty());
+        cancelButton.disableProperty().bind(day.cancelButtonDisableProperty());
         saveButton.disableProperty().bind(day.saveButtonDisableProperty());
     }
 
+
     private void checkBoxPropertyBinding() {
         launchBreak.disableProperty().bind(day.launchBreakDisableProperty());
-        launchBreak.selectedProperty().bind(day.launchBreakSelectProperty());
+        launchBreak.selectedProperty().bindBidirectional(day.launchBreakSelectProperty());
 
         overtime.disableProperty().bind(day.overtimeDisableProperty());
-        overtime.selectedProperty().bind(day.overtimeSelectProperty());
+        overtime.selectedProperty().bindBidirectional(day.overtimeSelectProperty());
 
         permit.disableProperty().bind(day.permitDisableProperty());
-        permit.selectedProperty().bind(day.permitSelectProperty());
+        permit.selectedProperty().bindBidirectional(day.permitSelectProperty());
     }
 
     private void textFieldPropertyBinding() {
-        sickLeaveProtocol.textProperty().bind(day.sickLeaveProtocolContentProperty());
+        sickLeaveProtocol.textProperty().bindBidirectional(day.sickLeaveProtocolContentProperty());
         sickLeaveProtocol.disableProperty().bind(day.sickLeaveProtocolDisableProperty());
 
-        permitReason.textProperty().bind(day.permitReasonContentProperty());
+        permitReason.textProperty().bindBidirectional(day.permitReasonContentProperty());
         permitReason.disableProperty().bind(day.permitReasonDisableProperty());
     }
 
     private void textAreaPropertyBinding() {
-        notesTextArea.textProperty().bind(day.notesTextAreaContentProperty());
+        notesTextArea.textProperty().bindBidirectional(day.notesTextAreaContentProperty());
         notesTextArea.disableProperty().bind(day.notesTextAreaDisableProperty());
 
-        remindersTextArea.textProperty().bind(day.remindersTextAreaContentProperty());
+        remindersTextArea.textProperty().bindBidirectional(day.remindersTextAreaContentProperty());
         remindersTextArea.disableProperty().bind(day.remindersTextAreaDisableProperty());
     }
 
@@ -283,13 +290,77 @@ public class DayControllerG {
         this.calendarScene = calendarScene;
     }
 
-    public void loadDate(String day, String month, String year){
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
+    }
+
+    public void loadDay(String day) {
+
         this.day.setDay(day);
-        this.day.setMonth(month);
-        this.day.setYear(year);
+        this.day.setMonth(String.valueOf(calendar.getCurrentDate().getMonth()));
+        this.day.setMonthValue(calendar.getCurrentDate().getMonthValue());
+        this.day.setYear(String.valueOf(calendar.getCurrentDate().getYear()));
+
         this.day.updateSelectedDate();
+
+        LoadDataController loadDataController = new LoadDataController();
+
+        loadDataController.loadData(this.day);
     }
 
     public void onEditButtonClick() {
+        DayControllerA dayController = new DayControllerA();
+
+        dayController.edit(day);
+
+        day.reset();
+    }
+
+    public void onCancelButtonClick() {
+        DayControllerA dayControllerA = new DayControllerA();
+
+        dayControllerA.cancel(day);
+    }
+
+    public void onWorkingDayButtonClick() {
+        DayControllerA dayControllerA = new DayControllerA();
+
+        dayControllerA.disableWorkingDayForm(day, !day.isWorkingDayButtonSelect());
+    }
+
+    public void onRestButtonClick() {
+        DayControllerA dayControllerA = new DayControllerA();
+
+        dayControllerA.disableWorkingDayForm(day, true);
+    }
+
+    public void onSickLeaveButtonClick() {
+        DayControllerA dayControllerA = new DayControllerA();
+
+        dayControllerA.disableSickLeaveForm(day, !day.isSickLeaveButtonSelect());
+    }
+
+    public void onHolidayButtonClick() {
+        DayControllerA dayControllerA = new DayControllerA();
+
+        dayControllerA.disableWorkingDayForm(day, true);
+    }
+
+    public void onLaunchBreakCheck() {
+        DayControllerA dayControllerA = new DayControllerA();
+
+        dayControllerA.disableLaunchBreakForm(day, !day.isLaunchBreakSelect());
+    }
+
+    public void onOvertimeCheck() {
+        DayControllerA dayControllerA = new DayControllerA();
+
+        dayControllerA.disableOvertimeForm(day, !day.isOvertimeSelect());
+    }
+
+    public void onPermitCheck() {
+        DayControllerA dayControllerA = new DayControllerA();
+
+        dayControllerA.disablePermitForm(day, !day.isPermitSelect());
     }
 }

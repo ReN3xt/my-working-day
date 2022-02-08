@@ -8,8 +8,11 @@ public class Day {
     private String day;
     private String month;
     private String year;
+    private String selectedDate;
 
-    //TODO Migliorare struttura dati day/month/year
+    private int monthValue;
+
+    private boolean load;
 
     //Text Property
     private final StringProperty selectedDateContent;
@@ -50,6 +53,7 @@ public class Day {
     private final BooleanProperty permitHDisable;
     private final BooleanProperty permitMDisable;
     private final BooleanProperty editButtonDisable;
+    private final BooleanProperty cancelButtonDisable;
     private final BooleanProperty saveButtonDisable;
     private final BooleanProperty launchBreakDisable;
     private final BooleanProperty overtimeDisable;
@@ -81,7 +85,6 @@ public class Day {
     private final ObjectProperty<SingleSelectionModel<String>> overtimeMSelectionModel;
     private final ObjectProperty<SingleSelectionModel<String>> permitHSelectionModel;
     private final ObjectProperty<SingleSelectionModel<String>> permitMSelectionModel;
-
 
 
     public Day() {
@@ -122,6 +125,7 @@ public class Day {
         this.permitHDisable = new SimpleBooleanProperty(true);
         this.permitMDisable = new SimpleBooleanProperty(true);
         this.editButtonDisable = new SimpleBooleanProperty(false);
+        this.cancelButtonDisable = new SimpleBooleanProperty(true);
         this.saveButtonDisable = new SimpleBooleanProperty(true);
         this.launchBreakDisable = new SimpleBooleanProperty(true);
         this.overtimeDisable = new SimpleBooleanProperty(true);
@@ -131,13 +135,13 @@ public class Day {
         this.notesTextAreaDisable = new SimpleBooleanProperty(true);
         this.remindersTextAreaDisable = new SimpleBooleanProperty(true);
 
-        this.workingDayButtonSelect = new SimpleBooleanProperty(false);
-        this.restButtonSelect = new SimpleBooleanProperty(false);
-        this.sickLeaveButtonSelect = new SimpleBooleanProperty(false);
-        this.holidayButtonSelect = new SimpleBooleanProperty(false);
-        this.launchBreakSelect = new SimpleBooleanProperty(false);
-        this.overtimeSelect = new SimpleBooleanProperty(false);
-        this.permitSelect = new SimpleBooleanProperty(false);
+        this.workingDayButtonSelect = new SimpleBooleanProperty();
+        this.restButtonSelect = new SimpleBooleanProperty();
+        this.sickLeaveButtonSelect = new SimpleBooleanProperty();
+        this.holidayButtonSelect = new SimpleBooleanProperty();
+        this.launchBreakSelect = new SimpleBooleanProperty();
+        this.overtimeSelect = new SimpleBooleanProperty();
+        this.permitSelect = new SimpleBooleanProperty();
 
         this.workingHoursStartHSelectionModel = new SimpleObjectProperty<>();
         this.workingHoursStartMSelectionModel = new SimpleObjectProperty<>();
@@ -441,6 +445,14 @@ public class Day {
         return editButtonDisable;
     }
 
+    public boolean isCancelButtonDisable() {
+        return cancelButtonDisable.get();
+    }
+
+    public BooleanProperty cancelButtonDisableProperty() {
+        return cancelButtonDisable;
+    }
+
     public boolean isSaveButtonDisable() {
         return saveButtonDisable.get();
     }
@@ -661,6 +673,223 @@ public class Day {
     ||----------------------END GETTER AND BINDING PROPERTY--------------------||
     \\-------------------------------------------------------------------------*/
 
+
+    public void setWorkingHoursDisable(boolean workingHoursDisable) {
+        this.workingHoursDisable.set(workingHoursDisable);
+    }
+
+    public void setWorkingHoursStartColonDisable(boolean workingHoursStartColonDisable) {
+        this.workingHoursStartColonDisable.set(workingHoursStartColonDisable);
+    }
+
+    public void setWorkingHoursEndColonDisable(boolean workingHoursEndColonDisable) {
+        this.workingHoursEndColonDisable.set(workingHoursEndColonDisable);
+    }
+
+    public void setWorkingHoursHyphenDisable(boolean workingHoursHyphenDisable) {
+        this.workingHoursHyphenDisable.set(workingHoursHyphenDisable);
+    }
+
+    public void setLaunchBreakStartColonDisable(boolean launchBreakStartColonDisable) {
+        this.launchBreakStartColonDisable.set(launchBreakStartColonDisable);
+    }
+
+    public void setLaunchBreakEndColonDisable(boolean launchBreakEndColonDisable) {
+        this.launchBreakEndColonDisable.set(launchBreakEndColonDisable);
+    }
+
+    public void setLaunchBreakHyphenDisable(boolean launchBreakHyphenDisable) {
+        this.launchBreakHyphenDisable.set(launchBreakHyphenDisable);
+    }
+
+    public void setOvertimeColonDisable(boolean overtimeColonDisable) {
+        this.overtimeColonDisable.set(overtimeColonDisable);
+    }
+
+    public void setSickLeaveDisable(boolean sickLeaveDisable) {
+        this.sickLeaveDisable.set(sickLeaveDisable);
+    }
+
+    public void setSickLeaveColonDisable(boolean sickLeaveColonDisable) {
+        this.sickLeaveColonDisable.set(sickLeaveColonDisable);
+    }
+
+    public void setPermitColonDisable(boolean permitColonDisable) {
+        this.permitColonDisable.set(permitColonDisable);
+    }
+
+    public void setPermitHyphenDisable(boolean permitHyphenDisable) {
+        this.permitHyphenDisable.set(permitHyphenDisable);
+    }
+
+    public void setNotesDisable(boolean notesDisable) {
+        this.notesDisable.set(notesDisable);
+    }
+
+    public void setRemindersDisable(boolean remindersDisable) {
+        this.remindersDisable.set(remindersDisable);
+    }
+
+    public void setWorkingDayButtonDisable(boolean workingDayButtonDisable) {
+        this.workingDayButtonDisable.set(workingDayButtonDisable);
+    }
+
+    public void setRestButtonDisable(boolean restButtonDisable) {
+        this.restButtonDisable.set(restButtonDisable);
+    }
+
+    public void setSickLeaveButtonDisable(boolean sickLeaveButtonDisable) {
+        this.sickLeaveButtonDisable.set(sickLeaveButtonDisable);
+    }
+
+    public void setHolidayButtonDisable(boolean holidayButtonDisable) {
+        this.holidayButtonDisable.set(holidayButtonDisable);
+    }
+
+    public void setWorkingHoursStartHDisable(boolean workingHoursStartHDisable) {
+        this.workingHoursStartHDisable.set(workingHoursStartHDisable);
+    }
+
+    public void setWorkingHoursStartMDisable(boolean workingHoursStartMDisable) {
+        this.workingHoursStartMDisable.set(workingHoursStartMDisable);
+    }
+
+    public void setWorkingHoursEndHDisable(boolean workingHoursEndHDisable) {
+        this.workingHoursEndHDisable.set(workingHoursEndHDisable);
+    }
+
+    public void setWorkingHoursEndMDisable(boolean workingHoursEndMDisable) {
+        this.workingHoursEndMDisable.set(workingHoursEndMDisable);
+    }
+
+    public void setLaunchBreakStartHDisable(boolean launchBreakStartHDisable) {
+        this.launchBreakStartHDisable.set(launchBreakStartHDisable);
+    }
+
+    public void setLaunchBreakStartMDisable(boolean launchBreakStartMDisable) {
+        this.launchBreakStartMDisable.set(launchBreakStartMDisable);
+    }
+
+    public void setLaunchBreakEndHDisable(boolean launchBreakEndHDisable) {
+        this.launchBreakEndHDisable.set(launchBreakEndHDisable);
+    }
+
+    public void setLaunchBreakEndMDisable(boolean launchBreakEndMDisable) {
+        this.launchBreakEndMDisable.set(launchBreakEndMDisable);
+    }
+
+    public void setOvertimeHDisable(boolean overtimeHDisable) {
+        this.overtimeHDisable.set(overtimeHDisable);
+    }
+
+    public void setOvertimeMDisable(boolean overtimeMDisable) {
+        this.overtimeMDisable.set(overtimeMDisable);
+    }
+
+    public void setPermitHDisable(boolean permitHDisable) {
+        this.permitHDisable.set(permitHDisable);
+    }
+
+    public void setPermitMDisable(boolean permitMDisable) {
+        this.permitMDisable.set(permitMDisable);
+    }
+
+    public void setEditButtonDisable(boolean editButtonDisable) {
+        this.editButtonDisable.set(editButtonDisable);
+    }
+
+    public void setCancelButtonDisable(boolean cancelButtonDisable) {
+        this.cancelButtonDisable.set(cancelButtonDisable);
+    }
+
+    public void setSaveButtonDisable(boolean saveButtonDisable) {
+        this.saveButtonDisable.set(saveButtonDisable);
+    }
+
+    public void setLaunchBreakDisable(boolean launchBreakDisable) {
+        this.launchBreakDisable.set(launchBreakDisable);
+    }
+
+    public void setOvertimeDisable(boolean overtimeDisable) {
+        this.overtimeDisable.set(overtimeDisable);
+    }
+
+    public void setPermitDisable(boolean permitDisable) {
+        this.permitDisable.set(permitDisable);
+    }
+
+    public void setSickLeaveProtocolDisable(boolean sickLeaveProtocolDisable) {
+        this.sickLeaveProtocolDisable.set(sickLeaveProtocolDisable);
+    }
+
+    public void setPermitReasonDisable(boolean permitReasonDisable) {
+        this.permitReasonDisable.set(permitReasonDisable);
+    }
+
+    public void setNotesTextAreaDisable(boolean notesTextAreaDisable) {
+        this.notesTextAreaDisable.set(notesTextAreaDisable);
+    }
+
+    public void setRemindersTextAreaDisable(boolean remindersTextAreaDisable) {
+        this.remindersTextAreaDisable.set(remindersTextAreaDisable);
+    }
+
+    public void setWorkingDayButtonSelect(boolean workingDayButtonSelect) {
+        this.workingDayButtonSelect.set(workingDayButtonSelect);
+    }
+
+    public void setRestButtonSelect(boolean restButtonSelect) {
+        this.restButtonSelect.set(restButtonSelect);
+    }
+
+    public void setSickLeaveButtonSelect(boolean sickLeaveButtonSelect) {
+        this.sickLeaveButtonSelect.set(sickLeaveButtonSelect);
+    }
+
+    public void setHolidayButtonSelect(boolean holidayButtonSelect) {
+        this.holidayButtonSelect.set(holidayButtonSelect);
+    }
+
+    public void setLaunchBreakSelect(boolean launchBreakSelect) {
+        this.launchBreakSelect.set(launchBreakSelect);
+    }
+
+    public void setOvertimeSelect(boolean overtimeSelect) {
+        this.overtimeSelect.set(overtimeSelect);
+    }
+
+    public void setPermitSelect(boolean permitSelect) {
+        this.permitSelect.set(permitSelect);
+    }
+
+    public void setPermitReasonContent(String permitReasonContent) {
+        this.permitReasonContent.set(permitReasonContent);
+    }
+
+    public void setSickLeaveProtocolContent(String sickLeaveProtocolContent) {
+        this.sickLeaveProtocolContent.set(sickLeaveProtocolContent);
+    }
+
+    public void setNotesTextAreaContent(String notesTextAreaContent) {
+        this.notesTextAreaContent.set(notesTextAreaContent);
+    }
+
+    public void setRemindersTextAreaContent(String remindersTextAreaContent) {
+        this.remindersTextAreaContent.set(remindersTextAreaContent);
+    }
+
+    /*-------------------------------------------------------------------------\\
+    ||--------------------------------END SETTER-------------------------------||
+    \\-------------------------------------------------------------------------*/
+
+    public boolean isLoad() {
+        return this.load;
+    }
+
+    public void setLoad(boolean load) {
+        this.load = load;
+    }
+
     public void setDay(String day) {
         this.day = day;
     }
@@ -669,16 +898,77 @@ public class Day {
         this.month = month;
     }
 
+    public void setMonthValue(int monthValue){
+        this.monthValue = monthValue;
+    }
+
     public void setYear(String year) {
         this.year = year;
     }
 
     public void updateSelectedDate() {
-        this.selectedDateContent.set(day + " " + month + " " + year);
+        this.selectedDateContent.set(this.day + " " + this.month + " " + this.year);
+
+        this.selectedDate = year;
+
+        if(this.monthValue <= 9){
+            this.selectedDate = this.selectedDate + "0";
+        }
+
+        this.selectedDate = this.selectedDate + this.monthValue;
+
+        if(Integer.parseInt(this.day) <= 9) {
+            this.selectedDate = this.selectedDate + "0";
+        }
+
+        this.selectedDate = this.selectedDate + this.day;
     }
 
-    /*public void reset() {
-        System.out.println(this.prova.get().getSelectedItem());
-        this.prova.get().clearSelection();
-    }*/
+    public String getSelectedDate() {
+        return this.selectedDate;
+    }
+
+    public void reset() {
+        //System.out.println(this.prova.get().getSelectedItem());
+        //this.prova.get().clearSelection();
+
+
+    }
+
+    public void clearWorkingHours() {
+        this.workingHoursStartHSelectionModel.get().clearSelection();
+        this.workingHoursStartMSelectionModel.get().clearSelection();
+        this.workingHoursEndHSelectionModel.get().clearSelection();
+        this.workingHoursEndMSelectionModel.get().clearSelection();
+    }
+
+    public void clearLaunchBreak() {
+        this.launchBreakStartHSelectionModel.get().clearSelection();
+        this.launchBreakStartMSelectionModel.get().clearSelection();
+        this.launchBreakEndHSelectionModel.get().clearSelection();
+        this.launchBreakEndMSelectionModel.get().clearSelection();
+    }
+
+    public void clearOvertime() {
+        this.overtimeHSelectionModel.get().clearSelection();
+        this.overtimeMSelectionModel.get().clearSelection();
+    }
+
+    public void clearPermit() {
+        this.permitHSelectionModel.get().clearSelection();
+        this.permitMSelectionModel.get().clearSelection();
+        this.permitReasonContent.set(null);
+    }
+
+    public void clearSickLeave() {
+        this.sickLeaveProtocolContent.set(null);
+    }
+
+    public void clearNotes() {
+        this.notesTextAreaContent.set(null);
+    }
+
+    public void clearReminders() {
+        this.remindersTextAreaContent.set(null);
+    }
 }
