@@ -22,23 +22,31 @@ public class LoadDataController {
             JSONParser parser = new JSONParser();
 
             try {
+
                 JSONObject dayList = (JSONObject) parser.parse(new FileReader(file));
 
                 JSONObject dayData = (JSONObject) dayList.get(day.getSelectedDate());
 
+
                 if(dayData == null){
+                    day.setDeleteButtonDisable(true);
                     day.setLoad(false);
                 } else {
                     loadDayType(day, dayData);
 
                     if(dayData.get("notes") != null) {
                         day.setNotesTextAreaContent(dayData.get("notes").toString());
+                    } else {
+                        day.setNotesTextAreaContent(null);
                     }
 
                     if(dayData.get("reminders") != null) {
                         day.setRemindersTextAreaContent(dayData.get("reminders").toString());
+                    } else {
+                        day.setRemindersTextAreaContent(null);
                     }
 
+                    day.setDeleteButtonDisable(false);
                     day.setLoad(true);
                 }
 
@@ -77,7 +85,7 @@ public class LoadDataController {
             } else if (dayData.get("day_type").equals("sick")) {
                 day.setSickLeaveButtonSelect(true);
                 loadSickLeave(day, (JSONObject) dayData.get("sick_leave"));
-            } else if (dayData.get("dat_type").equals("holiday")) {
+            } else if (dayData.get("day_type").equals("holiday")) {
                 day.setHolidayButtonSelect(true);
             }
         }
@@ -116,7 +124,12 @@ public class LoadDataController {
             day.setPermitSelect(true);
             day.getPermitHSelectionModel().select(permitData.get("h").toString());
             day.getPermitMSelectionModel().select(permitData.get("m").toString());
-            day.setPermitReasonContent(permitData.get("permit_reason").toString());
+
+            if(permitData.get("reason") != null) {
+                day.setPermitReasonContent(permitData.get("reason").toString());
+            } else {
+                day.setPermitReasonContent(null);
+            }
         }
     }
 

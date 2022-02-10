@@ -8,891 +8,857 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="it.orion.myworkingday.controller.grafico.DayControllerG">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.orion.myworkingday.controller.grafico.DayControllerG">
     <StackPane prefHeight="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
         <children>
             <Label fx:id="selectedDate" StackPane.alignment="CENTER">
                 <font>
-                    <Font name="System Bold" size="14.0"/>
+                    <Font name="System Bold" size="14.0" />
                 </font>
             </Label>
-            <Line opacity="0.75" startX="135.0" StackPane.alignment="BOTTOM_CENTER"/>
+            <Line opacity="0.75" startX="135.0" StackPane.alignment="BOTTOM_CENTER" />
         </children>
     </StackPane>
     <StackPane prefHeight="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
         <children>
             <GridPane>
                 <columnConstraints>
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <ToggleButton fx:id="workingDayButton" disable="true" maxWidth="85.0" mnemonicParsing="false"
-                                  onAction="#onWorkingDayButtonClick" text="Working Day">
+                    <ToggleButton fx:id="workingDayButton" disable="true" maxWidth="85.0" mnemonicParsing="false" onAction="#onWorkingDayButtonClick" text="Working Day">
                         <toggleGroup>
-                            <ToggleGroup fx:id="day_type"/>
+                            <ToggleGroup fx:id="day_type" />
                         </toggleGroup>
                     </ToggleButton>
-                    <ToggleButton fx:id="restButton" disable="true" maxWidth="85.0" mnemonicParsing="false"
-                                  onAction="#onRestButtonClick" text="Rest" toggleGroup="$day_type"
-                                  GridPane.columnIndex="1"/>
-                    <ToggleButton fx:id="sickLeaveButton" disable="true" maxWidth="85.0" mnemonicParsing="false"
-                                  onAction="#onSickLeaveButtonClick" text="Sick leave" toggleGroup="$day_type"
-                                  GridPane.columnIndex="3"/>
-                    <ToggleButton fx:id="holidayButton" disable="true" maxWidth="85.0" mnemonicParsing="false"
-                                  onAction="#onHolidayButtonClick" text="Holiday" toggleGroup="$day_type"
-                                  GridPane.columnIndex="4"/>
+                    <ToggleButton fx:id="restButton" disable="true" maxWidth="85.0" mnemonicParsing="false" onAction="#onRestButtonClick" text="Rest" toggleGroup="$day_type" GridPane.columnIndex="1" />
+                    <ToggleButton fx:id="sickLeaveButton" disable="true" maxWidth="85.0" mnemonicParsing="false" onAction="#onSickLeaveButtonClick" text="Sick leave" toggleGroup="$day_type" GridPane.columnIndex="3" />
+                    <ToggleButton fx:id="holidayButton" disable="true" maxWidth="85.0" mnemonicParsing="false" onAction="#onHolidayButtonClick" text="Holiday" toggleGroup="$day_type" GridPane.columnIndex="4" />
                 </children>
             </GridPane>
         </children>
     </StackPane>
-    <StackPane prefHeight="160.0" prefWidth="200.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0"
-               AnchorPane.topAnchor="55.0">
+    <StackPane prefHeight="160.0" prefWidth="200.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="55.0">
         <children>
             <GridPane>
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity"/>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
                     <GridPane>
                         <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0"
-                                               prefWidth="130.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity"
-                                               minWidth="-Infinity"/>
-                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="130.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
                             <Label fx:id="workingHours" disable="true" text="Working Hours">
                                 <font>
-                                    <Font name="System Bold" size="12.0"/>
+                                    <Font name="System Bold" size="12.0" />
                                 </font>
                             </Label>
-                            <ComboBox fx:id="workingHoursStartH" disable="true" prefWidth="55.0" visibleRowCount="5"
-                                      GridPane.columnIndex="1">
+                            <ComboBox fx:id="workingHoursStartH" disable="true" prefWidth="55.0" GridPane.columnIndex="1">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets right="5.0"/>
+                                    <Insets right="5.0" />
 
                                 </GridPane.margin>
                             </ComboBox>
-                            <ComboBox fx:id="workingHoursStartM" disable="true" prefWidth="55.0"
-                                      GridPane.columnIndex="3">
+                            <ComboBox fx:id="workingHoursStartM" disable="true" prefWidth="55.0" GridPane.columnIndex="3">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
-                                        <String fx:value="24"/>
-                                        <String fx:value="25"/>
-                                        <String fx:value="26"/>
-                                        <String fx:value="27"/>
-                                        <String fx:value="28"/>
-                                        <String fx:value="29"/>
-                                        <String fx:value="30"/>
-                                        <String fx:value="31"/>
-                                        <String fx:value="32"/>
-                                        <String fx:value="33"/>
-                                        <String fx:value="34"/>
-                                        <String fx:value="35"/>
-                                        <String fx:value="36"/>
-                                        <String fx:value="37"/>
-                                        <String fx:value="38"/>
-                                        <String fx:value="39"/>
-                                        <String fx:value="40"/>
-                                        <String fx:value="41"/>
-                                        <String fx:value="42"/>
-                                        <String fx:value="43"/>
-                                        <String fx:value="44"/>
-                                        <String fx:value="45"/>
-                                        <String fx:value="46"/>
-                                        <String fx:value="47"/>
-                                        <String fx:value="48"/>
-                                        <String fx:value="49"/>
-                                        <String fx:value="50"/>
-                                        <String fx:value="51"/>
-                                        <String fx:value="52"/>
-                                        <String fx:value="53"/>
-                                        <String fx:value="54"/>
-                                        <String fx:value="55"/>
-                                        <String fx:value="56"/>
-                                        <String fx:value="57"/>
-                                        <String fx:value="58"/>
-                                        <String fx:value="59"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
+                                        <String fx:value="24" />
+                                        <String fx:value="25" />
+                                        <String fx:value="26" />
+                                        <String fx:value="27" />
+                                        <String fx:value="28" />
+                                        <String fx:value="29" />
+                                        <String fx:value="30" />
+                                        <String fx:value="31" />
+                                        <String fx:value="32" />
+                                        <String fx:value="33" />
+                                        <String fx:value="34" />
+                                        <String fx:value="35" />
+                                        <String fx:value="36" />
+                                        <String fx:value="37" />
+                                        <String fx:value="38" />
+                                        <String fx:value="39" />
+                                        <String fx:value="40" />
+                                        <String fx:value="41" />
+                                        <String fx:value="42" />
+                                        <String fx:value="43" />
+                                        <String fx:value="44" />
+                                        <String fx:value="45" />
+                                        <String fx:value="46" />
+                                        <String fx:value="47" />
+                                        <String fx:value="48" />
+                                        <String fx:value="49" />
+                                        <String fx:value="50" />
+                                        <String fx:value="51" />
+                                        <String fx:value="52" />
+                                        <String fx:value="53" />
+                                        <String fx:value="54" />
+                                        <String fx:value="55" />
+                                        <String fx:value="56" />
+                                        <String fx:value="57" />
+                                        <String fx:value="58" />
+                                        <String fx:value="59" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets left="5.0"/>
+                                    <Insets left="5.0" />
                                 </GridPane.margin>
                             </ComboBox>
                             <Label fx:id="workingHoursStartColon" disable="true" text=":" GridPane.columnIndex="2">
                                 <font>
-                                    <Font name="System Bold" size="18.0"/>
+                                    <Font name="System Bold" size="18.0" />
                                 </font>
                             </Label>
                         </children>
                     </GridPane>
                     <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="1">
                         <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0"
-                                               prefWidth="130.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity"
-                                               minWidth="-Infinity"/>
-                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="130.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
-                            <CheckBox fx:id="launchBreak" disable="true" mnemonicParsing="false"
-                                      onAction="#onLaunchBreakCheck" text="Launch break">
+                            <CheckBox fx:id="launchBreak" disable="true" mnemonicParsing="false" onAction="#onLaunchBreakCheck" text="Launch break">
                                 <font>
-                                    <Font name="System Bold" size="12.0"/>
+                                    <Font name="System Bold" size="12.0" />
                                 </font>
                             </CheckBox>
-                            <ComboBox fx:id="launchBreakStartH" disable="true" prefWidth="55.0"
-                                      GridPane.columnIndex="1">
+                            <ComboBox fx:id="launchBreakStartH" disable="true" prefWidth="55.0" GridPane.columnIndex="1">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets right="5.0"/>
+                                    <Insets right="5.0" />
                                 </GridPane.margin>
                             </ComboBox>
-                            <ComboBox fx:id="launchBreakStartM" disable="true" prefWidth="55.0"
-                                      GridPane.columnIndex="3">
+                            <ComboBox fx:id="launchBreakStartM" disable="true" prefWidth="55.0" GridPane.columnIndex="3">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
-                                        <String fx:value="24"/>
-                                        <String fx:value="25"/>
-                                        <String fx:value="26"/>
-                                        <String fx:value="27"/>
-                                        <String fx:value="28"/>
-                                        <String fx:value="29"/>
-                                        <String fx:value="30"/>
-                                        <String fx:value="31"/>
-                                        <String fx:value="32"/>
-                                        <String fx:value="33"/>
-                                        <String fx:value="34"/>
-                                        <String fx:value="35"/>
-                                        <String fx:value="36"/>
-                                        <String fx:value="37"/>
-                                        <String fx:value="38"/>
-                                        <String fx:value="39"/>
-                                        <String fx:value="40"/>
-                                        <String fx:value="41"/>
-                                        <String fx:value="42"/>
-                                        <String fx:value="43"/>
-                                        <String fx:value="44"/>
-                                        <String fx:value="45"/>
-                                        <String fx:value="46"/>
-                                        <String fx:value="47"/>
-                                        <String fx:value="48"/>
-                                        <String fx:value="49"/>
-                                        <String fx:value="50"/>
-                                        <String fx:value="51"/>
-                                        <String fx:value="52"/>
-                                        <String fx:value="53"/>
-                                        <String fx:value="54"/>
-                                        <String fx:value="55"/>
-                                        <String fx:value="56"/>
-                                        <String fx:value="57"/>
-                                        <String fx:value="58"/>
-                                        <String fx:value="59"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
+                                        <String fx:value="24" />
+                                        <String fx:value="25" />
+                                        <String fx:value="26" />
+                                        <String fx:value="27" />
+                                        <String fx:value="28" />
+                                        <String fx:value="29" />
+                                        <String fx:value="30" />
+                                        <String fx:value="31" />
+                                        <String fx:value="32" />
+                                        <String fx:value="33" />
+                                        <String fx:value="34" />
+                                        <String fx:value="35" />
+                                        <String fx:value="36" />
+                                        <String fx:value="37" />
+                                        <String fx:value="38" />
+                                        <String fx:value="39" />
+                                        <String fx:value="40" />
+                                        <String fx:value="41" />
+                                        <String fx:value="42" />
+                                        <String fx:value="43" />
+                                        <String fx:value="44" />
+                                        <String fx:value="45" />
+                                        <String fx:value="46" />
+                                        <String fx:value="47" />
+                                        <String fx:value="48" />
+                                        <String fx:value="49" />
+                                        <String fx:value="50" />
+                                        <String fx:value="51" />
+                                        <String fx:value="52" />
+                                        <String fx:value="53" />
+                                        <String fx:value="54" />
+                                        <String fx:value="55" />
+                                        <String fx:value="56" />
+                                        <String fx:value="57" />
+                                        <String fx:value="58" />
+                                        <String fx:value="59" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets left="5.0"/>
+                                    <Insets left="5.0" />
                                 </GridPane.margin>
                             </ComboBox>
                             <Label fx:id="launchBreakStartColon" disable="true" text=":" GridPane.columnIndex="2">
                                 <font>
-                                    <Font name="System Bold" size="18.0"/>
+                                    <Font name="System Bold" size="18.0" />
                                 </font>
                             </Label>
                         </children>
                     </GridPane>
                     <GridPane layoutX="310.0" layoutY="10.0" GridPane.rowIndex="2">
                         <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0"
-                                               prefWidth="130.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity"
-                                               minWidth="-Infinity"/>
-                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="130.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
-                            <CheckBox fx:id="overtime" disable="true" mnemonicParsing="false"
-                                      onAction="#onOvertimeCheck" text="Overtime">
+                            <CheckBox fx:id="overtime" disable="true" mnemonicParsing="false" onAction="#onOvertimeCheck" text="Overtime">
                                 <font>
-                                    <Font name="System Bold" size="12.0"/>
+                                    <Font name="System Bold" size="12.0" />
                                 </font>
                             </CheckBox>
                             <ComboBox fx:id="overtimeH" disable="true" prefWidth="55.0" GridPane.columnIndex="1">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets right="5.0"/>
+                                    <Insets right="5.0" />
                                 </GridPane.margin>
                             </ComboBox>
                             <ComboBox fx:id="overtimeM" disable="true" prefWidth="55.0" GridPane.columnIndex="3">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
-                                        <String fx:value="24"/>
-                                        <String fx:value="25"/>
-                                        <String fx:value="26"/>
-                                        <String fx:value="27"/>
-                                        <String fx:value="28"/>
-                                        <String fx:value="29"/>
-                                        <String fx:value="30"/>
-                                        <String fx:value="31"/>
-                                        <String fx:value="32"/>
-                                        <String fx:value="33"/>
-                                        <String fx:value="34"/>
-                                        <String fx:value="35"/>
-                                        <String fx:value="36"/>
-                                        <String fx:value="37"/>
-                                        <String fx:value="38"/>
-                                        <String fx:value="39"/>
-                                        <String fx:value="40"/>
-                                        <String fx:value="41"/>
-                                        <String fx:value="42"/>
-                                        <String fx:value="43"/>
-                                        <String fx:value="44"/>
-                                        <String fx:value="45"/>
-                                        <String fx:value="46"/>
-                                        <String fx:value="47"/>
-                                        <String fx:value="48"/>
-                                        <String fx:value="49"/>
-                                        <String fx:value="50"/>
-                                        <String fx:value="51"/>
-                                        <String fx:value="52"/>
-                                        <String fx:value="53"/>
-                                        <String fx:value="54"/>
-                                        <String fx:value="55"/>
-                                        <String fx:value="56"/>
-                                        <String fx:value="57"/>
-                                        <String fx:value="58"/>
-                                        <String fx:value="59"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
+                                        <String fx:value="24" />
+                                        <String fx:value="25" />
+                                        <String fx:value="26" />
+                                        <String fx:value="27" />
+                                        <String fx:value="28" />
+                                        <String fx:value="29" />
+                                        <String fx:value="30" />
+                                        <String fx:value="31" />
+                                        <String fx:value="32" />
+                                        <String fx:value="33" />
+                                        <String fx:value="34" />
+                                        <String fx:value="35" />
+                                        <String fx:value="36" />
+                                        <String fx:value="37" />
+                                        <String fx:value="38" />
+                                        <String fx:value="39" />
+                                        <String fx:value="40" />
+                                        <String fx:value="41" />
+                                        <String fx:value="42" />
+                                        <String fx:value="43" />
+                                        <String fx:value="44" />
+                                        <String fx:value="45" />
+                                        <String fx:value="46" />
+                                        <String fx:value="47" />
+                                        <String fx:value="48" />
+                                        <String fx:value="49" />
+                                        <String fx:value="50" />
+                                        <String fx:value="51" />
+                                        <String fx:value="52" />
+                                        <String fx:value="53" />
+                                        <String fx:value="54" />
+                                        <String fx:value="55" />
+                                        <String fx:value="56" />
+                                        <String fx:value="57" />
+                                        <String fx:value="58" />
+                                        <String fx:value="59" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets left="5.0"/>
+                                    <Insets left="5.0" />
                                 </GridPane.margin>
                             </ComboBox>
                             <Label fx:id="overtimeColon" disable="true" text=":" GridPane.columnIndex="2">
                                 <font>
-                                    <Font name="System Bold" size="18.0"/>
+                                    <Font name="System Bold" size="18.0" />
                                 </font>
                             </Label>
                         </children>
                     </GridPane>
                     <GridPane layoutX="10.0" layoutY="10.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                         <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0"
-                                               prefWidth="75.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity"
-                                               minWidth="-Infinity" prefWidth="10.0"/>
-                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="75.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="10.0" />
+                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
                             <Label fx:id="sickLeave" disable="true" text="Sick leave">
                                 <font>
-                                    <Font name="System Bold" size="12.0"/>
+                                    <Font name="System Bold" size="12.0" />
                                 </font>
                             </Label>
-                            <TextField fx:id="sickLeaveProtocol" disable="true" maxWidth="-Infinity" prefWidth="137.0"
-                                       promptText="Protocol number" GridPane.columnIndex="2">
+                            <TextField fx:id="sickLeaveProtocol" disable="true" maxWidth="-Infinity" prefWidth="137.0" promptText="Protocol number" GridPane.columnIndex="2">
                                 <GridPane.margin>
-                                    <Insets left="5.0"/>
+                                    <Insets left="5.0" />
                                 </GridPane.margin>
                                 <font>
-                                    <Font name="System Italic" size="12.0"/>
+                                    <Font name="System Italic" size="12.0" />
                                 </font>
                             </TextField>
                             <Label fx:id="sickLeaveColon" disable="true" text=":" GridPane.columnIndex="1">
                                 <font>
-                                    <Font name="System Bold" size="18.0"/>
+                                    <Font name="System Bold" size="18.0" />
                                 </font>
                             </Label>
                         </children>
                     </GridPane>
                     <GridPane layoutX="10.0" layoutY="54.0" GridPane.rowIndex="3">
                         <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0"
-                                               prefWidth="130.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity"
-                                               minWidth="-Infinity"/>
-                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="130.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
-                            <CheckBox fx:id="permit" disable="true" mnemonicParsing="false" onAction="#onPermitCheck"
-                                      text="Permit">
+                            <CheckBox fx:id="permit" disable="true" mnemonicParsing="false" onAction="#onPermitCheck" text="Permit">
                                 <font>
-                                    <Font name="System Bold" size="12.0"/>
+                                    <Font name="System Bold" size="12.0" />
                                 </font>
                             </CheckBox>
                             <ComboBox fx:id="permitH" disable="true" prefWidth="55.0" GridPane.columnIndex="1">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets right="5.0"/>
+                                    <Insets right="5.0" />
                                 </GridPane.margin>
                             </ComboBox>
                             <ComboBox fx:id="permitM" disable="true" prefWidth="55.0" GridPane.columnIndex="3">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
-                                        <String fx:value="24"/>
-                                        <String fx:value="25"/>
-                                        <String fx:value="26"/>
-                                        <String fx:value="27"/>
-                                        <String fx:value="28"/>
-                                        <String fx:value="29"/>
-                                        <String fx:value="30"/>
-                                        <String fx:value="31"/>
-                                        <String fx:value="32"/>
-                                        <String fx:value="33"/>
-                                        <String fx:value="34"/>
-                                        <String fx:value="35"/>
-                                        <String fx:value="36"/>
-                                        <String fx:value="37"/>
-                                        <String fx:value="38"/>
-                                        <String fx:value="39"/>
-                                        <String fx:value="40"/>
-                                        <String fx:value="41"/>
-                                        <String fx:value="42"/>
-                                        <String fx:value="43"/>
-                                        <String fx:value="44"/>
-                                        <String fx:value="45"/>
-                                        <String fx:value="46"/>
-                                        <String fx:value="47"/>
-                                        <String fx:value="48"/>
-                                        <String fx:value="49"/>
-                                        <String fx:value="50"/>
-                                        <String fx:value="51"/>
-                                        <String fx:value="52"/>
-                                        <String fx:value="53"/>
-                                        <String fx:value="54"/>
-                                        <String fx:value="55"/>
-                                        <String fx:value="56"/>
-                                        <String fx:value="57"/>
-                                        <String fx:value="58"/>
-                                        <String fx:value="59"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
+                                        <String fx:value="24" />
+                                        <String fx:value="25" />
+                                        <String fx:value="26" />
+                                        <String fx:value="27" />
+                                        <String fx:value="28" />
+                                        <String fx:value="29" />
+                                        <String fx:value="30" />
+                                        <String fx:value="31" />
+                                        <String fx:value="32" />
+                                        <String fx:value="33" />
+                                        <String fx:value="34" />
+                                        <String fx:value="35" />
+                                        <String fx:value="36" />
+                                        <String fx:value="37" />
+                                        <String fx:value="38" />
+                                        <String fx:value="39" />
+                                        <String fx:value="40" />
+                                        <String fx:value="41" />
+                                        <String fx:value="42" />
+                                        <String fx:value="43" />
+                                        <String fx:value="44" />
+                                        <String fx:value="45" />
+                                        <String fx:value="46" />
+                                        <String fx:value="47" />
+                                        <String fx:value="48" />
+                                        <String fx:value="49" />
+                                        <String fx:value="50" />
+                                        <String fx:value="51" />
+                                        <String fx:value="52" />
+                                        <String fx:value="53" />
+                                        <String fx:value="54" />
+                                        <String fx:value="55" />
+                                        <String fx:value="56" />
+                                        <String fx:value="57" />
+                                        <String fx:value="58" />
+                                        <String fx:value="59" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets left="5.0"/>
+                                    <Insets left="5.0" />
                                 </GridPane.margin>
                             </ComboBox>
                             <Label fx:id="permitColon" disable="true" text=":" GridPane.columnIndex="2">
                                 <font>
-                                    <Font name="System Bold" size="18.0"/>
+                                    <Font name="System Bold" size="18.0" />
                                 </font>
                             </Label>
                         </children>
                     </GridPane>
-                    <TextField fx:id="permitReason" disable="true" maxWidth="-Infinity" prefWidth="207.0"
-                               promptText="Reason" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                    <TextField fx:id="permitReason" disable="true" maxWidth="-Infinity" prefWidth="207.0" promptText="Reason" GridPane.columnIndex="2" GridPane.rowIndex="3">
                         <GridPane.margin>
-                            <Insets left="20.0"/>
+                            <Insets left="20.0" />
                         </GridPane.margin>
                         <font>
-                            <Font name="System Italic" size="12.0"/>
+                            <Font name="System Italic" size="12.0" />
                         </font>
                     </TextField>
                     <Label fx:id="workingHoursHyphen" disable="true" text="−" GridPane.columnIndex="1">
                         <font>
-                            <Font name="System Bold" size="24.0"/>
+                            <Font name="System Bold" size="24.0" />
                         </font>
                     </Label>
-                    <Label fx:id="launchBreakHyphen" disable="true" layoutX="287.0" layoutY="13.0" text="−"
-                           GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label fx:id="launchBreakHyphen" disable="true" layoutX="287.0" layoutY="13.0" text="−" GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <font>
-                            <Font name="System Bold" size="24.0"/>
+                            <Font name="System Bold" size="24.0" />
                         </font>
                     </Label>
                     <GridPane layoutX="10.0" layoutY="10.0" GridPane.columnIndex="2">
                         <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity"
-                                               minWidth="-Infinity"/>
-                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0"
-                                               prefWidth="130.0"/>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="130.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
                             <ComboBox fx:id="workingHoursEndH" disable="true" prefWidth="55.0">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets right="5.0"/>
+                                    <Insets right="5.0" />
                                 </GridPane.margin>
                             </ComboBox>
                             <ComboBox fx:id="workingHoursEndM" disable="true" prefWidth="55.0" GridPane.columnIndex="2">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
-                                        <String fx:value="24"/>
-                                        <String fx:value="25"/>
-                                        <String fx:value="26"/>
-                                        <String fx:value="27"/>
-                                        <String fx:value="28"/>
-                                        <String fx:value="29"/>
-                                        <String fx:value="30"/>
-                                        <String fx:value="31"/>
-                                        <String fx:value="32"/>
-                                        <String fx:value="33"/>
-                                        <String fx:value="34"/>
-                                        <String fx:value="35"/>
-                                        <String fx:value="36"/>
-                                        <String fx:value="37"/>
-                                        <String fx:value="38"/>
-                                        <String fx:value="39"/>
-                                        <String fx:value="40"/>
-                                        <String fx:value="41"/>
-                                        <String fx:value="42"/>
-                                        <String fx:value="43"/>
-                                        <String fx:value="44"/>
-                                        <String fx:value="45"/>
-                                        <String fx:value="46"/>
-                                        <String fx:value="47"/>
-                                        <String fx:value="48"/>
-                                        <String fx:value="49"/>
-                                        <String fx:value="50"/>
-                                        <String fx:value="51"/>
-                                        <String fx:value="52"/>
-                                        <String fx:value="53"/>
-                                        <String fx:value="54"/>
-                                        <String fx:value="55"/>
-                                        <String fx:value="56"/>
-                                        <String fx:value="57"/>
-                                        <String fx:value="58"/>
-                                        <String fx:value="59"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
+                                        <String fx:value="24" />
+                                        <String fx:value="25" />
+                                        <String fx:value="26" />
+                                        <String fx:value="27" />
+                                        <String fx:value="28" />
+                                        <String fx:value="29" />
+                                        <String fx:value="30" />
+                                        <String fx:value="31" />
+                                        <String fx:value="32" />
+                                        <String fx:value="33" />
+                                        <String fx:value="34" />
+                                        <String fx:value="35" />
+                                        <String fx:value="36" />
+                                        <String fx:value="37" />
+                                        <String fx:value="38" />
+                                        <String fx:value="39" />
+                                        <String fx:value="40" />
+                                        <String fx:value="41" />
+                                        <String fx:value="42" />
+                                        <String fx:value="43" />
+                                        <String fx:value="44" />
+                                        <String fx:value="45" />
+                                        <String fx:value="46" />
+                                        <String fx:value="47" />
+                                        <String fx:value="48" />
+                                        <String fx:value="49" />
+                                        <String fx:value="50" />
+                                        <String fx:value="51" />
+                                        <String fx:value="52" />
+                                        <String fx:value="53" />
+                                        <String fx:value="54" />
+                                        <String fx:value="55" />
+                                        <String fx:value="56" />
+                                        <String fx:value="57" />
+                                        <String fx:value="58" />
+                                        <String fx:value="59" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets left="5.0"/>
+                                    <Insets left="5.0" />
                                 </GridPane.margin>
                             </ComboBox>
                             <Label fx:id="workingHoursEndColon" disable="true" text=":" GridPane.columnIndex="1">
                                 <font>
-                                    <Font name="System Bold" size="18.0"/>
+                                    <Font name="System Bold" size="18.0" />
                                 </font>
                             </Label>
                         </children>
                     </GridPane>
                     <GridPane layoutX="304.0" layoutY="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                         <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity"
-                                               minWidth="-Infinity"/>
-                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0"
-                                               prefWidth="130.0"/>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="130.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
                             <ComboBox fx:id="launchBreakEndH" disable="true" prefWidth="55.0">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets right="5.0"/>
+                                    <Insets right="5.0" />
                                 </GridPane.margin>
                             </ComboBox>
                             <ComboBox fx:id="launchBreakEndM" disable="true" prefWidth="55.0" GridPane.columnIndex="2">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="00"/>
-                                        <String fx:value="01"/>
-                                        <String fx:value="02"/>
-                                        <String fx:value="03"/>
-                                        <String fx:value="04"/>
-                                        <String fx:value="05"/>
-                                        <String fx:value="06"/>
-                                        <String fx:value="07"/>
-                                        <String fx:value="08"/>
-                                        <String fx:value="09"/>
-                                        <String fx:value="10"/>
-                                        <String fx:value="11"/>
-                                        <String fx:value="12"/>
-                                        <String fx:value="13"/>
-                                        <String fx:value="14"/>
-                                        <String fx:value="15"/>
-                                        <String fx:value="16"/>
-                                        <String fx:value="17"/>
-                                        <String fx:value="18"/>
-                                        <String fx:value="19"/>
-                                        <String fx:value="20"/>
-                                        <String fx:value="21"/>
-                                        <String fx:value="22"/>
-                                        <String fx:value="23"/>
-                                        <String fx:value="24"/>
-                                        <String fx:value="25"/>
-                                        <String fx:value="26"/>
-                                        <String fx:value="27"/>
-                                        <String fx:value="28"/>
-                                        <String fx:value="29"/>
-                                        <String fx:value="30"/>
-                                        <String fx:value="31"/>
-                                        <String fx:value="32"/>
-                                        <String fx:value="33"/>
-                                        <String fx:value="34"/>
-                                        <String fx:value="35"/>
-                                        <String fx:value="36"/>
-                                        <String fx:value="37"/>
-                                        <String fx:value="38"/>
-                                        <String fx:value="39"/>
-                                        <String fx:value="40"/>
-                                        <String fx:value="41"/>
-                                        <String fx:value="42"/>
-                                        <String fx:value="43"/>
-                                        <String fx:value="44"/>
-                                        <String fx:value="45"/>
-                                        <String fx:value="46"/>
-                                        <String fx:value="47"/>
-                                        <String fx:value="48"/>
-                                        <String fx:value="49"/>
-                                        <String fx:value="50"/>
-                                        <String fx:value="51"/>
-                                        <String fx:value="52"/>
-                                        <String fx:value="53"/>
-                                        <String fx:value="54"/>
-                                        <String fx:value="55"/>
-                                        <String fx:value="56"/>
-                                        <String fx:value="57"/>
-                                        <String fx:value="58"/>
-                                        <String fx:value="59"/>
+                                        <String fx:value="00" />
+                                        <String fx:value="01" />
+                                        <String fx:value="02" />
+                                        <String fx:value="03" />
+                                        <String fx:value="04" />
+                                        <String fx:value="05" />
+                                        <String fx:value="06" />
+                                        <String fx:value="07" />
+                                        <String fx:value="08" />
+                                        <String fx:value="09" />
+                                        <String fx:value="10" />
+                                        <String fx:value="11" />
+                                        <String fx:value="12" />
+                                        <String fx:value="13" />
+                                        <String fx:value="14" />
+                                        <String fx:value="15" />
+                                        <String fx:value="16" />
+                                        <String fx:value="17" />
+                                        <String fx:value="18" />
+                                        <String fx:value="19" />
+                                        <String fx:value="20" />
+                                        <String fx:value="21" />
+                                        <String fx:value="22" />
+                                        <String fx:value="23" />
+                                        <String fx:value="24" />
+                                        <String fx:value="25" />
+                                        <String fx:value="26" />
+                                        <String fx:value="27" />
+                                        <String fx:value="28" />
+                                        <String fx:value="29" />
+                                        <String fx:value="30" />
+                                        <String fx:value="31" />
+                                        <String fx:value="32" />
+                                        <String fx:value="33" />
+                                        <String fx:value="34" />
+                                        <String fx:value="35" />
+                                        <String fx:value="36" />
+                                        <String fx:value="37" />
+                                        <String fx:value="38" />
+                                        <String fx:value="39" />
+                                        <String fx:value="40" />
+                                        <String fx:value="41" />
+                                        <String fx:value="42" />
+                                        <String fx:value="43" />
+                                        <String fx:value="44" />
+                                        <String fx:value="45" />
+                                        <String fx:value="46" />
+                                        <String fx:value="47" />
+                                        <String fx:value="48" />
+                                        <String fx:value="49" />
+                                        <String fx:value="50" />
+                                        <String fx:value="51" />
+                                        <String fx:value="52" />
+                                        <String fx:value="53" />
+                                        <String fx:value="54" />
+                                        <String fx:value="55" />
+                                        <String fx:value="56" />
+                                        <String fx:value="57" />
+                                        <String fx:value="58" />
+                                        <String fx:value="59" />
                                     </FXCollections>
                                 </items>
                                 <GridPane.margin>
-                                    <Insets left="5.0"/>
+                                    <Insets left="5.0" />
                                 </GridPane.margin>
                             </ComboBox>
                             <Label fx:id="launchBreakEndColon" disable="true" text=":" GridPane.columnIndex="1">
                                 <font>
-                                    <Font name="System Bold" size="18.0"/>
+                                    <Font name="System Bold" size="18.0" />
                                 </font>
                             </Label>
                         </children>
                     </GridPane>
-                    <Label fx:id="permitHyphen" disable="true" layoutX="287.0" layoutY="53.0" text="−"
-                           GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <Label fx:id="permitHyphen" disable="true" layoutX="287.0" layoutY="53.0" text="−" GridPane.columnIndex="1" GridPane.rowIndex="3">
                         <font>
-                            <Font name="System Bold" size="24.0"/>
+                            <Font name="System Bold" size="24.0" />
                         </font>
                     </Label>
                 </children>
             </GridPane>
             <Line startX="530.0" StackPane.alignment="BOTTOM_CENTER">
                 <StackPane.margin>
-                    <Insets bottom="-10.0"/>
+                    <Insets bottom="-10.0" />
                 </StackPane.margin>
             </Line>
         </children>
@@ -901,50 +867,47 @@
         <children>
             <GridPane>
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+                    <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
                     <GridPane>
                         <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="275.0"/>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="275.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
-                            <TextArea fx:id="notesTextArea" disable="true" prefHeight="200.0" prefWidth="200.0"
-                                      wrapText="true" GridPane.columnIndex="1">
+                            <TextArea fx:id="notesTextArea" disable="true" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1">
                                 <GridPane.margin>
-                                    <Insets right="10.0"/>
+                                    <Insets right="10.0" />
                                 </GridPane.margin>
                             </TextArea>
-                            <Label fx:id="notes" disable="true" rotate="270.0" text="Notes" translateX="5.0"/>
+                            <Label fx:id="notes" disable="true" rotate="270.0" text="Notes" translateX="5.0" />
                         </children>
                     </GridPane>
                     <GridPane GridPane.columnIndex="1">
                         <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="275.0"/>
-                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="275.0" />
+                            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
-                            <TextArea fx:id="remindersTextArea" disable="true" prefHeight="200.0" prefWidth="200.0"
-                                      wrapText="true">
+                            <TextArea fx:id="remindersTextArea" disable="true" prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                 <GridPane.margin>
-                                    <Insets left="10.0"/>
+                                    <Insets left="10.0" />
                                 </GridPane.margin>
                             </TextArea>
-                            <Label fx:id="reminders" disable="true" rotate="90.0" text="Reminders" translateX="-18.0"
-                                   GridPane.columnIndex="1">
+                            <Label fx:id="reminders" disable="true" rotate="90.0" text="Reminders" translateX="-18.0" GridPane.columnIndex="1">
                                 <GridPane.margin>
-                                    <Insets/>
+                                    <Insets />
                                 </GridPane.margin>
                             </Label>
                         </children>
@@ -953,30 +916,27 @@
             </GridPane>
         </children>
     </StackPane>
-    <StackPane layoutX="144.0" layoutY="222.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0"
-               AnchorPane.rightAnchor="0.0">
+    <StackPane layoutX="144.0" layoutY="222.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <children>
             <GridPane prefHeight="25.0">
                 <columnConstraints>
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <Button fx:id="editButton" mnemonicParsing="false" onAction="#onEditButtonClick" prefWidth="52.0"
-                            text="Edit" GridPane.columnIndex="4"/>
-                    <Button fx:id="saveButton" disable="true" mnemonicParsing="false" prefWidth="52.0" text="Save"
-                            GridPane.columnIndex="6"/>
-                    <Button mnemonicParsing="false" onAction="#onCalendarButtonClick" prefWidth="52.0" text="Back"/>
-                    <Button fx:id="cancelButton" disable="true" layoutX="370.0" layoutY="10.0" mnemonicParsing="false"
-                            onAction="#onCancelButtonClick" prefWidth="52.0" text="Cancel" GridPane.columnIndex="5"/>
+                    <Button fx:id="editButton" mnemonicParsing="false" onAction="#onEditButtonClick" prefWidth="52.0" text="Edit" GridPane.columnIndex="4" />
+                    <Button fx:id="saveButton" disable="true" mnemonicParsing="false" onAction="#onSaveButtonClick" prefWidth="52.0" text="Save" GridPane.columnIndex="6" />
+                    <Button mnemonicParsing="false" onAction="#onCalendarButtonClick" prefWidth="52.0" text="Back" />
+                    <Button fx:id="cancelButton" disable="true" layoutX="370.0" layoutY="10.0" mnemonicParsing="false" onAction="#onCancelButtonClick" prefWidth="52.0" text="Cancel" GridPane.columnIndex="5" />
+               <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonClick" prefWidth="52.0" text="Delete" GridPane.columnIndex="3" />
                 </children>
             </GridPane>
         </children>

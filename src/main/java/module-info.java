@@ -3,6 +3,7 @@ module it.orion.myworkingday {
     requires javafx.fxml;
     requires org.json;
     requires json.simple;
+    requires com.google.gson;
 
 
     exports it.orion.myworkingday;

@@ -8,6 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 public class DayControllerG {
 
@@ -18,6 +21,9 @@ public class DayControllerG {
     private Stage stage;
 
     private Scene calendarScene;
+
+    @FXML
+    private Button deleteButton;
 
     @FXML
     private Button editButton;
@@ -244,6 +250,7 @@ public class DayControllerG {
     }
 
     private void buttonPropertyBinding() {
+        deleteButton.disableProperty().bind(day.deleteButtonDisableProperty());
         editButton.disableProperty().bind(day.editButtonDisableProperty());
         cancelButton.disableProperty().bind(day.cancelButtonDisableProperty());
         saveButton.disableProperty().bind(day.saveButtonDisableProperty());
@@ -312,14 +319,24 @@ public class DayControllerG {
         DayControllerA dayController = new DayControllerA();
 
         dayController.edit(day);
-
-        day.reset();
     }
 
     public void onCancelButtonClick() {
         DayControllerA dayControllerA = new DayControllerA();
 
         dayControllerA.cancel(day);
+    }
+
+    public void onDeleteButtonClick() {
+        DayControllerA dayControllerA = new DayControllerA();
+
+        dayControllerA.delete(day);
+
+    }
+    public void onSaveButtonClick() {
+        DayControllerA dayControllerA = new DayControllerA();
+
+        dayControllerA.save(day);
     }
 
     public void onWorkingDayButtonClick() {

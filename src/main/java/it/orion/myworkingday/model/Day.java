@@ -52,6 +52,7 @@ public class Day {
     private final BooleanProperty overtimeMDisable;
     private final BooleanProperty permitHDisable;
     private final BooleanProperty permitMDisable;
+    private final BooleanProperty deleteButtonDisable;
     private final BooleanProperty editButtonDisable;
     private final BooleanProperty cancelButtonDisable;
     private final BooleanProperty saveButtonDisable;
@@ -124,6 +125,7 @@ public class Day {
         this.overtimeMDisable = new SimpleBooleanProperty(true);
         this.permitHDisable = new SimpleBooleanProperty(true);
         this.permitMDisable = new SimpleBooleanProperty(true);
+        this.deleteButtonDisable = new SimpleBooleanProperty(true);
         this.editButtonDisable = new SimpleBooleanProperty(false);
         this.cancelButtonDisable = new SimpleBooleanProperty(true);
         this.saveButtonDisable = new SimpleBooleanProperty(true);
@@ -155,10 +157,6 @@ public class Day {
         this.overtimeMSelectionModel = new SimpleObjectProperty<>();
         this.permitHSelectionModel = new SimpleObjectProperty<>();
         this.permitMSelectionModel = new SimpleObjectProperty<>();
-    }
-
-    public String getSelectedDateContent() {
-        return selectedDateContent.get();
     }
 
     public StringProperty selectedDateContentProperty() {
@@ -197,320 +195,164 @@ public class Day {
         return remindersTextAreaContent;
     }
 
-    public boolean isWorkingHoursDisable() {
-        return workingHoursDisable.get();
-    }
-
     public BooleanProperty workingHoursDisableProperty() {
         return workingHoursDisable;
-    }
-
-    public boolean isWorkingHoursStartColonDisable() {
-        return workingHoursStartColonDisable.get();
     }
 
     public BooleanProperty workingHoursStartColonDisableProperty() {
         return workingHoursStartColonDisable;
     }
 
-    public boolean isWorkingHoursEndColonDisable() {
-        return workingHoursEndColonDisable.get();
-    }
-
     public BooleanProperty workingHoursEndColonDisableProperty() {
         return workingHoursEndColonDisable;
-    }
-
-    public boolean isWorkingHoursHyphenDisable() {
-        return workingHoursHyphenDisable.get();
     }
 
     public BooleanProperty workingHoursHyphenDisableProperty() {
         return workingHoursHyphenDisable;
     }
 
-    public boolean isLaunchBreakStartColonDisable() {
-        return launchBreakStartColonDisable.get();
-    }
-
     public BooleanProperty launchBreakStartColonDisableProperty() {
         return launchBreakStartColonDisable;
-    }
-
-    public boolean isLaunchBreakEndColonDisable() {
-        return launchBreakEndColonDisable.get();
     }
 
     public BooleanProperty launchBreakEndColonDisableProperty() {
         return launchBreakEndColonDisable;
     }
 
-    public boolean isLaunchBreakHyphenDisable() {
-        return launchBreakHyphenDisable.get();
-    }
-
     public BooleanProperty launchBreakHyphenDisableProperty() {
         return launchBreakHyphenDisable;
-    }
-
-    public boolean isOvertimeColonDisable() {
-        return overtimeColonDisable.get();
     }
 
     public BooleanProperty overtimeColonDisableProperty() {
         return overtimeColonDisable;
     }
 
-    public boolean isSickLeaveDisable() {
-        return sickLeaveDisable.get();
-    }
-
     public BooleanProperty sickLeaveDisableProperty() {
         return sickLeaveDisable;
-    }
-
-    public boolean isSickLeaveColonDisable() {
-        return sickLeaveColonDisable.get();
     }
 
     public BooleanProperty sickLeaveColonDisableProperty() {
         return sickLeaveColonDisable;
     }
 
-    public boolean isPermitColonDisable() {
-        return permitColonDisable.get();
-    }
-
     public BooleanProperty permitColonDisableProperty() {
         return permitColonDisable;
-    }
-
-    public boolean isPermitHyphenDisable() {
-        return permitHyphenDisable.get();
     }
 
     public BooleanProperty permitHyphenDisableProperty() {
         return permitHyphenDisable;
     }
 
-    public boolean isNotesDisable() {
-        return notesDisable.get();
-    }
-
     public BooleanProperty notesDisableProperty() {
         return notesDisable;
-    }
-
-    public boolean isRemindersDisable() {
-        return remindersDisable.get();
     }
 
     public BooleanProperty remindersDisableProperty() {
         return remindersDisable;
     }
 
-    public boolean isWorkingDayButtonDisable() {
-        return workingDayButtonDisable.get();
-    }
-
     public BooleanProperty workingDayButtonDisableProperty() {
         return workingDayButtonDisable;
-    }
-
-    public boolean isRestButtonDisable() {
-        return restButtonDisable.get();
     }
 
     public BooleanProperty restButtonDisableProperty() {
         return restButtonDisable;
     }
 
-    public boolean isSickLeaveButtonDisable() {
-        return sickLeaveButtonDisable.get();
-    }
-
     public BooleanProperty sickLeaveButtonDisableProperty() {
         return sickLeaveButtonDisable;
-    }
-
-    public boolean isHolidayButtonDisable() {
-        return holidayButtonDisable.get();
     }
 
     public BooleanProperty holidayButtonDisableProperty() {
         return holidayButtonDisable;
     }
 
-    public boolean isWorkingHoursStartHDisable() {
-        return workingHoursStartHDisable.get();
-    }
-
     public BooleanProperty workingHoursStartHDisableProperty() {
         return workingHoursStartHDisable;
-    }
-
-    public boolean isWorkingHoursStartMDisable() {
-        return workingHoursStartMDisable.get();
     }
 
     public BooleanProperty workingHoursStartMDisableProperty() {
         return workingHoursStartMDisable;
     }
 
-    public boolean isWorkingHoursEndHDisable() {
-        return workingHoursEndHDisable.get();
-    }
-
     public BooleanProperty workingHoursEndHDisableProperty() {
         return workingHoursEndHDisable;
-    }
-
-    public boolean isWorkingHoursEndMDisable() {
-        return workingHoursEndMDisable.get();
     }
 
     public BooleanProperty workingHoursEndMDisableProperty() {
         return workingHoursEndMDisable;
     }
 
-    public boolean isLaunchBreakStartHDisable() {
-        return launchBreakStartHDisable.get();
-    }
-
     public BooleanProperty launchBreakStartHDisableProperty() {
         return launchBreakStartHDisable;
-    }
-
-    public boolean isLaunchBreakStartMDisable() {
-        return launchBreakStartMDisable.get();
     }
 
     public BooleanProperty launchBreakStartMDisableProperty() {
         return launchBreakStartMDisable;
     }
 
-    public boolean isLaunchBreakEndHDisable() {
-        return launchBreakEndHDisable.get();
-    }
-
     public BooleanProperty launchBreakEndHDisableProperty() {
         return launchBreakEndHDisable;
-    }
-
-    public boolean isLaunchBreakEndMDisable() {
-        return launchBreakEndMDisable.get();
     }
 
     public BooleanProperty launchBreakEndMDisableProperty() {
         return launchBreakEndMDisable;
     }
 
-    public boolean isOvertimeHDisable() {
-        return overtimeHDisable.get();
-    }
-
     public BooleanProperty overtimeHDisableProperty() {
         return overtimeHDisable;
-    }
-
-    public boolean isOvertimeMDisable() {
-        return overtimeMDisable.get();
     }
 
     public BooleanProperty overtimeMDisableProperty() {
         return overtimeMDisable;
     }
 
-    public boolean isPermitHDisable() {
-        return permitHDisable.get();
-    }
-
     public BooleanProperty permitHDisableProperty() {
         return permitHDisable;
-    }
-
-    public boolean isPermitMDisable() {
-        return permitMDisable.get();
     }
 
     public BooleanProperty permitMDisableProperty() {
         return permitMDisable;
     }
 
-    public boolean isEditButtonDisable() {
-        return editButtonDisable.get();
+    public BooleanProperty deleteButtonDisableProperty() {
+        return deleteButtonDisable;
     }
 
     public BooleanProperty editButtonDisableProperty() {
         return editButtonDisable;
     }
 
-    public boolean isCancelButtonDisable() {
-        return cancelButtonDisable.get();
-    }
-
     public BooleanProperty cancelButtonDisableProperty() {
         return cancelButtonDisable;
-    }
-
-    public boolean isSaveButtonDisable() {
-        return saveButtonDisable.get();
     }
 
     public BooleanProperty saveButtonDisableProperty() {
         return saveButtonDisable;
     }
 
-    public boolean isLaunchBreakDisable() {
-        return launchBreakDisable.get();
-    }
-
     public BooleanProperty launchBreakDisableProperty() {
         return launchBreakDisable;
-    }
-
-    public boolean isOvertimeDisable() {
-        return overtimeDisable.get();
     }
 
     public BooleanProperty overtimeDisableProperty() {
         return overtimeDisable;
     }
 
-    public boolean isPermitDisable() {
-        return permitDisable.get();
-    }
-
     public BooleanProperty permitDisableProperty() {
         return permitDisable;
-    }
-
-    public boolean isSickLeaveProtocolDisable() {
-        return sickLeaveProtocolDisable.get();
     }
 
     public BooleanProperty sickLeaveProtocolDisableProperty() {
         return sickLeaveProtocolDisable;
     }
 
-    public boolean isPermitReasonDisable() {
-        return permitReasonDisable.get();
-    }
-
     public BooleanProperty permitReasonDisableProperty() {
         return permitReasonDisable;
     }
 
-    public boolean isNotesTextAreaDisable() {
-        return notesTextAreaDisable.get();
-    }
-
     public BooleanProperty notesTextAreaDisableProperty() {
         return notesTextAreaDisable;
-    }
-
-    public boolean isRemindersTextAreaDisable() {
-        return remindersTextAreaDisable.get();
     }
 
     public BooleanProperty remindersTextAreaDisableProperty() {
@@ -794,6 +636,10 @@ public class Day {
         this.permitMDisable.set(permitMDisable);
     }
 
+    public void setDeleteButtonDisable(boolean deleteButtonDisable) {
+        this.deleteButtonDisable.set(deleteButtonDisable);
+    }
+
     public void setEditButtonDisable(boolean editButtonDisable) {
         this.editButtonDisable.set(editButtonDisable);
     }
@@ -926,13 +772,6 @@ public class Day {
 
     public String getSelectedDate() {
         return this.selectedDate;
-    }
-
-    public void reset() {
-        //System.out.println(this.prova.get().getSelectedItem());
-        //this.prova.get().clearSelection();
-
-
     }
 
     public void clearWorkingHours() {

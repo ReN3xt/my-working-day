@@ -1,6 +1,9 @@
 package it.orion.myworkingday.controller.applicativo;
 
 import it.orion.myworkingday.model.Day;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 
 public class DayControllerA {
 
@@ -11,6 +14,7 @@ public class DayControllerA {
     public void edit(Day day) {
         disableTextArea(day, false);
         disableDayTypeSelection(day, false);
+        day.setDeleteButtonDisable(true);
         day.setEditButtonDisable(true);
         day.setCancelButtonDisable(false);
         day.setSaveButtonDisable(false);
@@ -150,11 +154,46 @@ public class DayControllerA {
         disableWorkingDayForm(day, true);
         disableSickLeaveForm(day, true);
 
-
         if(day.isLoad()){
-          LoadDataController controller = new LoadDataController();
+            day.setDeleteButtonDisable(false);
 
-          controller.loadData(day);
+            LoadDataController controller = new LoadDataController();
+
+            controller.loadData(day);
+        }
+    }
+
+    public void delete(Day day) {
+
+        disableTextArea(day, true);
+        disableDayTypeSelection(day, true);
+        disableWorkingDayForm(day, true);
+        disableSickLeaveForm(day, true);
+
+        DeleteDataController controller = new DeleteDataController();
+
+        controller.deleteData(day);
+
+        day.setDeleteButtonDisable(true);
+    }
+
+    public void save(Day day) {
+        SaveDataController controller = new SaveDataController();
+
+        if(controller.saveData(day)) {
+            day.setDeleteButtonDisable(true);
+            day.setEditButtonDisable(false);
+            day.setCancelButtonDisable(true);
+            day.setSaveButtonDisable(true);
+
+            disableTextArea(day, true);
+            disableDayTypeSelection(day, true);
+            disableWorkingDayForm(day, true);
+            disableSickLeaveForm(day, true);
+
+            LoadDataController loadController = new LoadDataController();
+
+            loadController.loadData(day);
         }
     }
 }
