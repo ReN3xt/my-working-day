@@ -1,6 +1,6 @@
 package it.orion.myworkingday.controller.grafico;
 
-import it.orion.myworkingday.controller.applicativo.DayControllerA;
+import it.orion.myworkingday.controller.applicativo.DayController;
 import it.orion.myworkingday.controller.applicativo.LoadDataController;
 import it.orion.myworkingday.model.Calendar;
 import it.orion.myworkingday.model.Day;
@@ -8,9 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.json.simple.parser.ParseException;
-
-import java.io.IOException;
 
 public class DayControllerG {
 
@@ -315,69 +312,81 @@ public class DayControllerG {
         loadDataController.loadData(this.day);
     }
 
-    public void onEditButtonClick() {
-        DayControllerA dayController = new DayControllerA();
+    @FXML
+    protected void onEditButtonClick() {
+        DayController dayController = new DayController();
 
         dayController.edit(day);
     }
 
-    public void onCancelButtonClick() {
-        DayControllerA dayControllerA = new DayControllerA();
+    @FXML
+    protected void onCancelButtonClick() {
+        DayController dayController = new DayController();
 
-        dayControllerA.cancel(day);
+        dayController.cancel(day);
     }
 
-    public void onDeleteButtonClick() {
-        DayControllerA dayControllerA = new DayControllerA();
+    @FXML
+    protected void onDeleteButtonClick() {
+        DayController dayController = new DayController();
 
-        dayControllerA.delete(day);
+        dayController.delete(day);
 
     }
-    public void onSaveButtonClick() {
-        DayControllerA dayControllerA = new DayControllerA();
 
-        dayControllerA.save(day);
+    @FXML
+    protected void onSaveButtonClick() {
+        DayController dayController = new DayController();
+
+        dayController.save(day);
     }
 
-    public void onWorkingDayButtonClick() {
-        DayControllerA dayControllerA = new DayControllerA();
+    @FXML
+    protected void onWorkingDayButtonClick() {
+        DayController dayController = new DayController();
 
-        dayControllerA.disableWorkingDayForm(day, !day.isWorkingDayButtonSelect());
+        dayController.disableWorkingDayForm(day, !day.isWorkingDayButtonSelect());
     }
 
-    public void onRestButtonClick() {
-        DayControllerA dayControllerA = new DayControllerA();
+    @FXML
+    protected void onRestButtonClick() {
+        DayController dayController = new DayController();
 
-        dayControllerA.disableWorkingDayForm(day, true);
+        dayController.disableWorkingDayForm(day, true);
     }
 
-    public void onSickLeaveButtonClick() {
-        DayControllerA dayControllerA = new DayControllerA();
+    @FXML
+    protected void onSickLeaveButtonClick() {
+        DayController dayController = new DayController();
 
-        dayControllerA.disableSickLeaveForm(day, !day.isSickLeaveButtonSelect());
+        dayController.disableSickLeaveForm(day, !day.isSickLeaveButtonSelect());
     }
 
-    public void onHolidayButtonClick() {
-        DayControllerA dayControllerA = new DayControllerA();
+    @FXML
+    protected void onHolidayButtonClick() {
+        DayController dayController = new DayController();
 
-        dayControllerA.disableWorkingDayForm(day, true);
+        dayController.disableWorkingDayForm(day, true);
     }
 
-    public void onLaunchBreakCheck() {
-        DayControllerA dayControllerA = new DayControllerA();
+    @FXML
+    protected void onLaunchBreakCheck() {
+        DayController dayController = new DayController();
 
-        dayControllerA.disableLaunchBreakForm(day, !day.isLaunchBreakSelect());
+        dayController.disableLaunchBreakForm(day, !day.isLaunchBreakSelect());
     }
 
-    public void onOvertimeCheck() {
-        DayControllerA dayControllerA = new DayControllerA();
+    @FXML
+    protected void onOvertimeCheck() {
+        DayController dayController = new DayController();
 
-        dayControllerA.disableOvertimeForm(day, !day.isOvertimeSelect());
+        dayController.disableOvertimeForm(day, !day.isOvertimeSelect());
     }
 
-    public void onPermitCheck() {
-        DayControllerA dayControllerA = new DayControllerA();
+    @FXML
+    protected void onPermitCheck() {
+        DayController dayController = new DayController();
 
-        dayControllerA.disablePermitForm(day, !day.isPermitSelect());
+        dayController.disablePermitForm(day, !day.isPermitSelect());
     }
 }

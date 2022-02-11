@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 public class Calendar {
 
+    private final StringProperty monthSalary;
     private final StringProperty year;
     private final StringProperty month;
     private final StringProperty[] days;
@@ -17,11 +18,16 @@ public class Calendar {
     private LocalDate currentDate;
 
     public Calendar() {
+        this.monthSalary = new SimpleStringProperty();
         this.year = new SimpleStringProperty(String.valueOf(LocalDate.now().getYear()));
         this.month = new SimpleStringProperty(String.valueOf(LocalDate.now().getMonth()));
         this.currentDate = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 1);
         this.days = new SimpleStringProperty[37];
         this.daysVisibility = new SimpleBooleanProperty[37];
+    }
+
+    public StringProperty monthSalaryProperty() {
+        return monthSalary;
     }
 
     public StringProperty yearProperty() {
@@ -40,6 +46,10 @@ public class Calendar {
     public BooleanProperty daysVisibilityProperty(int i) {
         this.daysVisibility[i] = new SimpleBooleanProperty();
         return daysVisibility[i];
+    }
+
+    public void setMonthSalary(String monthSalary) {
+        this.monthSalary.set(monthSalary);
     }
 
     public void setPrevMonth() {

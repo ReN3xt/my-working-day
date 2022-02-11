@@ -54,22 +54,28 @@ public class LoadDataController {
                 e.printStackTrace();
             }
 
-        }else{
-            createFile(day, file);
+        } else {
+            createFile(file);
+
+            day.setLoad(false);
         }
     }
 
-    public void createFile(Day day, File file) {
+    public static void createFile(File file) {
         File folder = new File(System.getenv("LOCALAPPDATA") + "/MWD");
 
         try {
-            folder.mkdirs();
-            file.createNewFile();
+            if(folder.mkdirs() || file.createNewFile()) {
+                FileWriter fileWriter = new FileWriter(file);
+
+                fileWriter.write("{}");
+
+                fileWriter.flush();
+                fileWriter.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        day.setLoad(false);
     }
 
     public void loadDayType(Day day, JSONObject dayData) {

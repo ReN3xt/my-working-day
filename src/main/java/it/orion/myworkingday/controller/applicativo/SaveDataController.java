@@ -40,14 +40,16 @@ public class SaveDataController {
                 fileWriter.close();
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
+
+                day.setLoad(false);
+
+                return false;
             }
 
             day.setLoad(true);
 
             return true;
         } else {
-            System.out.println("Form non valida");
-
             return false;
         }
     }

@@ -1,11 +1,284 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="it.orion.myworkingday.controller.grafico.WorkerControllerG">
-    <Button fx:id="calendarButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false"
-            onAction="#onCalendarButtonClick" text="Back"/>
-    <Label layoutX="276.0" layoutY="66.0" text="WORKER"/>
+<AnchorPane prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.orion.myworkingday.controller.grafico.WorkerControllerG">
+   <StackPane AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <children>
+         <GridPane prefHeight="125.0">
+           <columnConstraints>
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
+               <GridPane>
+                 <columnConstraints>
+                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0" />
+                 </columnConstraints>
+                 <rowConstraints>
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                 </rowConstraints>
+                  <children>
+                     <Label fx:id="firstNameLabel" disable="true" text="First name : ">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="firstNameTextField" disable="true" GridPane.columnIndex="1">
+                        <GridPane.margin>
+                           <Insets left="5.0" />
+                        </GridPane.margin></TextField>
+                  </children>
+               </GridPane>
+               <GridPane GridPane.rowIndex="1">
+                 <columnConstraints>
+                     <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0" />
+                 </columnConstraints>
+                 <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                 </rowConstraints>
+                  <children>
+                     <TextField fx:id="lastNameTextField" disable="true" GridPane.columnIndex="1">
+                        <GridPane.margin>
+                           <Insets left="5.0" />
+                        </GridPane.margin></TextField>
+                     <Label fx:id="lastNameLabel" disable="true" text="Last name : ">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </GridPane>
+               <GridPane GridPane.columnIndex="1">
+                 <columnConstraints>
+                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                 </columnConstraints>
+                 <rowConstraints>
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                 </rowConstraints>
+                  <children>
+                     <Label fx:id="defaultWorkingHoursLabel" disable="true" text="Default working hours : ">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <GridPane GridPane.columnIndex="1">
+                       <columnConstraints>
+                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints hgrow="SOMETIMES" />
+                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                       </columnConstraints>
+                       <rowConstraints>
+                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
+                        <children>
+                           <ComboBox fx:id="defaultWorkingHoursH" disable="true" prefWidth="55.0">
+                               <items>
+                                   <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="00" />
+                                       <String fx:value="01" />
+                                       <String fx:value="02" />
+                                       <String fx:value="03" />
+                                       <String fx:value="04" />
+                                       <String fx:value="05" />
+                                       <String fx:value="06" />
+                                       <String fx:value="07" />
+                                       <String fx:value="08" />
+                                       <String fx:value="09" />
+                                       <String fx:value="10" />
+                                       <String fx:value="11" />
+                                       <String fx:value="12" />
+                                       <String fx:value="13" />
+                                       <String fx:value="14" />
+                                       <String fx:value="15" />
+                                       <String fx:value="16" />
+                                       <String fx:value="17" />
+                                       <String fx:value="18" />
+                                       <String fx:value="19" />
+                                       <String fx:value="20" />
+                                       <String fx:value="21" />
+                                       <String fx:value="22" />
+                                       <String fx:value="23" />
+                                   </FXCollections>
+                               </items>
+                              <GridPane.margin>
+                                 <Insets right="5.0" />
+                              </GridPane.margin></ComboBox>
+                           <ComboBox fx:id="defaultWorkingHoursM" disable="true" prefWidth="55.0" GridPane.columnIndex="2">
+                               <items>
+                                   <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="00" />
+                                       <String fx:value="01" />
+                                       <String fx:value="02" />
+                                       <String fx:value="03" />
+                                       <String fx:value="04" />
+                                       <String fx:value="05" />
+                                       <String fx:value="06" />
+                                       <String fx:value="07" />
+                                       <String fx:value="08" />
+                                       <String fx:value="09" />
+                                       <String fx:value="10" />
+                                       <String fx:value="11" />
+                                       <String fx:value="12" />
+                                       <String fx:value="13" />
+                                       <String fx:value="14" />
+                                       <String fx:value="15" />
+                                       <String fx:value="16" />
+                                       <String fx:value="17" />
+                                       <String fx:value="18" />
+                                       <String fx:value="19" />
+                                       <String fx:value="20" />
+                                       <String fx:value="21" />
+                                       <String fx:value="22" />
+                                       <String fx:value="23" />
+                                       <String fx:value="24" />
+                                       <String fx:value="25" />
+                                       <String fx:value="26" />
+                                       <String fx:value="27" />
+                                       <String fx:value="28" />
+                                       <String fx:value="29" />
+                                       <String fx:value="30" />
+                                       <String fx:value="31" />
+                                       <String fx:value="32" />
+                                       <String fx:value="33" />
+                                       <String fx:value="34" />
+                                       <String fx:value="35" />
+                                       <String fx:value="36" />
+                                       <String fx:value="37" />
+                                       <String fx:value="38" />
+                                       <String fx:value="39" />
+                                       <String fx:value="40" />
+                                       <String fx:value="41" />
+                                       <String fx:value="42" />
+                                       <String fx:value="43" />
+                                       <String fx:value="44" />
+                                       <String fx:value="45" />
+                                       <String fx:value="46" />
+                                       <String fx:value="47" />
+                                       <String fx:value="48" />
+                                       <String fx:value="49" />
+                                       <String fx:value="50" />
+                                       <String fx:value="51" />
+                                       <String fx:value="52" />
+                                       <String fx:value="53" />
+                                       <String fx:value="54" />
+                                       <String fx:value="55" />
+                                       <String fx:value="56" />
+                                       <String fx:value="57" />
+                                       <String fx:value="58" />
+                                       <String fx:value="59" />
+                                   </FXCollections>
+                               </items>
+                              <GridPane.margin>
+                                 <Insets left="5.0" />
+                              </GridPane.margin></ComboBox>
+                           <Label fx:id="defaultWorkingHoursColonLabel" disable="true" text=":" GridPane.columnIndex="1">
+                              <font>
+                                 <Font name="System Bold" size="18.0" />
+                              </font></Label>
+                        </children>
+                     </GridPane>
+                  </children>
+               </GridPane>
+               <GridPane GridPane.rowIndex="2">
+                 <columnConstraints>
+                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0" />
+                 </columnConstraints>
+                 <rowConstraints>
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                 </rowConstraints>
+                  <children>
+                     <Label fx:id="workLabel" disable="true" text="Work : ">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="workTextField" disable="true" GridPane.columnIndex="1">
+                        <GridPane.margin>
+                           <Insets left="5.0" />
+                        </GridPane.margin></TextField>
+                  </children>
+               </GridPane>
+               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                 <columnConstraints>
+                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                 </columnConstraints>
+                 <rowConstraints>
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                 </rowConstraints>
+                  <children>
+                     <Label fx:id="salaryPerHourLabel" disable="true" text="Salary per hour : ">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="salaryPerHourTextField" disable="true" maxWidth="55.0" GridPane.columnIndex="1">
+                        <GridPane.margin>
+                           <Insets left="8.0" />
+                        </GridPane.margin>
+                     </TextField>
+                  </children>
+               </GridPane>
+               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                 <columnConstraints>
+                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                 </columnConstraints>
+                 <rowConstraints>
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                 </rowConstraints>
+                  <children>
+                     <TextField fx:id="overtimeSalaryTextField" disable="true" maxWidth="55.0" GridPane.columnIndex="1">
+                        <GridPane.margin>
+                           <Insets left="8.0" />
+                        </GridPane.margin></TextField>
+                     <Label fx:id="overtimeSalaryLabel" disable="true" text="Overtime salary (%) : ">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </GridPane>
+            </children>
+         </GridPane>
+      </children>
+   </StackPane>
+   <StackPane layoutX="227.0" layoutY="200.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <children>
+         <GridPane prefHeight="25.0">
+           <columnConstraints>
+             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
+                <Button mnemonicParsing="false" onAction="#onCalendarButtonClick" prefWidth="52.0" text="Back" />
+               <Button fx:id="saveButton" disable="true" mnemonicParsing="false" onAction="#onSaveButtonClick" prefWidth="52.0" text="Save" GridPane.columnIndex="6" />
+               <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#onCancelButtonClick" prefWidth="52.0" text="Cancel" GridPane.columnIndex="5" />
+               <Button fx:id="editButton" mnemonicParsing="false" onAction="#onEditButtonClick" prefWidth="52.0" text="Edit" GridPane.columnIndex="4" />
+            </children>
+         </GridPane>
+      </children></StackPane>
 </AnchorPane>

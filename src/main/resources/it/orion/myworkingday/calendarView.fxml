@@ -107,7 +107,7 @@
          <GridPane prefHeight="25.0">
            <columnConstraints>
              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -118,7 +118,8 @@
            </rowConstraints>
             <children>
                 <Button fx:id="workerButton" mnemonicParsing="false" onAction="#onWorkerButtonClick" text="Worker" GridPane.columnIndex="5" />
-               <Button mnemonicParsing="false" text="Salary" />
+               <Button mnemonicParsing="false" onAction="#onSalaryButtonClick" text="Salary" />
+               <TextField fx:id="estimateSalary" editable="false" maxWidth="92.0" promptText="Month Salary" GridPane.columnIndex="1" />
             </children>
          </GridPane>
       </children>

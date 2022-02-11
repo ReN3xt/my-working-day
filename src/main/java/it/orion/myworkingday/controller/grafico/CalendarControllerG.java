@@ -2,13 +2,17 @@ package it.orion.myworkingday.controller.grafico;
 
 import it.orion.myworkingday.Main;
 import it.orion.myworkingday.controller.applicativo.CalendarController;
+import it.orion.myworkingday.controller.applicativo.LoadWorkerController;
+import it.orion.myworkingday.controller.applicativo.SalaryController;
 import it.orion.myworkingday.model.Calendar;
+import it.orion.myworkingday.model.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +20,8 @@ import java.io.IOException;
 public class CalendarControllerG {
 
     Calendar calendar;
+
+    Worker worker;
 
     private Stage stage;
 
@@ -158,6 +164,9 @@ public class CalendarControllerG {
     private Label monthText;
 
     @FXML
+    private TextField estimateSalary;
+
+    @FXML
     private Button workerButton;
 
     public void initialize() {
@@ -172,6 +181,17 @@ public class CalendarControllerG {
         CalendarController calendarController = new CalendarController();
 
         calendarController.updateCalendar(calendar);
+
+        // Load FXML of Worker View
+        FXMLLoader workerFxml = getFxmlLoader("workerView.fxml");
+
+        // Create a Scene for Day View
+        setWorkerScene(getScene(workerFxml));
+
+        // Get Worker View Controller Reference
+        workerController = workerFxml.getController();
+
+        worker = workerController.getWorker();
     }
 
     public void initializeButtonArray() {
@@ -219,6 +239,8 @@ public class CalendarControllerG {
 
     public void initializePropertyBinding() {
 
+        estimateSalary.textProperty().bind(calendar.monthSalaryProperty());
+
         yearText.textProperty().bind(calendar.yearProperty());
 
         monthText.textProperty().bind(calendar.monthProperty());
@@ -265,24 +287,13 @@ public class CalendarControllerG {
     }
 
     @FXML
-    protected void onWorkerButtonClick() throws IOException {
+    protected void onWorkerButtonClick() {
 
-        if (workerScene == null) {
-            // Load FXML of Worker View
-            FXMLLoader workerFxml = getFxmlLoader("workerView.fxml");
+        // Pass Stage to Worker Controller
+        workerController.setStage(stage);
 
-            // Create a Scene for Day View
-            setWorkerScene(getScene(workerFxml));
-
-            // Get Worker View Controller Reference
-            workerController = workerFxml.getController();
-
-            // Pass Stage to Worker Controller
-            workerController.setStage(stage);
-
-            // Pass Calendar Scene to Worker Controller
-            workerController.setCalendarScene(workerButton.getScene());
-        }
+        // Pass Calendar Scene to Worker Controller
+        workerController.setCalendarScene(workerButton.getScene());
 
         stage.setScene(workerScene);
     }
@@ -312,12 +323,24 @@ public class CalendarControllerG {
         stage.setScene(dayScene);
     }
 
+    @FXML
+    protected void onSalaryButtonClick() {
+        SalaryController controller = new SalaryController();
+
+        controller.calculateSalary(calendar, worker);
+    }
+
     public FXMLLoader getFxmlLoader(String fxml) {
         return new FXMLLoader(Main.class.getResource(fxml));
     }
 
-    public Scene getScene(FXMLLoader fxml) throws IOException {
-        return new Scene(fxml.load());
+    public Scene getScene(FXMLLoader fxml) {
+        try {
+            return new Scene(fxml.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void setStage(Stage stage) {

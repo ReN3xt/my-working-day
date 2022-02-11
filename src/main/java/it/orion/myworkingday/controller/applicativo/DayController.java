@@ -1,13 +1,10 @@
 package it.orion.myworkingday.controller.applicativo;
 
 import it.orion.myworkingday.model.Day;
-import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
+public class DayController {
 
-public class DayControllerA {
-
-    public DayControllerA() {
+    public DayController() {
 
     }
 
