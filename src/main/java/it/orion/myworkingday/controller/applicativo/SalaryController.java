@@ -64,7 +64,7 @@ public class SalaryController {
             } catch (IOException | ParseException ignored) {
                 LoadDataController.initializeFile(dataFile);
 
-                calendar.setMonthSalary("FILE ERROR");
+                calendar.setMonthSalary("DATA ERROR");
             }
 
         } else {
@@ -97,7 +97,6 @@ public class SalaryController {
             }
         } catch (IOException | ParseException ignored) {
             LoadDataController.initializeFile(file);
-
             return false;
         }
     }

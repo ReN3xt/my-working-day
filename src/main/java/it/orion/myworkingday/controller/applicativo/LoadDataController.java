@@ -35,51 +35,42 @@ public class LoadDataController {
 
         File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
-        if(file.exists()){
-            JSONParser parser = new JSONParser();
+        JSONParser parser = new JSONParser();
 
-            try (FileReader fileReader = new FileReader(file)) {
+        try (FileReader fileReader = new FileReader(file)) {
 
-                JSONObject dayList = (JSONObject) parser.parse(fileReader);
+            JSONObject dayList = (JSONObject) parser.parse(fileReader);
 
-                JSONObject dayData = (JSONObject) dayList.get(day.getSelectedDate());
+            JSONObject dayData = (JSONObject) dayList.get(day.getSelectedDate());
 
 
-                if(dayData == null){
-                    day.setDeleteButtonDisable(true);
-                    day.setLoad(false);
+            if(dayData == null){
+                day.setDeleteButtonDisable(true);
+                day.setLoad(false);
+            } else {
+                loadDayType(day, dayData);
+
+                if(dayData.get(NOTES) != null) {
+                    day.setNotesTextAreaContent(dayData.get(NOTES).toString());
                 } else {
-                    loadDayType(day, dayData);
-
-                    if(dayData.get(NOTES) != null) {
-                        day.setNotesTextAreaContent(dayData.get(NOTES).toString());
-                    } else {
-                        day.setNotesTextAreaContent(null);
-                    }
-
-                    if(dayData.get(REMINDERS) != null) {
-                        day.setRemindersTextAreaContent(dayData.get(REMINDERS).toString());
-                    } else {
-                        day.setRemindersTextAreaContent(null);
-                    }
-
-                    day.setDeleteButtonDisable(false);
-                    day.setLoad(true);
+                    day.setNotesTextAreaContent(null);
                 }
 
-            } catch (FileNotFoundException ignored) {
-                createFile(file);
+                if(dayData.get(REMINDERS) != null) {
+                    day.setRemindersTextAreaContent(dayData.get(REMINDERS).toString());
+                } else {
+                    day.setRemindersTextAreaContent(null);
+                }
 
-                day.setLoad(false);
-            } catch (IOException | ParseException ignored) {
-                initializeFile(file);
-
-                day.setLoad(false);
+                day.setDeleteButtonDisable(false);
+                day.setLoad(true);
             }
 
-        } else {
+        } catch (FileNotFoundException ignored) {
             createFile(file);
-
+            day.setLoad(false);
+        } catch (IOException | ParseException ignored) {
+            initializeFile(file);
             day.setLoad(false);
         }
     }
