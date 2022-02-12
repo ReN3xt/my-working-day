@@ -1,7 +1,6 @@
 package it.orion.myworkingday.controller.applicativo;
 
 import it.orion.myworkingday.model.Day;
-import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.SingleSelectionModel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -20,8 +19,9 @@ public class SaveDataController {
         if (checkValidForm(day)) {
             File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
-            try {
-                JSONObject dayList = (JSONObject) new JSONParser().parse(new FileReader(file));
+            try(FileReader fileReader = new FileReader(file)){
+
+                JSONObject dayList = (JSONObject) new JSONParser().parse(fileReader);
 
                 if(day.isLoad()){
                     dayList.remove(day.getSelectedDate());

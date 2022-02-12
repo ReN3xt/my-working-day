@@ -38,9 +38,9 @@ public class LoadDataController {
         if(file.exists()){
             JSONParser parser = new JSONParser();
 
-            try {
+            try (FileReader fileReader = new FileReader(file)) {
 
-                JSONObject dayList = (JSONObject) parser.parse(new FileReader(file));
+                JSONObject dayList = (JSONObject) parser.parse(fileReader);
 
                 JSONObject dayData = (JSONObject) dayList.get(day.getSelectedDate());
 

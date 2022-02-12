@@ -13,8 +13,9 @@ public class DeleteDataController {
 
         File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
-        try {
-            JSONObject dayList = (JSONObject) new JSONParser().parse(new FileReader(file));
+        try(FileReader fileReader = new FileReader(file)){
+
+            JSONObject dayList = (JSONObject) new JSONParser().parse(fileReader);
 
             dayList.remove(day.getSelectedDate());
 
