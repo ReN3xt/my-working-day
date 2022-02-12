@@ -73,9 +73,10 @@ public class SalaryController {
     }
 
     public boolean checkValidMonth(Calendar calendar) {
-        try {
-            File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
+        File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
+
+        try {
             if(file.exists()) {
                 JSONObject dayList = (JSONObject) new JSONParser().parse(new FileReader(file));
 
@@ -91,9 +92,12 @@ public class SalaryController {
 
                 return true;
             } else {
-              return false;
+                LoadDataController.createFile(file);
+                return false;
             }
         } catch (IOException | ParseException ignored) {
+            LoadDataController.initializeFile(file);
+
             return false;
         }
     }

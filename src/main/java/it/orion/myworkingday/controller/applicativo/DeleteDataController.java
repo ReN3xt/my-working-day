@@ -19,13 +19,16 @@ public class DeleteDataController {
             dayList.remove(day.getSelectedDate());
 
             SaveDataController.writeData(file, dayList);
-
-            day.setLoad(false);
-
         }  catch (FileNotFoundException ignored) {
+
             LoadDataController.createFile(file);
+
         } catch (ParseException | IOException ignored) {
+
             LoadDataController.initializeFile(file);
+
+        } finally {
+            day.setLoad(false);
         }
     }
 
