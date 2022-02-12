@@ -7,6 +7,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -14,9 +15,10 @@ public class SalaryController {
 
     public void calculateSalary(Calendar calendar, Worker worker) {
         if(checkValidMonth(calendar) && worker.isLoad()){
-            try {
-                File dataFile = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
+            File dataFile = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
+
+            try {
                 JSONObject dayList = (JSONObject) new JSONParser().parse(new FileReader(dataFile));
 
                 JSONObject dayData;
@@ -55,10 +57,16 @@ public class SalaryController {
                 }
 
                 calendar.setMonthSalary("€ " +  (double) Math.round(totalSalary * 100) / 100);
+            } catch (FileNotFoundException e) {
+                LoadDataController.createFile(dataFile);
 
+                calendar.setMonthSalary("FILE ERROR");
             } catch (IOException | ParseException ignored) {
+                LoadDataController.initializeFile(dataFile);
 
+                calendar.setMonthSalary("FILE ERROR");
             }
+
         } else {
             calendar.setMonthSalary("MISSING DATA");
         }
@@ -86,10 +94,8 @@ public class SalaryController {
               return false;
             }
         } catch (IOException | ParseException ignored) {
-
+            return false;
         }
-
-        return false;
     }
 
     public String getDayValue(Calendar calendar, int i) {

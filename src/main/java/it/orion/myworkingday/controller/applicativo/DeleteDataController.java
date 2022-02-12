@@ -5,10 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class DeleteDataController {
 
@@ -16,19 +13,20 @@ public class DeleteDataController {
 
         File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
-        try(FileWriter fileWriter = new FileWriter(file)) {
-
+        try {
             JSONObject dayList = (JSONObject) new JSONParser().parse(new FileReader(file));
 
             dayList.remove(day.getSelectedDate());
 
-            fileWriter.write(dayList.toJSONString());
-
-            fileWriter.flush();
+            SaveDataController.writeData(file, dayList);
 
             day.setLoad(false);
-        } catch (IOException | ParseException ignored) {
 
+        }  catch (FileNotFoundException ignored) {
+            LoadDataController.createFile(file);
+        } catch (ParseException | IOException ignored) {
+            LoadDataController.initializeFile(file);
         }
     }
+
 }

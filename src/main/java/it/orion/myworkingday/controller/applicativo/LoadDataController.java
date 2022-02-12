@@ -69,8 +69,12 @@ public class LoadDataController {
 
             } catch (FileNotFoundException ignored) {
                 createFile(file);
-            } catch (IOException | ParseException ignored) {
 
+                day.setLoad(false);
+            } catch (IOException | ParseException ignored) {
+                initializeFile(file);
+
+                day.setLoad(false);
             }
 
         } else {
@@ -85,16 +89,20 @@ public class LoadDataController {
 
         try {
             if(folder.mkdirs() || file.createNewFile()) {
-                FileWriter fileWriter = new FileWriter(file);
-
-                fileWriter.write("{}");
-
-                fileWriter.flush();
-                fileWriter.close();
+                initializeFile(file);
             }
         } catch (IOException ignored) {
 
-        } finally {
+        }
+    }
+
+    public static void initializeFile(File file) {
+        try(FileWriter fileWriter = new FileWriter(file)) {
+
+            fileWriter.write("{}");
+
+            fileWriter.flush();
+        } catch (IOException ignored) {
 
         }
     }

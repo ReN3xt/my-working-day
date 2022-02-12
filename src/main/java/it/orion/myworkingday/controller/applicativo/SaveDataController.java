@@ -1,6 +1,7 @@
 package it.orion.myworkingday.controller.applicativo;
 
 import it.orion.myworkingday.model.Day;
+import javafx.beans.property.ObjectProperty;
 import javafx.scene.control.SingleSelectionModel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -17,9 +18,9 @@ public class SaveDataController {
 
     public boolean saveData(Day day) {
         if (checkValidForm(day)) {
-            try {
-                File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
+            File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
+            try {
                 JSONObject dayList = (JSONObject) new JSONParser().parse(new FileReader(file));
 
                 if(day.isLoad()){
@@ -28,26 +29,35 @@ public class SaveDataController {
 
                 dayList.put(day.getSelectedDate(), getDayJson(day));
 
-                FileWriter fileWriter = new FileWriter(file);
+                writeData(file, dayList);
 
-                fileWriter.write(dayList.toJSONString());
-                fileWriter.flush();
-                fileWriter.close();
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                LoadDataController.createFile(file);
 
                 day.setLoad(false);
 
-                return false;
+                saveData(day);
+            } catch (IOException | ParseException e) {
+                LoadDataController.initializeFile(file);
+
+                day.setLoad(false);
+
+                saveData(day);
             }
 
             day.setLoad(true);
 
             return true;
         } else {
-            System.out.println("Form non valida");
-
             return false;
+        }
+    }
+
+    public static void writeData(File file, JSONObject data) {
+        try (FileWriter fileWriter = new FileWriter(file)) {
+            fileWriter.write(data.toJSONString());
+            fileWriter.flush();
+        } catch (IOException ignored) {
         }
     }
 

@@ -79,8 +79,10 @@ public class LoadWorkerController {
                 }
             } catch (FileNotFoundException ignored) {
                 LoadDataController.createFile(file);
+                worker.setLoad(false);
             } catch (IOException | ParseException ignored) {
-
+                LoadDataController.initializeFile(file);
+                worker.setLoad(false);
             }
 
         } else {
