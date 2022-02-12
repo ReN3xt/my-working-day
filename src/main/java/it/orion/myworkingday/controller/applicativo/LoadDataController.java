@@ -83,17 +83,14 @@ public class LoadDataController {
     public static void createFile(File file) {
         File folder = new File(System.getenv("LOCALAPPDATA") + "/MWD");
 
-
         try {
             if(folder.mkdirs() || file.createNewFile()) {
-                try(FileWriter fileWriter = new FileWriter(file)) {
+                FileWriter fileWriter = new FileWriter(file);
 
-                    fileWriter.write("{}");
+                fileWriter.write("{}");
 
-                    fileWriter.flush();
-                } catch (IOException ignored) {
-
-                }
+                fileWriter.flush();
+                fileWriter.close();
             }
         } catch (IOException ignored) {
 

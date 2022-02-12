@@ -9,16 +9,6 @@ import java.io.IOException;
 
 public class SaveWorkerController {
 
-    //Key name in JSON file
-    private static final String FIRST_NAME = "first_name";
-    private static final String LAST_NAME = "last_name";
-    private static final String WORK = "work";
-    private static final String DEFAULT_HOURS = "default_hours";
-    private static final String SALARY_PER_HOUR = "salary_per_hour";
-    private static final String OVERTIME_PERCENT = "overtime_percent";
-    private static final String HOUR = "h";
-    private static final String MINUTE = "m";
-
     public boolean saveWorker(Worker worker) {
         if(checkValidForm(worker)) {
             File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","profile.json");
@@ -80,25 +70,25 @@ public class SaveWorkerController {
         JSONObject workerJson = new JSONObject();
 
         if(worker.getFirstNameContent() == null) {
-            workerJson.put(FIRST_NAME, null);
+            workerJson.put(LoadWorkerController.FIRST_NAME, null);
         } else {
-            workerJson.put(FIRST_NAME, worker.getFirstNameContent());
+            workerJson.put(LoadWorkerController.FIRST_NAME, worker.getFirstNameContent());
         }
 
         if(worker.getLastNameContent() == null) {
-            workerJson.put(LAST_NAME, null);
+            workerJson.put(LoadWorkerController.LAST_NAME, null);
         } else {
-            workerJson.put(LAST_NAME, worker.getLastNameContent());
+            workerJson.put(LoadWorkerController.LAST_NAME, worker.getLastNameContent());
         }
 
         if(worker.getWorkContent() == null) {
-            workerJson.put(WORK, null);
+            workerJson.put(LoadWorkerController.WORK, null);
         } else {
-            workerJson.put(WORK, worker.getWorkContent());
+            workerJson.put(LoadWorkerController.WORK, worker.getWorkContent());
         }
-        workerJson.put(DEFAULT_HOURS, getDefaultWorkingHoursJson(worker));
-        workerJson.put(SALARY_PER_HOUR, worker.getSalaryPerHourContent());
-        workerJson.put(OVERTIME_PERCENT, worker.getOvertimeSalaryContent());
+        workerJson.put(LoadWorkerController.DEFAULT_HOURS, getDefaultWorkingHoursJson(worker));
+        workerJson.put(LoadWorkerController.SALARY_PER_HOUR, worker.getSalaryPerHourContent());
+        workerJson.put(LoadWorkerController.OVERTIME_PERCENT, worker.getOvertimeSalaryContent());
 
         return workerJson;
     }
@@ -106,8 +96,8 @@ public class SaveWorkerController {
     public JSONObject getDefaultWorkingHoursJson(Worker worker) {
         JSONObject defaultWorkingHoursJson = new JSONObject();
 
-        defaultWorkingHoursJson.put(HOUR, worker.getDefaultWorkingHoursHSelectionModel().getSelectedItem());
-        defaultWorkingHoursJson.put(MINUTE, worker.getDefaultWorkingHoursMSelectionModel().getSelectedItem());
+        defaultWorkingHoursJson.put(LoadWorkerController.HOUR, worker.getDefaultWorkingHoursHSelectionModel().getSelectedItem());
+        defaultWorkingHoursJson.put(LoadWorkerController.MINUTE, worker.getDefaultWorkingHoursMSelectionModel().getSelectedItem());
 
         return defaultWorkingHoursJson;
     }

@@ -29,38 +29,38 @@ public class SalaryController {
 
                     dayData = (JSONObject) dayList.get(getDayValue(calendar, i));
 
-                    if(dayData.get("day_type").equals("working")){
+                    if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.WORKING_DAY)){
 
-                        if(dayData.get("working_hours") != null) {
-                            totalSalary += workingSalary((JSONObject) dayData.get("working_hours"), worker.getSalaryPerHourContent());
+                        if(dayData.get(LoadDataController.WORKING_HOURS) != null) {
+                            totalSalary += workingSalary((JSONObject) dayData.get(LoadDataController.WORKING_HOURS), worker.getSalaryPerHourContent());
                         }
 
-                        if(dayData.get("launch_break") != null) {
-                            totalSalary -= workingSalary((JSONObject) dayData.get("launch_break"), worker.getSalaryPerHourContent());
+                        if(dayData.get(LoadDataController.LAUNCH_BREAK) != null) {
+                            totalSalary -= workingSalary((JSONObject) dayData.get(LoadDataController.LAUNCH_BREAK), worker.getSalaryPerHourContent());
                         }
 
-                        if(dayData.get("permit") != null) {
-                            totalSalary += permitSalary((JSONObject) dayData.get("permit"), worker.getSalaryPerHourContent());
+                        if(dayData.get(LoadDataController.OVERTIME) != null) {
+                            totalSalary += permitSalary((JSONObject) dayData.get(LoadDataController.PERMIT), worker.getSalaryPerHourContent());
                         }
 
-                        if(dayData.get("overtime") != null) {
-                            totalSalary += overtimeSalary((JSONObject) dayData.get("overtime"), worker.getSalaryPerHourContent(), worker.getOvertimeSalaryContent());
+                        if(dayData.get(LoadDataController.OVERTIME) != null) {
+                            totalSalary += overtimeSalary((JSONObject) dayData.get(LoadDataController.OVERTIME), worker.getSalaryPerHourContent(), worker.getOvertimeSalaryContent());
                         }
 
-                    } else if(dayData.get("day_type").equals("rest")) {
+                    } else if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.REST)) {
                         totalSalary += 0;
-                    } else if(dayData.get("day_type").equals("sick") || dayData.get("day_type").equals("holiday")) {
+                    } else if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.SICK_LEAVE) || dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
                         totalSalary += extraSalary(worker);
                     }
                 }
 
                 calendar.setMonthSalary("€ " +  (double) Math.round(totalSalary * 100) / 100);
 
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
+            } catch (IOException | ParseException ignored) {
+
             }
         } else {
-            calendar.setMonthSalary("ERROR");
+            calendar.setMonthSalary("MISSING DATA");
         }
     }
 
@@ -85,8 +85,8 @@ public class SalaryController {
             } else {
               return false;
             }
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
+        } catch (IOException | ParseException ignored) {
+
         }
 
         return false;
@@ -117,14 +117,14 @@ public class SalaryController {
         if(dayData == null) {
             return false;
         } else {
-            return dayData.get("day_type") != null;
+            return dayData.get(LoadDataController.DAY_TYPE) != null;
         }
 
     }
 
     public double workingSalary(JSONObject data, String salaryPerHour) {
-        int startMinutes = calculateMinutes(data.get("start_h").toString(), data.get("start_m").toString());
-        int endMinutes = calculateMinutes(data.get("end_h").toString(), data.get("end_m").toString());
+        int startMinutes = calculateMinutes(data.get(LoadDataController.START_HOUR).toString(), data.get(LoadDataController.START_MINUTE).toString());
+        int endMinutes = calculateMinutes(data.get(LoadDataController.END_HOUR).toString(), data.get(LoadDataController.END_MINUTE).toString());
         double salaryPerMinutes = Double.parseDouble(salaryPerHour) / 60;
 
         if(startMinutes <= endMinutes) {
@@ -135,11 +135,11 @@ public class SalaryController {
     }
 
     public double permitSalary(JSONObject permitData, String salaryPerHour) {
-        return calculateMinutes(permitData.get("h").toString(), permitData.get("m").toString()) * (Double.parseDouble(salaryPerHour) / 60);
+        return calculateMinutes(permitData.get(LoadDataController.HOUR).toString(), permitData.get(LoadDataController.MINUTE).toString()) * (Double.parseDouble(salaryPerHour) / 60);
     }
 
     public double overtimeSalary(JSONObject overtimeData, String salaryPerHour, String overtimePercent) {
-        return calculateMinutes(overtimeData.get("h").toString(), overtimeData.get("m").toString()) * ((Double.parseDouble(overtimePercent) / 100) + 1) * (Double.parseDouble(salaryPerHour) / 60);
+        return calculateMinutes(overtimeData.get(LoadDataController.HOUR).toString(), overtimeData.get(LoadDataController.MINUTE).toString()) * ((Double.parseDouble(overtimePercent) / 100) + 1) * (Double.parseDouble(salaryPerHour) / 60);
     }
 
     public double extraSalary(Worker worker) {

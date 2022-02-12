@@ -13,14 +13,14 @@ import java.io.IOException;
 public class LoadWorkerController {
 
     //Key name in JSON file
-    private static final String FIRST_NAME = "first_name";
-    private static final String LAST_NAME = "last_name";
-    private static final String WORK = "work";
-    private static final String DEFAULT_HOURS = "default_hours";
-    private static final String SALARY_PER_HOUR = "salary_per_hour";
-    private static final String OVERTIME_PERCENT = "overtime_percent";
-    private static final String HOUR = "h";
-    private static final String MINUTE = "m";
+    public static final String FIRST_NAME = "first_name";
+    public static final String LAST_NAME = "last_name";
+    public static final String WORK = "work";
+    public static final String DEFAULT_HOURS = "default_hours";
+    public static final String SALARY_PER_HOUR = "salary_per_hour";
+    public static final String OVERTIME_PERCENT = "overtime_percent";
+    public static final String HOUR = "h";
+    public static final String MINUTE = "m";
 
     public void loadWorker(Worker worker) {
 
