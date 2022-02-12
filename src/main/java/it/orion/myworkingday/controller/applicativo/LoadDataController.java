@@ -94,6 +94,8 @@ public class LoadDataController {
             }
         } catch (IOException ignored) {
 
+        } finally {
+
         }
     }
 

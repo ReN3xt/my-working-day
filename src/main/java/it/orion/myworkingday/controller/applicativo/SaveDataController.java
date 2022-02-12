@@ -17,9 +17,8 @@ public class SaveDataController {
 
     public boolean saveData(Day day) {
         if (checkValidForm(day)) {
-            File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
-
-            try (FileWriter fileWriter = new FileWriter(file)){
+            try {
+                File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
                 JSONObject dayList = (JSONObject) new JSONParser().parse(new FileReader(file));
 
@@ -29,26 +28,25 @@ public class SaveDataController {
 
                 dayList.put(day.getSelectedDate(), getDayJson(day));
 
+                FileWriter fileWriter = new FileWriter(file);
+
                 fileWriter.write(dayList.toJSONString());
-
                 fileWriter.flush();
-            } catch (FileNotFoundException ignored) {
-                LoadDataController.createFile(file);
+                fileWriter.close();
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
 
-                day.setLoad(false);
-
-                return false;
-            } catch (IOException | ParseException ignored) {
                 day.setLoad(false);
 
                 return false;
             }
 
-
             day.setLoad(true);
 
             return true;
         } else {
+            System.out.println("Form non valida");
+
             return false;
         }
     }
