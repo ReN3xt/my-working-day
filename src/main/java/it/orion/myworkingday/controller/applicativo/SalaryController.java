@@ -41,7 +41,7 @@ public class SalaryController {
                             totalSalary -= workingSalary((JSONObject) dayData.get(LoadDataController.LAUNCH_BREAK), worker.getSalaryPerHourContent());
                         }
 
-                        if(dayData.get(LoadDataController.OVERTIME) != null) {
+                        if(dayData.get(LoadDataController.PERMIT) != null) {
                             totalSalary += permitSalary((JSONObject) dayData.get(LoadDataController.PERMIT), worker.getSalaryPerHourContent());
                         }
 
