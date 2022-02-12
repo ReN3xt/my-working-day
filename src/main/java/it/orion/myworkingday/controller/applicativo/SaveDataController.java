@@ -58,6 +58,7 @@ public class SaveDataController {
             fileWriter.write(data.toJSONString());
             fileWriter.flush();
         } catch (IOException ignored) {
+            //Do nothing
         }
     }
 

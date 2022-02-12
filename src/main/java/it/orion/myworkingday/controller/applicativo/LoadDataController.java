@@ -92,7 +92,7 @@ public class LoadDataController {
                 initializeFile(file);
             }
         } catch (IOException ignored) {
-
+            //Do nothing
         }
     }
 
@@ -103,7 +103,7 @@ public class LoadDataController {
 
             fileWriter.flush();
         } catch (IOException ignored) {
-
+            //Do nothing
         }
     }
 
