@@ -9,20 +9,26 @@ import java.io.IOException;
 
 public class SaveWorkerController {
 
+    //Key name in JSON file
+    private static final String FIRST_NAME = "first_name";
+    private static final String LAST_NAME = "last_name";
+    private static final String WORK = "work";
+    private static final String DEFAULT_HOURS = "default_hours";
+    private static final String SALARY_PER_HOUR = "salary_per_hour";
+    private static final String OVERTIME_PERCENT = "overtime_percent";
+    private static final String HOUR = "h";
+    private static final String MINUTE = "m";
+
     public boolean saveWorker(Worker worker) {
         if(checkValidForm(worker)) {
-            try {
-                File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","profile.json");
+            File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","profile.json");
 
-                FileWriter fileWriter = new FileWriter(file);
+            try(FileWriter fileWriter = new FileWriter(file)) {
 
                 fileWriter.write(getWorkerJson(worker).toJSONString());
 
                 fileWriter.flush();
-                fileWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-
+            } catch (IOException ignored) {
                 worker.setLoad(false);
 
                 return false;
@@ -74,25 +80,25 @@ public class SaveWorkerController {
         JSONObject workerJson = new JSONObject();
 
         if(worker.getFirstNameContent() == null) {
-            workerJson.put("first_name", null);
+            workerJson.put(FIRST_NAME, null);
         } else {
-            workerJson.put("first_name", worker.getFirstNameContent());
+            workerJson.put(FIRST_NAME, worker.getFirstNameContent());
         }
 
         if(worker.getLastNameContent() == null) {
-            workerJson.put("last_name", null);
+            workerJson.put(LAST_NAME, null);
         } else {
-            workerJson.put("last_name", worker.getLastNameContent());
+            workerJson.put(LAST_NAME, worker.getLastNameContent());
         }
 
         if(worker.getWorkContent() == null) {
-            workerJson.put("work", null);
+            workerJson.put(WORK, null);
         } else {
-            workerJson.put("work", worker.getWorkContent());
+            workerJson.put(WORK, worker.getWorkContent());
         }
-        workerJson.put("default_hours", getDefaultWorkingHoursJson(worker));
-        workerJson.put("salary_per_hour", worker.getSalaryPerHourContent());
-        workerJson.put("overtime_percent", worker.getOvertimeSalaryContent());
+        workerJson.put(DEFAULT_HOURS, getDefaultWorkingHoursJson(worker));
+        workerJson.put(SALARY_PER_HOUR, worker.getSalaryPerHourContent());
+        workerJson.put(OVERTIME_PERCENT, worker.getOvertimeSalaryContent());
 
         return workerJson;
     }
@@ -100,8 +106,8 @@ public class SaveWorkerController {
     public JSONObject getDefaultWorkingHoursJson(Worker worker) {
         JSONObject defaultWorkingHoursJson = new JSONObject();
 
-        defaultWorkingHoursJson.put("h", worker.getDefaultWorkingHoursHSelectionModel().getSelectedItem());
-        defaultWorkingHoursJson.put("m", worker.getDefaultWorkingHoursMSelectionModel().getSelectedItem());
+        defaultWorkingHoursJson.put(HOUR, worker.getDefaultWorkingHoursHSelectionModel().getSelectedItem());
+        defaultWorkingHoursJson.put(MINUTE, worker.getDefaultWorkingHoursMSelectionModel().getSelectedItem());
 
         return defaultWorkingHoursJson;
     }

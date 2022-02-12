@@ -7,10 +7,6 @@ import java.time.LocalDate;
 
 public class CalendarController {
 
-    public CalendarController() {
-
-    }
-
     public void updateCalendar(Calendar calendar) {
         int firstDayOfMonth = DayOfWeek.from(calendar.getCurrentDate()).getValue() - 1;
 

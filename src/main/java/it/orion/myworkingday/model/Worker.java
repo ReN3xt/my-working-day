@@ -103,136 +103,68 @@ public class Worker {
         return overtimeSalaryContent;
     }
 
-    public boolean isFirstNameDisable() {
-        return firstNameDisable.get();
-    }
-
     public BooleanProperty firstNameDisableProperty() {
         return firstNameDisable;
-    }
-
-    public boolean isLastNameDisable() {
-        return lastNameDisable.get();
     }
 
     public BooleanProperty lastNameDisableProperty() {
         return lastNameDisable;
     }
 
-    public boolean isWorkDisable() {
-        return workDisable.get();
-    }
-
     public BooleanProperty workDisableProperty() {
         return workDisable;
-    }
-
-    public boolean isDefaultWorkingHoursDisable() {
-        return defaultWorkingHoursDisable.get();
     }
 
     public BooleanProperty defaultWorkingHoursDisableProperty() {
         return defaultWorkingHoursDisable;
     }
 
-    public boolean isDefaultWorkingHoursColonDisable() {
-        return defaultWorkingHoursColonDisable.get();
-    }
-
     public BooleanProperty defaultWorkingHoursColonDisableProperty() {
         return defaultWorkingHoursColonDisable;
-    }
-
-    public boolean isSalaryPerHourDisable() {
-        return salaryPerHourDisable.get();
     }
 
     public BooleanProperty salaryPerHourDisableProperty() {
         return salaryPerHourDisable;
     }
 
-    public boolean isOvertimeSalaryDisable() {
-        return overtimeSalaryDisable.get();
-    }
-
     public BooleanProperty overtimeSalaryDisableProperty() {
         return overtimeSalaryDisable;
-    }
-
-    public boolean isFirstNameContentDisable() {
-        return firstNameContentDisable.get();
     }
 
     public BooleanProperty firstNameContentDisableProperty() {
         return firstNameContentDisable;
     }
 
-    public boolean isLastNameContentDisable() {
-        return lastNameContentDisable.get();
-    }
-
     public BooleanProperty lastNameContentDisableProperty() {
         return lastNameContentDisable;
-    }
-
-    public boolean isSalaryPerHourContentDisable() {
-        return salaryPerHourContentDisable.get();
     }
 
     public BooleanProperty workContentDisableProperty() {
         return workContentDisable;
     }
 
-    public boolean isWorkContentDisable() {
-        return workContentDisable.get();
-    }
-
     public BooleanProperty salaryPerHourContentDisableProperty() {
         return salaryPerHourContentDisable;
-    }
-
-    public boolean isOvertimeSalaryContentDisable() {
-        return overtimeSalaryContentDisable.get();
     }
 
     public BooleanProperty overtimeSalaryContentDisableProperty() {
         return overtimeSalaryContentDisable;
     }
 
-    public boolean isDefaultWorkingHoursHDisable() {
-        return defaultWorkingHoursHDisable.get();
-    }
-
     public BooleanProperty defaultWorkingHoursHDisableProperty() {
         return defaultWorkingHoursHDisable;
-    }
-
-    public boolean isDefaultWorkingHoursMDisable() {
-        return defaultWorkingHoursMDisable.get();
     }
 
     public BooleanProperty defaultWorkingHoursMDisableProperty() {
         return defaultWorkingHoursMDisable;
     }
 
-    public boolean isEditButtonDisable() {
-        return editButtonDisable.get();
-    }
-
     public BooleanProperty editButtonDisableProperty() {
         return editButtonDisable;
     }
 
-    public boolean isCancelButtonDisable() {
-        return cancelButtonDisable.get();
-    }
-
     public BooleanProperty cancelButtonDisableProperty() {
         return cancelButtonDisable;
-    }
-
-    public boolean isSaveButtonDisable() {
-        return saveButtonDisable.get();
     }
 
     public BooleanProperty saveButtonDisableProperty() {

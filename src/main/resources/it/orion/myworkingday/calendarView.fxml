@@ -119,7 +119,7 @@
             <children>
                 <Button fx:id="workerButton" mnemonicParsing="false" onAction="#onWorkerButtonClick" text="Worker" GridPane.columnIndex="5" />
                <Button mnemonicParsing="false" onAction="#onSalaryButtonClick" text="Salary" />
-               <TextField fx:id="estimateSalary" editable="false" maxWidth="92.0" promptText="Month Salary" GridPane.columnIndex="1" />
+               <TextField fx:id="estimateSalary" editable="false" promptText="Month Salary" GridPane.columnIndex="1" />
             </children>
          </GridPane>
       </children>

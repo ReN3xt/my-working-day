@@ -128,8 +128,6 @@ public class WorkerControllerG {
         overtimeSalaryTextField.textProperty().bindBidirectional(worker.overtimeSalaryContentProperty());
     }
 
-
-
     @FXML
     protected void onCalendarButtonClick() {
         stage.setScene(calendarScene);

@@ -6,10 +6,21 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class LoadWorkerController {
+
+    //Key name in JSON file
+    private static final String FIRST_NAME = "first_name";
+    private static final String LAST_NAME = "last_name";
+    private static final String WORK = "work";
+    private static final String DEFAULT_HOURS = "default_hours";
+    private static final String SALARY_PER_HOUR = "salary_per_hour";
+    private static final String OVERTIME_PERCENT = "overtime_percent";
+    private static final String HOUR = "h";
+    private static final String MINUTE = "m";
 
     public void loadWorker(Worker worker) {
 
@@ -26,48 +37,50 @@ public class LoadWorkerController {
                     worker.setLoad(false);
                 } else {
 
-                    if(workerProfile.get("first_name") != null) {
-                        worker.setFirstNameContent(workerProfile.get("first_name").toString());
+                    if(workerProfile.get(FIRST_NAME) != null) {
+                        worker.setFirstNameContent(workerProfile.get(FIRST_NAME).toString());
                     } else {
                         worker.setFirstNameContent(null);
                     }
 
-                    if(workerProfile.get("last_name") != null) {
-                        worker.setLastNameContent(workerProfile.get("last_name").toString());
+                    if(workerProfile.get(LAST_NAME) != null) {
+                        worker.setLastNameContent(workerProfile.get(LAST_NAME).toString());
                     } else {
                         worker.setLastNameContent(null);
                     }
 
-                    if(workerProfile.get("work") != null) {
-                        worker.setWorkContent(workerProfile.get("work").toString());
+                    if(workerProfile.get(WORK) != null) {
+                        worker.setWorkContent(workerProfile.get(WORK).toString());
                     } else {
                         worker.setWorkContent(null);
                     }
 
-                    if(workerProfile.get("default_hours") != null) {
-                        worker.getDefaultWorkingHoursHSelectionModel().select(((JSONObject) (workerProfile.get("default_hours"))).get("h").toString());
-                        worker.getDefaultWorkingHoursMSelectionModel().select(((JSONObject) (workerProfile.get("default_hours"))).get("m").toString());
+                    if(workerProfile.get(DEFAULT_HOURS) != null) {
+                        worker.getDefaultWorkingHoursHSelectionModel().select(((JSONObject) (workerProfile.get(DEFAULT_HOURS))).get(HOUR).toString());
+                        worker.getDefaultWorkingHoursMSelectionModel().select(((JSONObject) (workerProfile.get(DEFAULT_HOURS))).get(MINUTE).toString());
                     } else {
                         worker.getDefaultWorkingHoursHSelectionModel().clearSelection();
                         worker.getDefaultWorkingHoursMSelectionModel().clearSelection();
                     }
 
-                    if(workerProfile.get("salary_per_hour") != null) {
-                        worker.setSalaryPerHourContent(workerProfile.get("salary_per_hour").toString());
+                    if(workerProfile.get(SALARY_PER_HOUR) != null) {
+                        worker.setSalaryPerHourContent(workerProfile.get(SALARY_PER_HOUR).toString());
                     } else {
                         worker.setSalaryPerHourContent(null);
                     }
 
-                    if(workerProfile.get("overtime_percent") != null) {
-                        worker.setOvertimeSalaryContent(workerProfile.get("overtime_percent").toString());
+                    if(workerProfile.get(OVERTIME_PERCENT) != null) {
+                        worker.setOvertimeSalaryContent(workerProfile.get(OVERTIME_PERCENT).toString());
                     } else {
                         worker.setOvertimeSalaryContent(null);
                     }
 
                     worker.setLoad(true);
                 }
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
+            } catch (FileNotFoundException ignored) {
+                LoadDataController.createFile(file);
+            } catch (IOException | ParseException ignored) {
+
             }
 
         } else {

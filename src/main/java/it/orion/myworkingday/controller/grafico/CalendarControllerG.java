@@ -2,7 +2,6 @@ package it.orion.myworkingday.controller.grafico;
 
 import it.orion.myworkingday.Main;
 import it.orion.myworkingday.controller.applicativo.CalendarController;
-import it.orion.myworkingday.controller.applicativo.LoadWorkerController;
 import it.orion.myworkingday.controller.applicativo.SalaryController;
 import it.orion.myworkingday.model.Calendar;
 import it.orion.myworkingday.model.Worker;
@@ -19,20 +18,20 @@ import java.io.IOException;
 
 public class CalendarControllerG {
 
-    Calendar calendar;
+    private Calendar calendar;
 
-    Worker worker;
+    private Worker worker;
 
     private Stage stage;
 
     private Scene dayScene;
     private Scene workerScene;
 
-    public DayControllerG dayController;
-
-    public WorkerControllerG workerController;
-
     private Button[] days;
+
+    DayControllerG dayController;
+
+    WorkerControllerG workerController;
 
     @FXML
     public Button nextMonth;
@@ -299,7 +298,7 @@ public class CalendarControllerG {
     }
 
     @FXML
-    protected void onDayButtonClick(ActionEvent e) throws IOException {
+    protected void onDayButtonClick(ActionEvent e) {
 
         // Load FXML of Day View
         FXMLLoader dayFxml = getFxmlLoader("dayView.fxml");

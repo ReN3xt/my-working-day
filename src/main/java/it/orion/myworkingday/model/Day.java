@@ -5,7 +5,7 @@ import javafx.scene.control.SingleSelectionModel;
 
 public class Day {
 
-    private String day;
+    private String dayValue;
     private String month;
     private String year;
     private String selectedDate;
@@ -736,8 +736,8 @@ public class Day {
         this.load = load;
     }
 
-    public void setDay(String day) {
-        this.day = day;
+    public void setDayValue(String dayValue) {
+        this.dayValue = dayValue;
     }
 
     public void setMonth(String month) {
@@ -753,7 +753,7 @@ public class Day {
     }
 
     public void updateSelectedDate() {
-        this.selectedDateContent.set(this.day + " " + this.month + " " + this.year);
+        this.selectedDateContent.set(this.dayValue + " " + this.month + " " + this.year);
 
         this.selectedDate = year;
 
@@ -763,11 +763,11 @@ public class Day {
 
         this.selectedDate = this.selectedDate + this.monthValue;
 
-        if(Integer.parseInt(this.day) <= 9) {
+        if(Integer.parseInt(this.dayValue) <= 9) {
             this.selectedDate = this.selectedDate + "0";
         }
 
-        this.selectedDate = this.selectedDate + this.day;
+        this.selectedDate = this.selectedDate + this.dayValue;
     }
 
     public String getSelectedDate() {

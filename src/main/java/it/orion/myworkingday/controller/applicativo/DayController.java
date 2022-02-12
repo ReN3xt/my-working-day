@@ -4,10 +4,6 @@ import it.orion.myworkingday.model.Day;
 
 public class DayController {
 
-    public DayController() {
-
-    }
-
     public void edit(Day day) {
         disableTextArea(day, false);
         disableDayTypeSelection(day, false);

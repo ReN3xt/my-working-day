@@ -7,6 +7,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,15 +15,32 @@ import java.io.IOException;
 
 public class SaveDataController {
 
-    public SaveDataController() {
+    //Key name in JSON file
+    public static final String DAY_TYPE = "day_type";
+    public static final String WORKING_DAY = "working";
+    public static final String REST = "rest";
+    public static final String SICK_LEAVE = "sick_leave";
+    public static final String HOLIDAY = "holiday";
+    public static final String WORKING_HOURS = "working_hours";
+    public static final String START_HOUR = "start_h";
+    public static final String START_MINUTE = "start_m";
+    public static final String END_HOUR = "end_h";
+    public static final String END_MINUTE = "end_m";
+    public static final String LAUNCH_BREAK = "launch_break";
+    public static final String OVERTIME = "overtime";
+    public static final String PERMIT = "permit";
+    public static final String PERMIT_REASON = "reason";
+    public static final String SICK_LEAVE_PROTOCOL = "protocol";
+    public static final String HOUR = "h";
+    public static final String MINUTE = "m";
+    public static final String NOTES = "notes";
+    public static final String REMINDERS = "reminders";
 
-    }
-
-    //TODO Implementare eccezione per creazione del file nel caso in cui non sia presente
     public boolean saveData(Day day) {
         if (checkValidForm(day)) {
-            try {
-                File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
+            File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
+
+            try (FileWriter fileWriter = new FileWriter(file)){
 
                 JSONObject dayList = (JSONObject) new JSONParser().parse(new FileReader(file));
 
@@ -32,19 +50,21 @@ public class SaveDataController {
 
                 dayList.put(day.getSelectedDate(), getDayJson(day));
 
-                FileWriter fileWriter = new FileWriter(file);
-
                 fileWriter.write(dayList.toJSONString());
 
                 fileWriter.flush();
-                fileWriter.close();
-            } catch (IOException | ParseException e) {
-                e.printStackTrace();
+            } catch (FileNotFoundException ignored) {
+                LoadDataController.createFile(file);
 
                 day.setLoad(false);
 
                 return false;
+            } catch (IOException | ParseException ignored) {
+                day.setLoad(false);
+
+                return false;
             }
+
 
             day.setLoad(true);
 
@@ -99,7 +119,7 @@ public class SaveDataController {
 
     public boolean checkWorkingHoursValidForm(Day day) {
         return !day.getWorkingHoursStartHSelectionModel().isEmpty() &&
-                !day.getWorkingHoursEndMSelectionModel().isEmpty() &&
+                !day.getWorkingHoursStartMSelectionModel().isEmpty() &&
                 !day.getWorkingHoursEndHSelectionModel().isEmpty() &&
                 !day.getWorkingHoursEndMSelectionModel().isEmpty();
     }
@@ -199,70 +219,70 @@ public class SaveDataController {
         JSONObject dayJson = new JSONObject();
 
         if(day.isWorkingDayButtonSelect()){
-            dayJson.put("day_type", "working");
-            dayJson.put("working_hours", getWorkingHoursJson(day));
+            dayJson.put(DAY_TYPE, WORKING_DAY);
+            dayJson.put(WORKING_HOURS, getWorkingHoursJson(day));
 
             if(day.isLaunchBreakSelect()){
-                dayJson.put("launch_break", getLaunchBreakJson(day));
+                dayJson.put(LAUNCH_BREAK, getLaunchBreakJson(day));
             } else {
-                dayJson.put("launch_break", null);
+                dayJson.put(LAUNCH_BREAK, null);
             }
 
             if(day.isOvertimeSelect()) {
-                dayJson.put("overtime", getOvertimeJson(day));
+                dayJson.put(OVERTIME, getOvertimeJson(day));
             } else {
-                dayJson.put("overtime", null);
+                dayJson.put(OVERTIME, null);
             }
 
             if(day.isPermitSelect()){
-                dayJson.put("permit", getPermitJson(day));
+                dayJson.put(PERMIT, getPermitJson(day));
             } else {
-                dayJson.put("permit", null);
+                dayJson.put(PERMIT, null);
             }
 
-            dayJson.put("sick_leave", null);
+            dayJson.put(SICK_LEAVE, null);
 
         } else if (day.isRestButtonSelect()) {
-            dayJson.put("day_type", "rest");
-            dayJson.put("working_hours", null);
-            dayJson.put("launch_break", null);
-            dayJson.put("overtime", null);
-            dayJson.put("permit", null);
-            dayJson.put("sick_leave", null);
+            dayJson.put(DAY_TYPE, REST);
+            dayJson.put(WORKING_HOURS, null);
+            dayJson.put(LAUNCH_BREAK, null);
+            dayJson.put(OVERTIME, null);
+            dayJson.put(PERMIT, null);
+            dayJson.put(SICK_LEAVE, null);
 
         } else if (day.isSickLeaveButtonSelect()) {
-            dayJson.put("day_type", "sick");
-            dayJson.put("working_hours", null);
-            dayJson.put("launch_break", null);
-            dayJson.put("overtime", null);
-            dayJson.put("permit", null);
+            dayJson.put(DAY_TYPE, "sick");
+            dayJson.put(WORKING_HOURS, null);
+            dayJson.put(LAUNCH_BREAK, null);
+            dayJson.put(OVERTIME, null);
+            dayJson.put(PERMIT, null);
 
             if(day.getSickLeaveProtocolContent() == null) {
-                dayJson.put("sick_leave", null);
+                dayJson.put(SICK_LEAVE, null);
             } else{
-                dayJson.put("sick_leave", getSickLeaveJson(day));
+                dayJson.put(SICK_LEAVE, getSickLeaveJson(day));
             }
 
         } else if (day.isHolidayButtonSelect()) {
-            dayJson.put("day_type", "holiday");
-            dayJson.put("working_hours", null);
-            dayJson.put("launch_break", null);
-            dayJson.put("overtime", null);
-            dayJson.put("permit", null);
-            dayJson.put("sick_leave", null);
+            dayJson.put(DAY_TYPE, HOLIDAY);
+            dayJson.put(WORKING_HOURS, null);
+            dayJson.put(LAUNCH_BREAK, null);
+            dayJson.put(OVERTIME, null);
+            dayJson.put(PERMIT, null);
+            dayJson.put(SICK_LEAVE, null);
 
         }
 
         if(day.getNotesTextAreaContent() == null) {
-            dayJson.put("notes", null);
+            dayJson.put(NOTES, null);
         } else {
-            dayJson.put("notes", day.getNotesTextAreaContent());
+            dayJson.put(NOTES, day.getNotesTextAreaContent());
         }
 
         if(day.getRemindersTextAreaContent() == null) {
-            dayJson.put("reminders", null);
+            dayJson.put(REMINDERS, null);
         } else {
-            dayJson.put("reminders", day.getRemindersTextAreaContent());
+            dayJson.put(REMINDERS, day.getRemindersTextAreaContent());
         }
 
         return dayJson;
@@ -271,10 +291,10 @@ public class SaveDataController {
     public JSONObject getWorkingHoursJson(Day day) {
         JSONObject workingHoursJson = new JSONObject();
 
-        workingHoursJson.put("start_h", day.getWorkingHoursStartHSelectionModel().getSelectedItem());
-        workingHoursJson.put("start_m", day.getWorkingHoursStartMSelectionModel().getSelectedItem());
-        workingHoursJson.put("end_h", day.getWorkingHoursEndHSelectionModel().getSelectedItem());
-        workingHoursJson.put("end_m", day.getWorkingHoursEndMSelectionModel().getSelectedItem());
+        workingHoursJson.put(START_HOUR, day.getWorkingHoursStartHSelectionModel().getSelectedItem());
+        workingHoursJson.put(START_MINUTE, day.getWorkingHoursStartMSelectionModel().getSelectedItem());
+        workingHoursJson.put(END_HOUR, day.getWorkingHoursEndHSelectionModel().getSelectedItem());
+        workingHoursJson.put(END_MINUTE, day.getWorkingHoursEndMSelectionModel().getSelectedItem());
 
         return workingHoursJson;
     }
@@ -282,10 +302,10 @@ public class SaveDataController {
     public JSONObject getLaunchBreakJson(Day day) {
         JSONObject launchBreakJson = new JSONObject();
 
-        launchBreakJson.put("start_h", day.getLaunchBreakStartHSelectionModel().getSelectedItem());
-        launchBreakJson.put("start_m", day.getLaunchBreakStartMSelectionModel().getSelectedItem());
-        launchBreakJson.put("end_h", day.getLaunchBreakEndHSelectionModel().getSelectedItem());
-        launchBreakJson.put("end_m", day.getLaunchBreakEndMSelectionModel().getSelectedItem());
+        launchBreakJson.put(START_HOUR, day.getLaunchBreakStartHSelectionModel().getSelectedItem());
+        launchBreakJson.put(START_MINUTE, day.getLaunchBreakStartMSelectionModel().getSelectedItem());
+        launchBreakJson.put(END_HOUR, day.getLaunchBreakEndHSelectionModel().getSelectedItem());
+        launchBreakJson.put(END_MINUTE, day.getLaunchBreakEndMSelectionModel().getSelectedItem());
 
         return launchBreakJson;
     }
@@ -293,8 +313,8 @@ public class SaveDataController {
     public JSONObject getOvertimeJson(Day day) {
         JSONObject overtimeJson = new JSONObject();
 
-        overtimeJson.put("h", day.getOvertimeHSelectionModel().getSelectedItem());
-        overtimeJson.put("m", day.getOvertimeMSelectionModel().getSelectedItem());
+        overtimeJson.put(HOUR, day.getOvertimeHSelectionModel().getSelectedItem());
+        overtimeJson.put(MINUTE, day.getOvertimeMSelectionModel().getSelectedItem());
 
         return overtimeJson;
     }
@@ -302,14 +322,13 @@ public class SaveDataController {
     public JSONObject getPermitJson(Day day) {
         JSONObject permitJson = new JSONObject();
 
-        permitJson.put("h", day.getPermitHSelectionModel().getSelectedItem());
-        permitJson.put("m", day.getPermitMSelectionModel().getSelectedItem());
+        permitJson.put(HOUR, day.getPermitHSelectionModel().getSelectedItem());
+        permitJson.put(MINUTE, day.getPermitMSelectionModel().getSelectedItem());
 
         if(day.getPermitReasonContent() == null) {
-            permitJson.put("reason", null);
+            permitJson.put(PERMIT_REASON, null);
         } else {
-            System.out.println(day.getPermitReasonContent());
-            permitJson.put("reason", day.getPermitReasonContent());
+            permitJson.put(PERMIT_REASON, day.getPermitReasonContent());
         }
 
         return permitJson;
@@ -318,7 +337,7 @@ public class SaveDataController {
     public JSONObject getSickLeaveJson(Day day) {
         JSONObject sickLeaveJson = new JSONObject();
 
-        sickLeaveJson.put("protocol", day.getSickLeaveProtocolContent());
+        sickLeaveJson.put(SICK_LEAVE_PROTOCOL, day.getSickLeaveProtocolContent());
 
         return sickLeaveJson;
     }

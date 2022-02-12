@@ -12,28 +12,23 @@ import java.io.IOException;
 
 public class DeleteDataController {
 
-    public DeleteDataController() {
-
-    }
-
     public void deleteData(Day day) {
-        try {
-            File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
+
+        File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
+
+        try(FileWriter fileWriter = new FileWriter(file)) {
 
             JSONObject dayList = (JSONObject) new JSONParser().parse(new FileReader(file));
 
             dayList.remove(day.getSelectedDate());
 
-            FileWriter fileWriter = new FileWriter(file);
-
             fileWriter.write(dayList.toJSONString());
 
             fileWriter.flush();
-            fileWriter.close();
 
             day.setLoad(false);
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
+        } catch (IOException | ParseException ignored) {
+
         }
     }
 }

@@ -12,10 +12,6 @@ import java.io.IOException;
 
 public class SalaryController {
 
-    public SalaryController() {
-
-    }
-
     public void calculateSalary(Calendar calendar, Worker worker) {
         if(checkValidMonth(calendar) && worker.isLoad()){
             try {

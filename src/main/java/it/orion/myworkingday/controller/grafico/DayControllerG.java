@@ -300,7 +300,7 @@ public class DayControllerG {
 
     public void loadDay(String day) {
 
-        this.day.setDay(day);
+        this.day.setDayValue(day);
         this.day.setMonth(String.valueOf(calendar.getCurrentDate().getMonth()));
         this.day.setMonthValue(calendar.getCurrentDate().getMonthValue());
         this.day.setYear(String.valueOf(calendar.getCurrentDate().getYear()));
