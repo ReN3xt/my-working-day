@@ -32,18 +32,16 @@ public class Main extends Application {
         stage.show();
     }
 
-    public FXMLLoader getFxmlLoader(String fxml) {
+    public static FXMLLoader getFxmlLoader(String fxml) {
         return new FXMLLoader(Main.class.getResource(fxml));
     }
 
-    public Scene getScene(FXMLLoader fxml) {
+    public static Scene getScene(FXMLLoader fxml) {
         try {
             return new Scene(fxml.load());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
+            return null;
         }
-
-        return null;
     }
 
     public static void main(String[] args) {

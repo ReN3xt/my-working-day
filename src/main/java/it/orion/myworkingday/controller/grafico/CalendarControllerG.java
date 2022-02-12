@@ -182,10 +182,10 @@ public class CalendarControllerG {
         calendarController.updateCalendar(calendar);
 
         // Load FXML of Worker View
-        FXMLLoader workerFxml = getFxmlLoader("workerView.fxml");
+        FXMLLoader workerFxml = Main.getFxmlLoader("workerView.fxml");
 
         // Create a Scene for Day View
-        setWorkerScene(getScene(workerFxml));
+        setWorkerScene(Main.getScene(workerFxml));
 
         // Get Worker View Controller Reference
         workerController = workerFxml.getController();
@@ -301,10 +301,10 @@ public class CalendarControllerG {
     protected void onDayButtonClick(ActionEvent e) {
 
         // Load FXML of Day View
-        FXMLLoader dayFxml = getFxmlLoader("dayView.fxml");
+        FXMLLoader dayFxml = Main.getFxmlLoader("dayView.fxml");
 
         // Create a Scene for Day View
-        setDayScene(getScene(dayFxml));
+        setDayScene(Main.getScene(dayFxml));
 
         // Get Day View Controller Reference
         dayController = dayFxml.getController();
@@ -327,19 +327,6 @@ public class CalendarControllerG {
         SalaryController controller = new SalaryController();
 
         controller.calculateSalary(calendar, worker);
-    }
-
-    public FXMLLoader getFxmlLoader(String fxml) {
-        return new FXMLLoader(Main.class.getResource(fxml));
-    }
-
-    public Scene getScene(FXMLLoader fxml) {
-        try {
-            return new Scene(fxml.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     public void setStage(Stage stage) {
