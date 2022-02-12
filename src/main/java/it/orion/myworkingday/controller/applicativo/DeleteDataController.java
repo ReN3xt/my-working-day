@@ -20,6 +20,7 @@ public class DeleteDataController {
             dayList.remove(day.getSelectedDate());
 
             SaveDataController.writeData(file, dayList);
+
         }  catch (FileNotFoundException ignored) {
 
             LoadDataController.createFile(file);

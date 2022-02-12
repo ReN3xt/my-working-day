@@ -108,17 +108,17 @@
            <columnConstraints>
              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
            </columnConstraints>
            <rowConstraints>
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-                <Button fx:id="workerButton" mnemonicParsing="false" onAction="#onWorkerButtonClick" text="Worker" GridPane.columnIndex="5" />
-               <Button mnemonicParsing="false" onAction="#onSalaryButtonClick" text="Salary" />
+                <Button fx:id="workerButton" mnemonicParsing="false" onAction="#onWorkerButtonClick" prefWidth="60.0" text="Worker" GridPane.columnIndex="5" />
+               <Button mnemonicParsing="false" onAction="#onSalaryButtonClick" prefWidth="60.0" text="Salary" />
                <TextField fx:id="estimateSalary" editable="false" promptText="Month Salary" GridPane.columnIndex="1" />
             </children>
          </GridPane>
