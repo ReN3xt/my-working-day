@@ -33,11 +33,15 @@ public class SaveWorkerController {
     }
 
     public boolean checkValidForm(Worker worker) {
-        return checkWorkingHoursValidForm(worker) && checkSalaryPerHourValidForm(worker) && checkOvertimeSalaryForm(worker);
+        return checkWorkingHoursValidForm(worker) && checkSalaryPerHourValidForm(worker) && checkOvertimeSalaryForm(worker) && checkRemindersValidForm(worker);
     }
 
     public boolean checkWorkingHoursValidForm(Worker worker) {
         return !worker.getDefaultWorkingHoursHSelectionModel().isEmpty() && !worker.getDefaultWorkingHoursMSelectionModel().isEmpty();
+    }
+
+    public boolean checkRemindersValidForm(Worker worker) {
+        return (!worker.getRemindersHSelectionModel().isEmpty() && !worker.getRemindersMSelectionModel().isEmpty()) || (worker.getRemindersHSelectionModel().isEmpty() && worker.getRemindersMSelectionModel().isEmpty());
     }
 
     public boolean checkSalaryPerHourValidForm(Worker worker) {
@@ -45,7 +49,7 @@ public class SaveWorkerController {
             try {
                 Double.parseDouble(worker.getSalaryPerHourContent());
                 return true;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException ignored) {
                 return false;
             }
         } else {
@@ -58,7 +62,7 @@ public class SaveWorkerController {
             try {
                 Integer.parseInt(worker.getOvertimeSalaryContent());
                 return true;
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException ignored) {
                 return false;
             }
         } else {
@@ -86,9 +90,11 @@ public class SaveWorkerController {
         } else {
             workerJson.put(LoadWorkerController.WORK, worker.getWorkContent());
         }
+
         workerJson.put(LoadWorkerController.DEFAULT_HOURS, getDefaultWorkingHoursJson(worker));
         workerJson.put(LoadWorkerController.SALARY_PER_HOUR, worker.getSalaryPerHourContent());
         workerJson.put(LoadWorkerController.OVERTIME_PERCENT, worker.getOvertimeSalaryContent());
+        workerJson.put(LoadWorkerController.REMINDERS, getRemindersJson(worker));
 
         return workerJson;
     }
@@ -100,5 +106,18 @@ public class SaveWorkerController {
         defaultWorkingHoursJson.put(LoadWorkerController.MINUTE, worker.getDefaultWorkingHoursMSelectionModel().getSelectedItem());
 
         return defaultWorkingHoursJson;
+    }
+
+    public JSONObject getRemindersJson(Worker worker) {
+        if(!worker.getRemindersHSelectionModel().isEmpty() && !worker.getRemindersMSelectionModel().isEmpty()){
+            JSONObject remindersJson = new JSONObject();
+
+            remindersJson.put(LoadWorkerController.HOUR, worker.getRemindersHSelectionModel().getSelectedItem());
+            remindersJson.put(LoadWorkerController.MINUTE, worker.getRemindersMSelectionModel().getSelectedItem());
+
+            return remindersJson;
+        } else {
+            return null;
+        }
     }
 }

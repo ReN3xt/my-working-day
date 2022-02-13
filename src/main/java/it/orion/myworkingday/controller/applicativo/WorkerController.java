@@ -36,13 +36,7 @@ public class WorkerController {
 
             controller.loadWorker(worker);
         } else {
-            worker.setFirstNameContent(null);
-            worker.setLastNameContent(null);
-            worker.setWorkContent(null);
-            worker.getDefaultWorkingHoursHSelectionModel().clearSelection();
-            worker.getDefaultWorkingHoursMSelectionModel().clearSelection();
-            worker.setSalaryPerHourContent(null);
-            worker.setOvertimeSalaryContent(null);
+            clearForm(worker);
         }
 
         disableWorkingForm(worker, true);
@@ -52,13 +46,7 @@ public class WorkerController {
         SaveWorkerController controller = new SaveWorkerController();
 
         if(controller.saveWorker(worker)) {
-            worker.setFirstNameContent(null);
-            worker.setLastNameContent(null);
-            worker.setWorkContent(null);
-            worker.getDefaultWorkingHoursHSelectionModel().clearSelection();
-            worker.getDefaultWorkingHoursMSelectionModel().clearSelection();
-            worker.setSalaryPerHourContent(null);
-            worker.setOvertimeSalaryContent(null);
+            clearForm(worker);
 
             disableWorkingForm(worker, true);
 
@@ -66,5 +54,17 @@ public class WorkerController {
 
             loadController.loadWorker(worker);
         }
+    }
+
+    public void clearForm(Worker worker) {
+        worker.setFirstNameContent(null);
+        worker.setLastNameContent(null);
+        worker.setWorkContent(null);
+        worker.getDefaultWorkingHoursHSelectionModel().clearSelection();
+        worker.getDefaultWorkingHoursMSelectionModel().clearSelection();
+        worker.setSalaryPerHourContent(null);
+        worker.setOvertimeSalaryContent(null);
+        worker.getRemindersHSelectionModel().clearSelection();
+        worker.getRemindersMSelectionModel().clearSelection();
     }
 }
