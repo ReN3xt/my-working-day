@@ -1,5 +1,6 @@
 package it.orion.myworkingday.controller.grafico;
 
+import it.orion.myworkingday.controller.applicativo.CalendarController;
 import it.orion.myworkingday.controller.applicativo.DayController;
 import it.orion.myworkingday.controller.applicativo.LoadDataController;
 import it.orion.myworkingday.model.Calendar;
@@ -283,6 +284,11 @@ public class DayControllerG {
 
     @FXML
     protected void onCalendarButtonClick() {
+        if(calendar.isSecondView()){
+            CalendarController calendarController = new CalendarController();
+            calendarController.updateColor(calendar);
+        }
+
         stage.setScene(calendarScene);
     }
 

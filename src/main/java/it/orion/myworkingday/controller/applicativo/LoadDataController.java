@@ -14,7 +14,7 @@ public class LoadDataController {
     public static final String DAY_TYPE = "day_type";
     public static final String WORKING_DAY = "working";
     public static final String REST = "rest";
-    public static final String SICK_LEAVE = "sick_leave";
+    public static final String SICK = "sick";
     public static final String HOLIDAY = "holiday";
     public static final String WORKING_HOURS = "working_hours";
     public static final String START_HOUR = "start_h";
@@ -25,6 +25,7 @@ public class LoadDataController {
     public static final String OVERTIME = "overtime";
     public static final String PERMIT = "permit";
     public static final String PERMIT_REASON = "reason";
+    public static final String SICK_LEAVE = "sick_leave";
     public static final String SICK_LEAVE_PROTOCOL = "protocol";
     public static final String HOUR = "h";
     public static final String MINUTE = "m";
@@ -108,7 +109,7 @@ public class LoadDataController {
                 loadPermit(day, (JSONObject) dayData.get(PERMIT));
             } else if (dayData.get(DAY_TYPE).equals(REST)) {
                 day.setRestButtonSelect(true);
-            } else if (dayData.get(DAY_TYPE).equals("sick")) {
+            } else if (dayData.get(DAY_TYPE).equals(SICK)) {
                 day.setSickLeaveButtonSelect(true);
                 loadSickLeave(day, (JSONObject) dayData.get(SICK_LEAVE));
             } else if (dayData.get(DAY_TYPE).equals(HOLIDAY)) {

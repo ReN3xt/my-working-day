@@ -11,7 +11,6 @@ public class Day {
     private String selectedDate;
 
     private int monthValue;
-
     private boolean load;
 
     //Text Property
@@ -758,16 +757,16 @@ public class Day {
         this.selectedDate = year;
 
         if(this.monthValue <= 9){
-            this.selectedDate = this.selectedDate + "0";
+            this.selectedDate += "0";
         }
 
-        this.selectedDate = this.selectedDate + this.monthValue;
+        this.selectedDate += this.monthValue;
 
         if(Integer.parseInt(this.dayValue) <= 9) {
-            this.selectedDate = this.selectedDate + "0";
+            this.selectedDate += "0";
         }
 
-        this.selectedDate = this.selectedDate + this.dayValue;
+        this.selectedDate += this.dayValue;
     }
 
     public String getSelectedDate() {

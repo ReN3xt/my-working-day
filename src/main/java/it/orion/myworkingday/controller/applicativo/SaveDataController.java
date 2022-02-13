@@ -239,7 +239,7 @@ public class SaveDataController {
             dayJson.put(LoadDataController.SICK_LEAVE, null);
 
         } else if (day.isSickLeaveButtonSelect()) {
-            dayJson.put(LoadDataController.DAY_TYPE, "sick");
+            dayJson.put(LoadDataController.DAY_TYPE, LoadDataController.SICK);
             dayJson.put(LoadDataController.WORKING_HOURS, null);
             dayJson.put(LoadDataController.LAUNCH_BREAK, null);
             dayJson.put(LoadDataController.OVERTIME, null);

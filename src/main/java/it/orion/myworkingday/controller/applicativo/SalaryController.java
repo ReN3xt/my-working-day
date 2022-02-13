@@ -55,7 +55,7 @@ public class SalaryController {
 
                         } else if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.REST)) {
                             totalSalary += 0;
-                        } else if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.SICK_LEAVE) || dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
+                        } else if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.SICK) || dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
                             totalSalary += extraSalary(worker);
                         }
                     }

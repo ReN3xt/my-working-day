@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class CalendarControllerG {
+public class CalendarControllerSecondaryG {
 
     private Calendar calendar;
 
@@ -161,6 +161,9 @@ public class CalendarControllerG {
     private Label monthText;
 
     @FXML
+    private Label monthValueText;
+
+    @FXML
     private TextField estimateSalary;
 
     @FXML
@@ -171,7 +174,7 @@ public class CalendarControllerG {
         //Get Model
         calendar = new Calendar();
 
-        calendar.setSecondView(false);
+        calendar.setSecondView(true);
 
         initializeButtonArray();
 
@@ -180,6 +183,8 @@ public class CalendarControllerG {
         CalendarController calendarController = new CalendarController();
 
         calendarController.updateCalendar(calendar);
+
+        calendarController.updateColor(calendar);
 
         // Load FXML of Worker View
         FXMLLoader workerFxml = Main.getFxmlLoader("workerView.fxml");
@@ -244,9 +249,12 @@ public class CalendarControllerG {
 
         monthText.textProperty().bind(calendar.monthProperty());
 
+        monthValueText.textProperty().bind(calendar.monthValueProperty());
+
         for (int i = 0; i < 37; i++) {
             days[i].textProperty().bind(calendar.daysProperty(i));
             days[i].visibleProperty().bind(calendar.daysVisibilityProperty(i));
+            days[i].textFillProperty().bind(calendar.daysColorProperty(i));
         }
     }
 
@@ -331,11 +339,11 @@ public class CalendarControllerG {
 
     @FXML
     protected void onSwitchInterfaceButtonClick() {
-        FXMLLoader calendarFxml = Main.getFxmlLoader("calendarSecondaryView.fxml");
+        FXMLLoader calendarFxml = Main.getFxmlLoader("calendarView.fxml");
 
         Scene calendarScene = Main.getScene(calendarFxml);
 
-        CalendarControllerSecondaryG calendarController = calendarFxml.getController();
+        CalendarControllerG calendarController = calendarFxml.getController();
 
         calendarController.setStage(stage);
 
