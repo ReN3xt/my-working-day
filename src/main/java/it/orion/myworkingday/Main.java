@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage stage) {
 
         // Load FXML of all pages
-        FXMLLoader calendarFxml = getFxmlLoader("calendarView.fxml");
+        FXMLLoader calendarFxml = getFxmlLoader("calendarPrimaryView.fxml");
 
         // Create a Scene for each page
         Scene calendarScene = getScene(calendarFxml);

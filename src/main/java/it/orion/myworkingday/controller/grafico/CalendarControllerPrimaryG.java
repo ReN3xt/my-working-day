@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class CalendarControllerSecondaryG {
+public class CalendarControllerPrimaryG {
 
     private Calendar calendar;
 
@@ -161,9 +161,6 @@ public class CalendarControllerSecondaryG {
     private Label monthText;
 
     @FXML
-    private Label monthValueText;
-
-    @FXML
     private TextField estimateSalary;
 
     @FXML
@@ -174,7 +171,7 @@ public class CalendarControllerSecondaryG {
         //Get Model
         calendar = new Calendar();
 
-        calendar.setSecondView(true);
+        calendar.setSecondView(false);
 
         initializeButtonArray();
 
@@ -183,8 +180,6 @@ public class CalendarControllerSecondaryG {
         CalendarController calendarController = new CalendarController();
 
         calendarController.updateCalendar(calendar);
-
-        calendarController.updateColor(calendar);
 
         // Load FXML of Worker View
         FXMLLoader workerFxml = Main.getFxmlLoader("workerView.fxml");
@@ -249,12 +244,9 @@ public class CalendarControllerSecondaryG {
 
         monthText.textProperty().bind(calendar.monthProperty());
 
-        monthValueText.textProperty().bind(calendar.monthValueProperty());
-
         for (int i = 0; i < 37; i++) {
             days[i].textProperty().bind(calendar.daysProperty(i));
             days[i].visibleProperty().bind(calendar.daysVisibilityProperty(i));
-            days[i].textFillProperty().bind(calendar.daysColorProperty(i));
         }
     }
 
@@ -263,7 +255,6 @@ public class CalendarControllerSecondaryG {
         CalendarController calendarController = new CalendarController();
 
         calendarController.resetCalendar(calendar);
-        calendarController.updateColor(calendar);
     }
 
     @FXML
@@ -271,7 +262,6 @@ public class CalendarControllerSecondaryG {
         CalendarController calendarController = new CalendarController();
 
         calendarController.updateSelectedDate(calendar, "month", "prev");
-        calendarController.updateColor(calendar);
     }
 
     @FXML
@@ -279,7 +269,6 @@ public class CalendarControllerSecondaryG {
         CalendarController calendarController = new CalendarController();
 
         calendarController.updateSelectedDate(calendar, "month", "next");
-        calendarController.updateColor(calendar);
     }
 
     @FXML
@@ -287,7 +276,6 @@ public class CalendarControllerSecondaryG {
         CalendarController calendarController = new CalendarController();
 
         calendarController.updateSelectedDate(calendar, "year", "prev");
-        calendarController.updateColor(calendar);
     }
 
     @FXML
@@ -295,7 +283,6 @@ public class CalendarControllerSecondaryG {
         CalendarController calendarController = new CalendarController();
 
         calendarController.updateSelectedDate(calendar, "year", "next");
-        calendarController.updateColor(calendar);
     }
 
     @FXML
@@ -344,11 +331,11 @@ public class CalendarControllerSecondaryG {
 
     @FXML
     protected void onSwitchInterfaceButtonClick() {
-        FXMLLoader calendarFxml = Main.getFxmlLoader("calendarPrimaryView.fxml");
+        FXMLLoader calendarFxml = Main.getFxmlLoader("calendarSecondaryView.fxml");
 
         Scene calendarScene = Main.getScene(calendarFxml);
 
-        CalendarControllerPrimaryG calendarController = calendarFxml.getController();
+        CalendarControllerSecondaryG calendarController = calendarFxml.getController();
 
         calendarController.setStage(stage);
 

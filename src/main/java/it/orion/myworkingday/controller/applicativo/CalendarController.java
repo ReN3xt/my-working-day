@@ -57,44 +57,45 @@ public class CalendarController {
     }
 
     public void updateColor(Calendar calendar) {
+        if(calendar.isSecondView()) {
+            File file = new File(System.getenv("LOCALAPPDATA") + "/MWD", "local_db.json");
 
-        File file = new File(System.getenv("LOCALAPPDATA") + "/MWD", "local_db.json");
+            JSONParser parser = new JSONParser();
 
-        JSONParser parser = new JSONParser();
+            try (FileReader fileReader = new FileReader(file)) {
 
-        try (FileReader fileReader = new FileReader(file)) {
+                JSONObject dayList = (JSONObject) parser.parse(fileReader);
 
-            JSONObject dayList = (JSONObject) parser.parse(fileReader);
+                calendar.updateDateLabel();
 
-            calendar.updateDateLabel();
+                int firstDayOfMonth = DayOfWeek.from(calendar.getCurrentDate()).getValue() - 1;
 
-            int firstDayOfMonth = DayOfWeek.from(calendar.getCurrentDate()).getValue() - 1;
+                JSONObject dayData;
 
-            JSONObject dayData;
+                for (int i = 0; i < 37; i++) {
+                    if (i < calendar.getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
+                        dayData = (JSONObject) dayList.get(getDate(calendar, i - firstDayOfMonth + 1));
 
-            for (int i = 0; i < 37; i++) {
-                if (i < calendar.getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
-                    dayData = (JSONObject) dayList.get(getDate(calendar, i - firstDayOfMonth + 1));
-
-                    if(dayData == null) {
-                        calendar.setDaysColor(i,"#000000");
-                    } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.WORKING_DAY)) {
-                        calendar.setDaysColor(i,"#8fce00");
-                    } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.REST)) {
-                        calendar.setDaysColor(i,"#2986cc");
-                    } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.SICK)) {
-                        calendar.setDaysColor(i,"#c90076");
-                    } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
-                        calendar.setDaysColor(i,"#6a329f");
-                    } else {
-                        calendar.setDaysColor(i,"#000000");
+                        if (dayData == null) {
+                            calendar.setDaysColor(i, "#777777");
+                        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.WORKING_DAY)) {
+                            calendar.setDaysColor(i, "#75c900");
+                        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.REST)) {
+                            calendar.setDaysColor(i, "#2986cc");
+                        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.SICK)) {
+                            calendar.setDaysColor(i, "#c90076");
+                        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
+                            calendar.setDaysColor(i, "#6a329f");
+                        } else {
+                            calendar.setDaysColor(i, "#000000");
+                        }
                     }
                 }
+            } catch (FileNotFoundException ignored) {
+                LoadDataController.createFile(file);
+            } catch (IOException | ParseException ignored) {
+                LoadDataController.initializeFile(file);
             }
-        } catch (FileNotFoundException ignored) {
-            LoadDataController.createFile(file);
-        } catch (IOException | ParseException ignored) {
-            LoadDataController.initializeFile(file);
         }
     }
 

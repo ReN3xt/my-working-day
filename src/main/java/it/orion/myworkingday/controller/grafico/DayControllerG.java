@@ -284,10 +284,10 @@ public class DayControllerG {
 
     @FXML
     protected void onCalendarButtonClick() {
-        if(calendar.isSecondView()){
-            CalendarController calendarController = new CalendarController();
-            calendarController.updateColor(calendar);
-        }
+
+        CalendarController calendarController = new CalendarController();
+
+        calendarController.updateColor(calendar);
 
         stage.setScene(calendarScene);
     }
