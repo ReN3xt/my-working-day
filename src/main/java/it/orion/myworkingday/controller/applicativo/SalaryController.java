@@ -33,7 +33,7 @@ public class SalaryController {
 
                     for(int i = 1; i <= dayCount; i++) {
 
-                        dayData = (JSONObject) dayList.get(getDayValue(calendar, i));
+                        dayData = (JSONObject) dayList.get(CalendarController.getDateValue(calendar, i));
 
                         if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.WORKING_DAY)){
 
@@ -88,7 +88,7 @@ public class SalaryController {
 
                 for(int i = 1; i <= dayCount; i++) {
 
-                    if(!checkValidDay(dayList, getDayValue(calendar, i))){
+                    if(!checkValidDay(dayList, CalendarController.getDateValue(calendar, i))){
                         return false;
                     }
 
@@ -103,24 +103,6 @@ public class SalaryController {
             LoadDataController.initializeFile(file);
             return false;
         }
-    }
-
-    public String getDayValue(Calendar calendar, int i) {
-        String day = String.valueOf(calendar.getCurrentDate().getYear());
-
-        if(calendar.getCurrentDate().getMonthValue() <= 9){
-            day += "0";
-        }
-
-        day += String.valueOf(calendar.getCurrentDate().getMonthValue());
-
-        if(i <= 9) {
-            day += "0";
-        }
-
-        day += String.valueOf(i);
-
-        return day;
     }
 
     public boolean checkValidDay(JSONObject dayList, String day){

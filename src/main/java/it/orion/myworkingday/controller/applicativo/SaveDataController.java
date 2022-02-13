@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class SaveDataController {
@@ -82,7 +83,7 @@ public class SaveDataController {
 
         }
 
-        return checkNotesAndRemindersValidForm(day);//Check If Notes Or Reminder Not Empty
+        return checkNotesAndRemindersValidForm(day); //Check If Notes Or Reminder Not Empty
     }
 
     public boolean checkWorkingDayValidForm(Day day) {
@@ -91,8 +92,8 @@ public class SaveDataController {
             return false;
         }
 
-        int workingStartMinutes = calculateMinutes(day.getWorkingHoursStartHSelectionModel(), day.getWorkingHoursStartMSelectionModel());
-        int workingEndMinutes = calculateMinutes(day.getWorkingHoursEndHSelectionModel(), day.getWorkingHoursEndMSelectionModel());
+        int workingStartMinutes = calculateMinutes(day.getWorkingHoursStartHSelectionModel().getSelectedItem(), day.getWorkingHoursStartMSelectionModel().getSelectedItem());
+        int workingEndMinutes = calculateMinutes(day.getWorkingHoursEndHSelectionModel().getSelectedItem(), day.getWorkingHoursEndMSelectionModel().getSelectedItem());
 
         if (day.isLaunchBreakSelect() && !checkLaunchBreakValidForm(day)) {
             return false;
@@ -117,7 +118,8 @@ public class SaveDataController {
     }
 
     public boolean checkNotesAndRemindersValidForm(Day day) {
-        return day.getNotesTextAreaContent() != null || day.getRemindersTextAreaContent() != null;
+        return (day.getNotesTextAreaContent() != null && !day.getNotesTextAreaContent().isEmpty()) ||
+                (day.getRemindersTextAreaContent() != null && !day.getRemindersTextAreaContent().equals(""));
     }
 
     public boolean checkLaunchBreakValidForm(Day day) {
@@ -130,6 +132,10 @@ public class SaveDataController {
         int launchStartTime = Integer.parseInt(day.getLaunchBreakStartHSelectionModel().getSelectedItem() + day.getLaunchBreakStartMSelectionModel().getSelectedItem());
         int launchEndTime = Integer.parseInt(day.getLaunchBreakEndHSelectionModel().getSelectedItem() + day.getLaunchBreakEndMSelectionModel().getSelectedItem());
 
+        return isLaunchBreakInsideWorkingHours(workingStartTime, workingEndTime, launchStartTime, launchEndTime);
+    }
+
+    public boolean isLaunchBreakInsideWorkingHours(int workingStartTime, int workingEndTime, int launchStartTime, int launchEndTime){
         if(workingStartTime < workingEndTime) {
             if(launchStartTime <= launchEndTime) {
                 return workingStartTime <= launchStartTime && workingEndTime >= launchEndTime;
@@ -152,7 +158,7 @@ public class SaveDataController {
             return false;
         }
 
-        int overtimeMinutes = calculateMinutes(day.getOvertimeHSelectionModel(), day.getOvertimeMSelectionModel());
+        int overtimeMinutes = calculateMinutes(day.getOvertimeHSelectionModel().getSelectedItem(), day.getOvertimeMSelectionModel().getSelectedItem());
 
         if(!day.isPermitSelect()) {
             if (workingStartMinutes <= workingEndMinutes) {
@@ -161,7 +167,7 @@ public class SaveDataController {
                 return workingStartMinutes - workingEndMinutes >= overtimeMinutes;
             }
         } else if(!day.getPermitHSelectionModel().isEmpty() && !day.getPermitMSelectionModel().isEmpty()) {
-            int permitsMinutes = calculateMinutes(day.getPermitHSelectionModel(), day.getPermitMSelectionModel());
+            int permitsMinutes = calculateMinutes(day.getPermitHSelectionModel().getSelectedItem(), day.getPermitMSelectionModel().getSelectedItem());
 
             if (workingStartMinutes <= workingEndMinutes) {
                 return workingEndMinutes - workingStartMinutes + overtimeMinutes + permitsMinutes <= 1440;
@@ -178,7 +184,7 @@ public class SaveDataController {
             return false;
         }
 
-        int permitsMinutes = calculateMinutes(day.getPermitHSelectionModel(), day.getPermitMSelectionModel());
+        int permitsMinutes = calculateMinutes(day.getPermitHSelectionModel().getSelectedItem(), day.getPermitMSelectionModel().getSelectedItem());
 
         if (!day.isOvertimeSelect()) {
             if (workingStartMinutes <= workingEndMinutes) {
@@ -187,7 +193,7 @@ public class SaveDataController {
                 return workingStartMinutes - workingEndMinutes >= permitsMinutes;
             }
         } else if (!day.getOvertimeHSelectionModel().isEmpty() && !day.getOvertimeMSelectionModel().isEmpty()){
-            int overtimeMinutes = calculateMinutes(day.getOvertimeHSelectionModel(), day.getOvertimeMSelectionModel());
+            int overtimeMinutes = calculateMinutes(day.getOvertimeHSelectionModel().getSelectedItem(), day.getOvertimeMSelectionModel().getSelectedItem());
 
             if (workingStartMinutes <= workingEndMinutes) {
                 return workingEndMinutes - workingStartMinutes + permitsMinutes + overtimeMinutes <= 1440;
@@ -199,8 +205,8 @@ public class SaveDataController {
         }
     }
 
-    public int calculateMinutes(SingleSelectionModel<String> hours, SingleSelectionModel<String> minutes) {
-        return (Integer.parseInt(hours.getSelectedItem()) * 60) + Integer.parseInt(minutes.getSelectedItem());
+    public int calculateMinutes(String hours, String minutes) {
+        return (Integer.parseInt(hours) * 60) + Integer.parseInt(minutes);
     }
 
     public JSONObject getDayJson(Day day) {

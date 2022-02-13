@@ -30,6 +30,8 @@ public class CalendarController {
                 calendar.setDaysVisibility(i,false);
             }
         }
+
+        updateUnderline(calendar);
     }
 
     public void updateSelectedDate(Calendar calendar, String type, String operation) {
@@ -74,10 +76,12 @@ public class CalendarController {
 
                 for (int i = 0; i < 37; i++) {
                     if (i < calendar.getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
-                        dayData = (JSONObject) dayList.get(getDate(calendar, i - firstDayOfMonth + 1));
+                        dayData = (JSONObject) dayList.get(getDateValue(calendar, i - firstDayOfMonth + 1));
 
                         if (dayData == null) {
-                            calendar.setDaysColor(i, "#777777");
+                            calendar.setDaysColor(i, "#999999");
+                        } else if (dayData.get(LoadDataController.DAY_TYPE) == null) {
+                            calendar.setDaysColor(i, "#111111");
                         } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.WORKING_DAY)) {
                             calendar.setDaysColor(i, "#75c900");
                         } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.REST)) {
@@ -86,8 +90,6 @@ public class CalendarController {
                             calendar.setDaysColor(i, "#c90076");
                         } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
                             calendar.setDaysColor(i, "#6a329f");
-                        } else {
-                            calendar.setDaysColor(i, "#000000");
                         }
                     }
                 }
@@ -99,15 +101,50 @@ public class CalendarController {
         }
     }
 
-    public String getDate(Calendar calendar, int day) {
-        String date = calendar.getYear();
+    public void updateUnderline(Calendar calendar) {
+        File file = new File(System.getenv("LOCALAPPDATA") + "/MWD", "local_db.json");
 
-        date += calendar.getMontValue();
+        JSONParser parser = new JSONParser();
+
+        try (FileReader fileReader = new FileReader(file)) {
+
+            JSONObject dayList = (JSONObject) parser.parse(fileReader);
+
+            calendar.updateDateLabel();
+
+            int firstDayOfMonth = DayOfWeek.from(calendar.getCurrentDate()).getValue() - 1;
+
+            JSONObject dayData;
+
+            for (int i = 0; i < 37; i++) {
+                if (i < calendar.getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
+                    dayData = (JSONObject) dayList.get(getDateValue(calendar, i - firstDayOfMonth + 1));
+
+                    calendar.setDaysUnderline(i, dayData != null && (dayData.get(LoadDataController.REMINDERS) != null && dayData.get(LoadDataController.REMINDERS) != ""));
+                }
+            }
+        } catch (FileNotFoundException ignored) {
+            LoadDataController.createFile(file);
+        } catch (IOException | ParseException ignored) {
+            LoadDataController.initializeFile(file);
+        }
+    }
+
+    public static String getDateValue(Calendar calendar, int day) {
+        String date = String.valueOf(calendar.getCurrentDate().getYear());
+
+        if(calendar.getCurrentDate().getMonthValue() <= 9){
+            date += "0";
+        }
+
+        date += String.valueOf(calendar.getCurrentDate().getMonthValue());
 
         if(day <= 9) {
             date += "0";
         }
 
-        return date + day;
+        date += String.valueOf(day);
+
+        return date;
     }
 }

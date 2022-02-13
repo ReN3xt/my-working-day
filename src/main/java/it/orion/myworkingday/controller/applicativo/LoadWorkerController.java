@@ -19,7 +19,6 @@ public class LoadWorkerController {
     public static final String DEFAULT_HOURS = "default_hours";
     public static final String SALARY_PER_HOUR = "salary_per_hour";
     public static final String OVERTIME_PERCENT = "overtime_percent";
-    public static final String REMINDERS = "reminders";
     public static final String HOUR = "h";
     public static final String MINUTE = "m";
 
@@ -35,7 +34,6 @@ public class LoadWorkerController {
 
             if(workerProfile == null) {
                 worker.setLoad(false);
-                //worker.setActiveReminder(false);
             } else {
 
                 if(workerProfile.get(FIRST_NAME) != null) {
@@ -76,26 +74,14 @@ public class LoadWorkerController {
                     worker.setOvertimeSalaryContent(null);
                 }
 
-                if(workerProfile.get(REMINDERS) != null) {
-                    worker.getRemindersHSelectionModel().select(((JSONObject) (workerProfile.get(REMINDERS))).get(HOUR).toString());
-                    worker.getRemindersMSelectionModel().select(((JSONObject) (workerProfile.get(REMINDERS))).get(MINUTE).toString());
-                    //worker.setActiveReminder(true);
-                } else {
-                    worker.getRemindersHSelectionModel().clearSelection();
-                    worker.getRemindersMSelectionModel().clearSelection();
-                    //worker.setActiveReminder(false);
-                }
-
                 worker.setLoad(true);
             }
         } catch (FileNotFoundException ignored) {
             LoadDataController.createFile(file);
             worker.setLoad(false);
-            //worker.setActiveReminder(false);
         } catch (IOException | ParseException ignored) {
             LoadDataController.initializeFile(file);
             worker.setLoad(false);
-            //worker.setActiveReminder(false);
         }
     }
 }

@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class WorkerControllerG {
+public class WorkerControllerGUI {
 
     private Scene calendarScene;
 
@@ -38,12 +38,6 @@ public class WorkerControllerG {
     private Label overtimeSalaryLabel;
 
     @FXML
-    private Label remindersLabel;
-
-    @FXML
-    private Label remindersColonLabel;
-
-    @FXML
     private TextField firstNameTextField;
 
     @FXML
@@ -63,12 +57,6 @@ public class WorkerControllerG {
 
     @FXML
     private ComboBox<String> defaultWorkingHoursM;
-
-    @FXML
-    private ComboBox<String> remindersH;
-
-    @FXML
-    private ComboBox<String> remindersM;
 
     @FXML
     private Button editButton;
@@ -107,8 +95,6 @@ public class WorkerControllerG {
         defaultWorkingHoursColonLabel.disableProperty().bind(worker.defaultWorkingHoursColonDisableProperty());
         salaryPerHourLabel.disableProperty().bind(worker.salaryPerHourDisableProperty());
         overtimeSalaryLabel.disableProperty().bind(worker.overtimeSalaryDisableProperty());
-        remindersLabel.disableProperty().bind(worker.remindersDisableProperty());
-        remindersColonLabel.disableProperty().bind(worker.remindersColonDisableProperty());
     }
 
     public void comboBoxPropertyBinding() {
@@ -117,12 +103,6 @@ public class WorkerControllerG {
 
         defaultWorkingHoursM.disableProperty().bind(worker.defaultWorkingHoursMDisableProperty());
         worker.defaultWorkingHoursMSelectionModelProperty().bind(defaultWorkingHoursM.selectionModelProperty());
-
-        remindersH.disableProperty().bind(worker.remindersHDisableProperty());
-        worker.remindersHSelectionModelProperty().bind(remindersH.selectionModelProperty());
-
-        remindersM.disableProperty().bind(worker.remindersMDisableProperty());
-        worker.remindersMSelectionModelProperty().bind(remindersM.selectionModelProperty());
     }
 
     public void buttonPropertyBinding() {

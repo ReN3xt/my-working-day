@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class CalendarControllerG {
+public class CalendarControllerSecondaryGUI {
 
     private Calendar calendar;
 
@@ -27,9 +27,9 @@ public class CalendarControllerG {
 
     private Button[] days;
 
-    DayControllerG dayController;
+    DayControllerGUI dayController;
 
-    WorkerControllerG workerController;
+    WorkerControllerGUI workerController;
 
     @FXML
     public Button nextMonth;
@@ -161,9 +161,6 @@ public class CalendarControllerG {
     private Label monthText;
 
     @FXML
-    private Label monthValueText;
-
-    @FXML
     private TextField estimateSalary;
 
     @FXML
@@ -174,14 +171,17 @@ public class CalendarControllerG {
         //Get Model
         calendar = new Calendar();
 
+        calendar.setSecondView(true);
+
         initializeButtonArray();
 
         initializePropertyBinding();
 
         CalendarController calendarController = new CalendarController();
 
-        // Adjust calendar based on month and year
         calendarController.updateCalendar(calendar);
+
+        calendarController.updateColor(calendar);
 
         // Load FXML of Worker View
         FXMLLoader workerFxml = Main.getFxmlLoader("workerView.fxml");
@@ -246,11 +246,10 @@ public class CalendarControllerG {
 
         monthText.textProperty().bind(calendar.monthProperty());
 
-        monthValueText.textProperty().bind(calendar.monthValueProperty());
-
         for (int i = 0; i < 37; i++) {
             days[i].textProperty().bind(calendar.daysProperty(i));
             days[i].visibleProperty().bind(calendar.daysVisibilityProperty(i));
+            days[i].underlineProperty().bind(calendar.daysUnderlineProperty(i));
             days[i].textFillProperty().bind(calendar.daysColorProperty(i));
         }
     }
@@ -341,31 +340,15 @@ public class CalendarControllerG {
 
     @FXML
     protected void onSwitchInterfaceButtonClick() {
-
-        FXMLLoader calendarFxml;
-
-        if(calendar.isSecondView()) {
-            calendarFxml = Main.getFxmlLoader("calendarPrimaryView.fxml");
-        } else {
-            calendarFxml = Main.getFxmlLoader("calendarSecondaryView.fxml");
-        }
+        FXMLLoader calendarFxml = Main.getFxmlLoader("calendarPrimaryView.fxml");
 
         Scene calendarScene = Main.getScene(calendarFxml);
 
-        CalendarControllerG calendarController = calendarFxml.getController();
+        CalendarControllerPrimaryGUI calendarController = calendarFxml.getController();
 
         calendarController.setStage(stage);
-        calendarController.setSecondView(!calendar.isSecondView());
 
         stage.setScene(calendarScene);
-    }
-
-    public void setSecondView(boolean b) {
-        calendar.setSecondView(b);
-
-        CalendarController calendarController = new CalendarController();
-
-        calendarController.updateColor(calendar);
     }
 
     public void setStage(Stage stage) {

@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class DayControllerG {
+public class DayControllerGUI {
 
     Day day;
 
@@ -145,7 +145,6 @@ public class DayControllerG {
 
     @FXML
     private TextArea remindersTextArea;
-
 
     public void initialize() {
         day = new Day();
@@ -288,6 +287,7 @@ public class DayControllerG {
         CalendarController calendarController = new CalendarController();
 
         calendarController.updateColor(calendar);
+        calendarController.updateUnderline(calendar);
 
         stage.setScene(calendarScene);
     }
@@ -316,6 +316,10 @@ public class DayControllerG {
         LoadDataController loadDataController = new LoadDataController();
 
         loadDataController.loadData(this.day);
+    }
+
+    public Day getDay() {
+        return this.day;
     }
 
     @FXML

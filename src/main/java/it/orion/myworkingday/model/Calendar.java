@@ -13,6 +13,7 @@ public class Calendar {
     private final StringProperty monthValue;
     private final StringProperty[] days;
     private final BooleanProperty[] daysVisibility;
+    private final BooleanProperty[] daysUnderline;
     private final ObjectProperty<Paint>[] daysColor;
 
     private LocalDate currentDate;
@@ -27,8 +28,9 @@ public class Calendar {
         this.currentDate = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 1);
         this.days = new SimpleStringProperty[37];
         this.daysVisibility = new SimpleBooleanProperty[37];
+        this.daysUnderline = new SimpleBooleanProperty[37];
         this.daysColor = new SimpleObjectProperty[37];
-        secondView = false;
+        this.secondView = false;
     }
 
     public StringProperty monthSalaryProperty() {
@@ -57,6 +59,16 @@ public class Calendar {
         return daysVisibility[i];
     }
 
+    public BooleanProperty daysUnderlineProperty(int i) {
+        this.daysUnderline[i] = new SimpleBooleanProperty(false);
+        return daysUnderline[i];
+    }
+
+    public ObjectProperty<Paint> daysColorProperty(int i) {
+        this.daysColor[i] = new SimpleObjectProperty<>(Paint.valueOf("#000000"));
+        return daysColor[i];
+    }
+
     public void setMonthSalary(String monthSalary) {
         this.monthSalary.set(monthSalary);
     }
@@ -77,31 +89,8 @@ public class Calendar {
         setCurrentDate(currentDate.plusYears(1));
     }
 
-    public String getYear() {
-        return this.year.get();
-    }
-
-    public String getMontValue() {
-        return this.monthValue.get();
-    }
-
-    public void updateDateLabel() {
-        if(currentDate.getMonthValue() <= 9) {
-            monthValue.set("0" + currentDate.getMonthValue());
-        } else {
-            monthValue.set(String.valueOf(currentDate.getMonthValue()));
-        }
-
-        month.set(String.valueOf(currentDate.getMonth()));
-        year.set(String.valueOf(currentDate.getYear()));
-    }
-
     public void setSecondView(boolean secondView) {
         this.secondView = secondView;
-    }
-
-    public boolean isSecondView() {
-        return this.secondView;
     }
 
     public void setCurrentDate(LocalDate currentDate) {
@@ -116,16 +105,30 @@ public class Calendar {
         this.daysVisibility[i].setValue(visibility);
     }
 
+    public void setDaysUnderline(int i, boolean b){
+        this.daysUnderline[i].setValue(b);
+    }
+
     public void setDaysColor(int i, String color){
         this.daysColor[i].setValue(Paint.valueOf(color));
+    }
+
+    public boolean isSecondView() {
+        return this.secondView;
     }
 
     public LocalDate getCurrentDate() {
         return currentDate;
     }
 
-    public ObjectProperty<Paint> daysColorProperty(int i) {
-        this.daysColor[i] = new SimpleObjectProperty<>(Paint.valueOf("#000000"));
-        return daysColor[i];
+    public void updateDateLabel() {
+        if(currentDate.getMonthValue() <= 9) {
+            monthValue.set("0" + currentDate.getMonthValue());
+        } else {
+            monthValue.set(String.valueOf(currentDate.getMonthValue()));
+        }
+
+        month.set(String.valueOf(currentDate.getMonth()));
+        year.set(String.valueOf(currentDate.getYear()));
     }
 }

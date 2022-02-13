@@ -20,8 +20,6 @@ public class Worker {
     private final BooleanProperty defaultWorkingHoursColonDisable;
     private final BooleanProperty salaryPerHourDisable;
     private final BooleanProperty overtimeSalaryDisable;
-    private final BooleanProperty remindersDisable;
-    private final BooleanProperty remindersColonDisable;
     private final BooleanProperty firstNameContentDisable;
     private final BooleanProperty lastNameContentDisable;
     private final BooleanProperty workContentDisable;
@@ -29,16 +27,12 @@ public class Worker {
     private final BooleanProperty overtimeSalaryContentDisable;
     private final BooleanProperty defaultWorkingHoursHDisable;
     private final BooleanProperty defaultWorkingHoursMDisable;
-    private final BooleanProperty remindersHDisable;
-    private final BooleanProperty remindersMDisable;
     private final BooleanProperty editButtonDisable;
     private final BooleanProperty cancelButtonDisable;
     private final BooleanProperty saveButtonDisable;
 
     private final ObjectProperty<SingleSelectionModel<String>> defaultWorkingHoursHSelectionModel;
     private final ObjectProperty<SingleSelectionModel<String>> defaultWorkingHoursMSelectionModel;
-    private final ObjectProperty<SingleSelectionModel<String>> remindersHSelectionModel;
-    private final ObjectProperty<SingleSelectionModel<String>> remindersMSelectionModel;
 
     public Worker() {
         this.firstNameContent = new SimpleStringProperty();
@@ -54,8 +48,6 @@ public class Worker {
         this.defaultWorkingHoursColonDisable = new SimpleBooleanProperty(true);
         this.salaryPerHourDisable = new SimpleBooleanProperty(true);
         this.overtimeSalaryDisable = new SimpleBooleanProperty(true);
-        this.remindersDisable = new SimpleBooleanProperty(true);
-        this.remindersColonDisable = new SimpleBooleanProperty(true);
         this.firstNameContentDisable = new SimpleBooleanProperty(true);
         this.lastNameContentDisable = new SimpleBooleanProperty(true);
         this.workContentDisable = new SimpleBooleanProperty(true);
@@ -63,16 +55,12 @@ public class Worker {
         this.overtimeSalaryContentDisable = new SimpleBooleanProperty(true);
         this.defaultWorkingHoursHDisable = new SimpleBooleanProperty(true);
         this.defaultWorkingHoursMDisable = new SimpleBooleanProperty(true);
-        this.remindersHDisable = new SimpleBooleanProperty(true);
-        this.remindersMDisable = new SimpleBooleanProperty(true);
         this.editButtonDisable = new SimpleBooleanProperty(false);
         this.cancelButtonDisable = new SimpleBooleanProperty(true);
         this.saveButtonDisable = new SimpleBooleanProperty(true);
 
         this.defaultWorkingHoursHSelectionModel = new SimpleObjectProperty<>();
         this.defaultWorkingHoursMSelectionModel = new SimpleObjectProperty<>();
-        this.remindersHSelectionModel = new SimpleObjectProperty<>();
-        this.remindersMSelectionModel = new SimpleObjectProperty<>();
     }
 
     public String getFirstNameContent() {
@@ -143,14 +131,6 @@ public class Worker {
         return overtimeSalaryDisable;
     }
 
-    public BooleanProperty remindersDisableProperty() {
-        return remindersDisable;
-    }
-
-    public BooleanProperty remindersColonDisableProperty() {
-        return remindersColonDisable;
-    }
-
     public BooleanProperty firstNameContentDisableProperty() {
         return firstNameContentDisable;
     }
@@ -179,14 +159,6 @@ public class Worker {
         return defaultWorkingHoursMDisable;
     }
 
-    public BooleanProperty remindersHDisableProperty() {
-        return remindersHDisable;
-    }
-
-    public BooleanProperty remindersMDisableProperty() {
-        return remindersMDisable;
-    }
-
     public BooleanProperty editButtonDisableProperty() {
         return editButtonDisable;
     }
@@ -213,22 +185,6 @@ public class Worker {
 
     public ObjectProperty<SingleSelectionModel<String>> defaultWorkingHoursMSelectionModelProperty() {
         return defaultWorkingHoursMSelectionModel;
-    }
-
-    public SingleSelectionModel<String> getRemindersHSelectionModel() {
-        return remindersHSelectionModel.get();
-    }
-
-    public ObjectProperty<SingleSelectionModel<String>> remindersHSelectionModelProperty() {
-        return remindersHSelectionModel;
-    }
-
-    public SingleSelectionModel<String> getRemindersMSelectionModel() {
-        return remindersMSelectionModel.get();
-    }
-
-    public ObjectProperty<SingleSelectionModel<String>> remindersMSelectionModelProperty() {
-        return remindersMSelectionModel;
     }
 
     public void setFirstNameContent(String firstNameContent) {
@@ -279,14 +235,6 @@ public class Worker {
         this.overtimeSalaryDisable.set(overtimeSalaryDisable);
     }
 
-    public void setRemindersDisable(boolean remindersDisable) {
-        this.remindersDisable.set(remindersDisable);
-    }
-
-    public void setRemindersColonDisable(boolean remindersColonDisable) {
-        this.remindersColonDisable.set(remindersColonDisable);
-    }
-
     public void setFirstNameContentDisable(boolean firstNameContentDisable) {
         this.firstNameContentDisable.set(firstNameContentDisable);
     }
@@ -313,14 +261,6 @@ public class Worker {
 
     public void setDefaultWorkingHoursMDisable(boolean defaultWorkingHoursMDisable) {
         this.defaultWorkingHoursMDisable.set(defaultWorkingHoursMDisable);
-    }
-
-    public void setRemindersHDisable(boolean remindersHDisable) {
-        this.remindersHDisable.set(remindersHDisable);
-    }
-
-    public void setRemindersMDisable(boolean remindersMDisable) {
-        this.remindersMDisable.set(remindersMDisable);
     }
 
     public void setEditButtonDisable(boolean editButtonDisable) {

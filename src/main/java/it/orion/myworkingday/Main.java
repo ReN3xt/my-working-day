@@ -20,7 +20,7 @@ public class Main extends Application {
         Scene calendarScene = getScene(calendarFxml);
 
         // Get Controller Reference for each FXML
-        CalendarControllerG calendarController = calendarFxml.getController();
+        CalendarControllerPrimaryGUI calendarController = calendarFxml.getController();
 
         // Pass Stage to the controllers
         calendarController.setStage(stage);

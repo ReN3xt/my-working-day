@@ -4,239 +4,332 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.orion.myworkingday.controller.grafico.CalendarControllerG">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.orion.myworkingday.controller.grafico.CalendarControllerSecondaryGUI">
     <StackPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
-        <children>
-            <GridPane prefHeight="25.0">
-                <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                </columnConstraints>
-                <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                </rowConstraints>
-                <children>
-                    <Label fx:id="monthText" GridPane.columnIndex="2" />
-                    <Label fx:id="yearText" GridPane.columnIndex="5" />
-                    <Button fx:id="prevMonth" mnemonicParsing="false" onAction="#onPrevMonthClick" text="&lt;" GridPane.columnIndex="1" />
-                    <Button fx:id="nextMonth" mnemonicParsing="false" onAction="#onNextMonthClick" text="&gt;" GridPane.columnIndex="3" />
-                    <Button fx:id="prevYear" mnemonicParsing="false" onAction="#onPrevYearClick" text="&lt;" GridPane.columnIndex="4" />
-                    <Button fx:id="nextYear" mnemonicParsing="false" onAction="#onNextYearClick" text="&gt;" GridPane.columnIndex="6" />
-               <Label fx:id="monthValueText" visible="false" GridPane.columnIndex="2" />
-                </children>
-            </GridPane>
-            <Button mnemonicParsing="false" onAction="#onResetClick" text="Reset" />
-        </children>
+        <GridPane prefHeight="25.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Label fx:id="monthText" GridPane.columnIndex="2"/>
+            <Label fx:id="yearText" GridPane.columnIndex="5"/>
+            <Button fx:id="prevMonth" mnemonicParsing="false" onAction="#onPrevMonthClick" text="&lt;"
+                    GridPane.columnIndex="1"/>
+            <Button fx:id="nextMonth" mnemonicParsing="false" onAction="#onNextMonthClick" text="&gt;"
+                    GridPane.columnIndex="3"/>
+            <Button fx:id="prevYear" mnemonicParsing="false" onAction="#onPrevYearClick" text="&lt;"
+                    GridPane.columnIndex="4"/>
+            <Button fx:id="nextYear" mnemonicParsing="false" onAction="#onNextYearClick" text="&gt;"
+                    GridPane.columnIndex="6"/>
+            <Label fx:id="monthValueText" visible="false" GridPane.columnIndex="2"/>
+        </GridPane>
+        <Button mnemonicParsing="false" onAction="#onResetClick" text="Reset"/>
     </StackPane>
     <StackPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
-        <children>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" StackPane.alignment="CENTER">
-                <columnConstraints>
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                </columnConstraints>
-                <rowConstraints>
-                    <RowConstraints minHeight="5.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                </rowConstraints>
-                <children>
-                    <Label alignment="CENTER" text="Monday" />
-                    <Label text="Tuesday" GridPane.columnIndex="1" />
-                    <Label text="Wednesday" GridPane.columnIndex="2" />
-                    <Label text="Thursday" GridPane.columnIndex="3" />
-                    <Label text="Friday" GridPane.columnIndex="4" />
-                    <Label text="Saturday" GridPane.columnIndex="5" />
-                    <Label text="Sunday" GridPane.columnIndex="6" />
-                    <Button fx:id="day1" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day2" layoutX="10.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day3" layoutX="81.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day4" layoutX="152.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day5" layoutX="223.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day6" layoutX="294.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day7" layoutX="366.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day8" layoutX="438.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="2">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day9" layoutX="10.0" layoutY="87.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day10" layoutX="81.0" layoutY="87.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day11" layoutX="152.0" layoutY="87.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day12" layoutX="223.0" layoutY="87.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day13" layoutX="294.0" layoutY="87.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day14" layoutX="366.0" layoutY="87.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day15" layoutX="438.0" layoutY="87.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="3">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day16" layoutX="10.0" layoutY="132.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day17" layoutX="81.0" layoutY="132.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day18" layoutX="152.0" layoutY="132.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day19" layoutX="223.0" layoutY="132.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day20" layoutX="294.0" layoutY="132.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day21" layoutX="366.0" layoutY="132.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day22" layoutX="438.0" layoutY="132.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="4">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day23" layoutX="10.0" layoutY="177.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day24" layoutX="81.0" layoutY="177.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day25" layoutX="152.0" layoutY="177.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day26" layoutX="223.0" layoutY="177.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day27" layoutX="294.0" layoutY="177.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day28" layoutX="366.0" layoutY="177.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day29" layoutX="438.0" layoutY="177.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="5">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day30" layoutX="10.0" layoutY="222.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day31" layoutX="81.0" layoutY="222.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day32" layoutX="152.0" layoutY="222.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day33" layoutX="223.0" layoutY="222.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day34" layoutX="294.0" layoutY="222.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day35" layoutX="366.0" layoutY="222.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day36" layoutX="438.0" layoutY="222.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="6">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                    <Button fx:id="day37" layoutX="10.0" layoutY="266.0" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font></Button>
-                </children>
-            </GridPane>
-        </children>
+        <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                  prefHeight="300.0" prefWidth="500.0" StackPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="5.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Label alignment="CENTER" text="Monday"/>
+            <Label text="Tuesday" GridPane.columnIndex="1"/>
+            <Label text="Wednesday" GridPane.columnIndex="2"/>
+            <Label text="Thursday" GridPane.columnIndex="3"/>
+            <Label text="Friday" GridPane.columnIndex="4"/>
+            <Label text="Saturday" GridPane.columnIndex="5"/>
+            <Label text="Sunday" GridPane.columnIndex="6"/>
+            <Button fx:id="day1" mnemonicParsing="false" onAction="#onDayButtonClick" prefHeight="100.0"
+                    prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                    GridPane.valignment="CENTER">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day2" layoutX="10.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick"
+                    prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day3" layoutX="81.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick"
+                    prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day4" layoutX="152.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick"
+                    prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day5" layoutX="223.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick"
+                    prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day6" layoutX="294.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick"
+                    prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day7" layoutX="366.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick"
+                    prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day8" layoutX="438.0" layoutY="42.0" mnemonicParsing="false" onAction="#onDayButtonClick"
+                    prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day9" layoutX="10.0" layoutY="87.0" mnemonicParsing="false" onAction="#onDayButtonClick"
+                    prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day10" layoutX="81.0" layoutY="87.0" mnemonicParsing="false" onAction="#onDayButtonClick"
+                    prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day11" layoutX="152.0" layoutY="87.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3"
+                    GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day12" layoutX="223.0" layoutY="87.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4"
+                    GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day13" layoutX="294.0" layoutY="87.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5"
+                    GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day14" layoutX="366.0" layoutY="87.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="6"
+                    GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day15" layoutX="438.0" layoutY="87.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day16" layoutX="10.0" layoutY="132.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1"
+                    GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day17" layoutX="81.0" layoutY="132.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2"
+                    GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day18" layoutX="152.0" layoutY="132.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3"
+                    GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day19" layoutX="223.0" layoutY="132.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4"
+                    GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day20" layoutX="294.0" layoutY="132.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5"
+                    GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day21" layoutX="366.0" layoutY="132.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="6"
+                    GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day22" layoutX="438.0" layoutY="132.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="4">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day23" layoutX="10.0" layoutY="177.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1"
+                    GridPane.rowIndex="4">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day24" layoutX="81.0" layoutY="177.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2"
+                    GridPane.rowIndex="4">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day25" layoutX="152.0" layoutY="177.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3"
+                    GridPane.rowIndex="4">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day26" layoutX="223.0" layoutY="177.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4"
+                    GridPane.rowIndex="4">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day27" layoutX="294.0" layoutY="177.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5"
+                    GridPane.rowIndex="4">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day28" layoutX="366.0" layoutY="177.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="6"
+                    GridPane.rowIndex="4">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day29" layoutX="438.0" layoutY="177.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="5">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day30" layoutX="10.0" layoutY="222.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1"
+                    GridPane.rowIndex="5">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day31" layoutX="81.0" layoutY="222.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="2"
+                    GridPane.rowIndex="5">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day32" layoutX="152.0" layoutY="222.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="3"
+                    GridPane.rowIndex="5">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day33" layoutX="223.0" layoutY="222.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="4"
+                    GridPane.rowIndex="5">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day34" layoutX="294.0" layoutY="222.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="5"
+                    GridPane.rowIndex="5">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day35" layoutX="366.0" layoutY="222.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="6"
+                    GridPane.rowIndex="5">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day36" layoutX="438.0" layoutY="222.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.rowIndex="6">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+            <Button fx:id="day37" layoutX="10.0" layoutY="266.0" mnemonicParsing="false"
+                    onAction="#onDayButtonClick" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1"
+                    GridPane.rowIndex="6">
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
+            </Button>
+        </GridPane>
     </StackPane>
-   <StackPane AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-      <children>
-         <GridPane prefHeight="25.0">
-           <columnConstraints>
-             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
-               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-           </columnConstraints>
-           <rowConstraints>
-             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-           </rowConstraints>
-            <children>
-                <Button fx:id="workerButton" mnemonicParsing="false" onAction="#onWorkerButtonClick" prefWidth="60.0" text="Worker" GridPane.columnIndex="6" />
-               <Button mnemonicParsing="false" onAction="#onSalaryButtonClick" prefWidth="60.0" text="Salary" />
-               <TextField fx:id="estimateSalary" editable="false" promptText="Month Salary" GridPane.columnIndex="1" />
-               <Button minWidth="125.0" mnemonicParsing="false" onAction="#onSwitchInterfaceButtonClick" text="Switch to Interface 1" GridPane.columnIndex="3" />
-            </children>
-         </GridPane>
-      </children>
-   </StackPane>
+    <StackPane AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <GridPane prefHeight="25.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="0.0" minWidth="0.0" prefWidth="0.0"/>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <Button fx:id="workerButton" mnemonicParsing="false" onAction="#onWorkerButtonClick" prefWidth="60.0"
+                    text="Worker" GridPane.columnIndex="6"/>
+            <Button mnemonicParsing="false" onAction="#onSalaryButtonClick" prefWidth="60.0" text="Salary"/>
+            <TextField fx:id="estimateSalary" editable="false" promptText="Month Salary" GridPane.columnIndex="1"/>
+            <Button minWidth="125.0" mnemonicParsing="false" onAction="#onSwitchInterfaceButtonClick"
+                    text="Switch to Interface 1" GridPane.columnIndex="3"/>
+        </GridPane>
+    </StackPane>
 </AnchorPane>

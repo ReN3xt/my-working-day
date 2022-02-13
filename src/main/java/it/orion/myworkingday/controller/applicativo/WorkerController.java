@@ -17,8 +17,6 @@ public class WorkerController {
         worker.setDefaultWorkingHoursColonDisable(b);
         worker.setSalaryPerHourDisable(b);
         worker.setOvertimeSalaryDisable(b);
-        worker.setRemindersDisable(b);
-        worker.setRemindersColonDisable(b);
         worker.setFirstNameContentDisable(b);
         worker.setLastNameContentDisable(b);
         worker.setWorkContentDisable(b);
@@ -26,8 +24,6 @@ public class WorkerController {
         worker.setOvertimeSalaryContentDisable(b);
         worker.setDefaultWorkingHoursHDisable(b);
         worker.setDefaultWorkingHoursMDisable(b);
-        worker.setRemindersHDisable(b);
-        worker.setRemindersMDisable(b);
     }
 
     public void cancel(Worker worker) {
@@ -64,7 +60,5 @@ public class WorkerController {
         worker.getDefaultWorkingHoursMSelectionModel().clearSelection();
         worker.setSalaryPerHourContent(null);
         worker.setOvertimeSalaryContent(null);
-        worker.getRemindersHSelectionModel().clearSelection();
-        worker.getRemindersMSelectionModel().clearSelection();
     }
 }
