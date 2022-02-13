@@ -174,8 +174,6 @@ public class CalendarControllerG {
         //Get Model
         calendar = new Calendar();
 
-        //calendar.setSecondView(false);
-
         initializeButtonArray();
 
         initializePropertyBinding();
