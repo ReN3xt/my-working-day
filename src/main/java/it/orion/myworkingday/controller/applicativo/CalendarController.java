@@ -102,19 +102,19 @@ public class CalendarController {
     }
 
     public void updateUnderline(Calendar calendar) {
-        File file = new File(System.getenv("LOCALAPPDATA") + "/MWD", "local_db.json");
-
         JSONParser parser = new JSONParser();
 
-        try (FileReader fileReader = new FileReader(file)) {
+        File fileData = new File(System.getenv("LOCALAPPDATA") + "/MWD", "local_db.json");
 
-            JSONObject dayList = (JSONObject) parser.parse(fileReader);
+        try (FileReader fileReader = new FileReader(fileData)) {
 
             calendar.updateDateLabel();
 
-            int firstDayOfMonth = DayOfWeek.from(calendar.getCurrentDate()).getValue() - 1;
-
             JSONObject dayData;
+
+            JSONObject dayList = (JSONObject) parser.parse(fileReader);
+
+            int firstDayOfMonth = DayOfWeek.from(calendar.getCurrentDate()).getValue() - 1;
 
             for (int i = 0; i < 37; i++) {
                 if (i < calendar.getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
@@ -124,9 +124,9 @@ public class CalendarController {
                 }
             }
         } catch (FileNotFoundException ignored) {
-            LoadDataController.createFile(file);
+            LoadDataController.createFile(fileData);
         } catch (IOException | ParseException ignored) {
-            LoadDataController.initializeFile(file);
+            LoadDataController.initializeFile(fileData);
         }
     }
 
