@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 class TestSaveDataController {
 
+    // Person in charge: Valerio Pernasetti
+    // Test purpose: Convert format HH:MM to minutes
     @Test
     public void testCalculateMinutes() {
         SaveDataController saveDataController = new SaveDataController();
@@ -18,6 +20,9 @@ class TestSaveDataController {
         assertEquals(204, result);
     }
 
+
+    // Person in charge: Valerio Pernasetti
+    // Test purpose: Check if notes and reminders form are correctly filled
     @Test
     public void testCheckNotesAndRemindersValidForm() {
         SaveDataController saveDataController = new SaveDataController();
@@ -32,6 +37,9 @@ class TestSaveDataController {
         assertTrue(result);
     }
 
+
+    // Person in charge: Marco Isopi
+    // Test Purpose: Check if Launch Break Time is inside Working Hours interval
     @Test
     public void testIsLaunchBreakInsideWorkingHours() {
         SaveDataController saveDataController = new SaveDataController();

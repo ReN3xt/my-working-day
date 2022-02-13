@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 class TestSalaryController {
 
+    // Person in charge: Marco Isopi
+    // Test purpose: Check if a specific month is correctly filled in order to calculate the salary
     @Test
     public void checkValidMonth() {
         SalaryController salaryController = new SalaryController();
@@ -19,6 +21,9 @@ class TestSalaryController {
         assertTrue(result);
     }
 
+
+    // Person in charge: Valerio Pernasetti
+    // Test purpose: Calculate the salary of a regular working day
     @Test
     public void workingSalary() {
         SalaryController salaryController = new SalaryController();

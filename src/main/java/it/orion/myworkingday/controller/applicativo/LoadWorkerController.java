@@ -32,7 +32,7 @@ public class LoadWorkerController {
 
             JSONObject workerProfile = (JSONObject) parser.parse(fileReader);
 
-            if(workerProfile == null) {
+            if(workerProfile == null || workerProfile.isEmpty()) {
                 worker.setLoad(false);
             } else {
 

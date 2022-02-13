@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 class TestCalendarController {
 
+    // Person in charge: Marco Isopi
+    // Test purpose: Generate a unique ID that identify a specific date in the JSON file
     @Test
     public void testGetDayValue() {
         Calendar calendar = new Calendar();
