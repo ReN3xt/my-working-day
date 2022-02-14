@@ -16,14 +16,12 @@ import javafx.stage.Stage;
 
 public class CalendarControllerPrimaryGUI {
 
-    private Calendar calendar;
-
-    private Worker worker;
-
-    private Stage stage;
-
     private Scene dayScene;
     private Scene workerScene;
+
+    private Calendar calendar;
+    private Worker worker;
+    private Stage stage;
 
     private Button[] days;
 
@@ -42,6 +40,12 @@ public class CalendarControllerPrimaryGUI {
 
     @FXML
     public Button prevYear;
+
+    @FXML
+    private TextField estimateSalary;
+
+    @FXML
+    private Button workerButton;
 
     @FXML
     private Button day1;
@@ -163,20 +167,14 @@ public class CalendarControllerPrimaryGUI {
     @FXML
     private Label monthValueText;
 
-    @FXML
-    private TextField estimateSalary;
-
-    @FXML
-    private Button workerButton;
-
     public void initialize() {
+
+        initializeButtonArray();
 
         //Get Model
         calendar = new Calendar();
 
         calendar.setSecondView(false);
-
-        initializeButtonArray();
 
         initializePropertyBinding();
 
@@ -194,6 +192,20 @@ public class CalendarControllerPrimaryGUI {
         workerController = workerFxml.getController();
 
         worker = workerController.getWorker();
+    }
+
+    public void initializePropertyBinding() {
+
+        monthText.textProperty().bind(calendar.monthProperty());
+        monthValueText.textProperty().bind(calendar.monthValueProperty());
+        estimateSalary.textProperty().bind(calendar.monthSalaryProperty());
+        yearText.textProperty().bind(calendar.yearProperty());
+
+        for (int i = 0; i < 37; i++) {
+            days[i].visibleProperty().bind(calendar.daysVisibilityProperty(i));
+            days[i].underlineProperty().bind(calendar.daysUnderlineProperty(i));
+            days[i].textProperty().bind(calendar.daysProperty(i));
+        }
     }
 
     public void initializeButtonArray() {
@@ -239,21 +251,16 @@ public class CalendarControllerPrimaryGUI {
         days[36] = day37;
     }
 
-    public void initializePropertyBinding() {
+    @FXML
+    protected void onWorkerButtonClick() {
 
-        estimateSalary.textProperty().bind(calendar.monthSalaryProperty());
+        // Pass Stage to Worker Controller
+        workerController.setStage(stage);
 
-        yearText.textProperty().bind(calendar.yearProperty());
+        // Pass Calendar Scene to Worker Controller
+        workerController.setCalendarScene(workerButton.getScene());
 
-        monthText.textProperty().bind(calendar.monthProperty());
-
-        monthValueText.textProperty().bind(calendar.monthValueProperty());
-
-        for (int i = 0; i < 37; i++) {
-            days[i].textProperty().bind(calendar.daysProperty(i));
-            days[i].visibleProperty().bind(calendar.daysVisibilityProperty(i));
-            days[i].underlineProperty().bind(calendar.daysUnderlineProperty(i));
-        }
+        stage.setScene(workerScene);
     }
 
     @FXML
@@ -264,17 +271,48 @@ public class CalendarControllerPrimaryGUI {
     }
 
     @FXML
-    protected void onPrevMonthClick() {
-        CalendarController calendarController = new CalendarController();
+    protected void onDayButtonClick(ActionEvent e) {
 
-        calendarController.updateSelectedDate(calendar, "month", "prev");
+        // Load FXML of Day View
+        FXMLLoader dayFxml = Main.getFxmlLoader("dayView.fxml");
+
+        // Create a Scene for Day View
+        setDayScene(Main.getScene(dayFxml));
+
+        // Get Day View Controller Reference
+        dayController = dayFxml.getController();
+
+        dayController.setCalendar(calendar);
+
+        // Pass Stage to Day Controller
+        dayController.setStage(stage);
+
+        // Pass Calendar Scene Reference to Day Controller
+        dayController.setCalendarScene(day1.getScene());
+
+        dayController.loadDay(((Button) e.getSource()).getText());
+
+        stage.setScene(dayScene);
     }
 
     @FXML
-    protected void onNextMonthClick() {
-        CalendarController calendarController = new CalendarController();
+    protected void onSwitchInterfaceButtonClick() {
+        FXMLLoader calendarFxml = Main.getFxmlLoader("calendarSecondaryView.fxml");
 
-        calendarController.updateSelectedDate(calendar, "month", "next");
+        Scene calendarScene = Main.getScene(calendarFxml);
+
+        CalendarControllerSecondaryGUI calendarController = calendarFxml.getController();
+
+        calendarController.setStage(stage);
+
+        stage.setScene(calendarScene);
+    }
+
+    @FXML
+    protected void onSalaryButtonClick() {
+        SalaryController controller = new SalaryController();
+
+        controller.calculateSalary(calendar, worker);
     }
 
     @FXML
@@ -292,72 +330,30 @@ public class CalendarControllerPrimaryGUI {
     }
 
     @FXML
-    protected void onWorkerButtonClick() {
+    protected void onPrevMonthClick() {
+        CalendarController calendarController = new CalendarController();
 
-        // Pass Stage to Worker Controller
-        workerController.setStage(stage);
-
-        // Pass Calendar Scene to Worker Controller
-        workerController.setCalendarScene(workerButton.getScene());
-
-        stage.setScene(workerScene);
+        calendarController.updateSelectedDate(calendar, "month", "prev");
     }
 
     @FXML
-    protected void onDayButtonClick(ActionEvent e) {
+    protected void onNextMonthClick() {
+        CalendarController calendarController = new CalendarController();
 
-        // Load FXML of Day View
-        FXMLLoader dayFxml = Main.getFxmlLoader("dayView.fxml");
-
-        // Create a Scene for Day View
-        setDayScene(Main.getScene(dayFxml));
-
-        // Get Day View Controller Reference
-        dayController = dayFxml.getController();
-
-        // Pass Stage to Day Controller
-        dayController.setStage(stage);
-
-        // Pass Calendar Scene Reference to Day Controller
-        dayController.setCalendarScene(day1.getScene());
-
-        dayController.setCalendar(calendar);
-
-        dayController.loadDay(((Button) e.getSource()).getText());
-
-        stage.setScene(dayScene);
+        calendarController.updateSelectedDate(calendar, "month", "next");
     }
 
-    @FXML
-    protected void onSalaryButtonClick() {
-        SalaryController controller = new SalaryController();
 
-        controller.calculateSalary(calendar, worker);
+
+    public void setWorkerScene(Scene workerScene) {
+        this.workerScene = workerScene;
     }
-
-    @FXML
-    protected void onSwitchInterfaceButtonClick() {
-        FXMLLoader calendarFxml = Main.getFxmlLoader("calendarSecondaryView.fxml");
-
-        Scene calendarScene = Main.getScene(calendarFxml);
-
-        CalendarControllerSecondaryGUI calendarController = calendarFxml.getController();
-
-        calendarController.setStage(stage);
-
-        stage.setScene(calendarScene);
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
 
     public void setDayScene(Scene dayScene) {
         this.dayScene = dayScene;
     }
 
-    public void setWorkerScene(Scene workerScene) {
-        this.workerScene = workerScene;
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

@@ -16,32 +16,44 @@ import javafx.stage.Stage;
 
 public class CalendarControllerSecondaryGUI {
 
-    private Calendar calendar;
-
-    private Worker worker;
-
-    private Stage stage;
-
-    private Scene dayScene;
-    private Scene workerScene;
-
-    private Button[] days;
-
     DayControllerGUI dayController;
 
     WorkerControllerGUI workerController;
 
-    @FXML
-    public Button nextMonth;
+    private Calendar calendar;
+
+    private Worker worker;
+
+    private Scene dayScene;
+    private Scene workerScene;
+
+    private Stage stage;
+
+    private Button[] days;
 
     @FXML
-    public Button prevMonth;
+    private Label yearText;
+
+    @FXML
+    private Label monthText;
+
+    @FXML
+    private TextField estimateSalary;
+
+    @FXML
+    private Button workerButton;
 
     @FXML
     public Button nextYear;
 
     @FXML
     public Button prevYear;
+
+    @FXML
+    public Button nextMonth;
+
+    @FXML
+    public Button prevMonth;
 
     @FXML
     private Button day1;
@@ -154,17 +166,6 @@ public class CalendarControllerSecondaryGUI {
     @FXML
     private Button day37;
 
-    @FXML
-    private Label yearText;
-
-    @FXML
-    private Label monthText;
-
-    @FXML
-    private TextField estimateSalary;
-
-    @FXML
-    private Button workerButton;
 
     public void initialize() {
 
@@ -193,6 +194,20 @@ public class CalendarControllerSecondaryGUI {
         workerController = workerFxml.getController();
 
         worker = workerController.getWorker();
+    }
+
+    public void initializePropertyBinding() {
+
+        yearText.textProperty().bind(calendar.yearProperty());
+        estimateSalary.textProperty().bind(calendar.monthSalaryProperty());
+        monthText.textProperty().bind(calendar.monthProperty());
+
+        for (int i = 0; i < 37; i++) {
+            days[i].textFillProperty().bind(calendar.daysColorProperty(i));
+            days[i].visibleProperty().bind(calendar.daysVisibilityProperty(i));
+            days[i].underlineProperty().bind(calendar.daysUnderlineProperty(i));
+            days[i].textProperty().bind(calendar.daysProperty(i));
+        }
     }
 
     public void initializeButtonArray() {
@@ -238,74 +253,6 @@ public class CalendarControllerSecondaryGUI {
         days[36] = day37;
     }
 
-    public void initializePropertyBinding() {
-
-        estimateSalary.textProperty().bind(calendar.monthSalaryProperty());
-
-        yearText.textProperty().bind(calendar.yearProperty());
-
-        monthText.textProperty().bind(calendar.monthProperty());
-
-        for (int i = 0; i < 37; i++) {
-            days[i].textProperty().bind(calendar.daysProperty(i));
-            days[i].visibleProperty().bind(calendar.daysVisibilityProperty(i));
-            days[i].underlineProperty().bind(calendar.daysUnderlineProperty(i));
-            days[i].textFillProperty().bind(calendar.daysColorProperty(i));
-        }
-    }
-
-    @FXML
-    protected void onResetClick() {
-        CalendarController calendarController = new CalendarController();
-
-        calendarController.resetCalendar(calendar);
-        calendarController.updateColor(calendar);
-    }
-
-    @FXML
-    protected void onPrevMonthClick() {
-        CalendarController calendarController = new CalendarController();
-
-        calendarController.updateSelectedDate(calendar, "month", "prev");
-        calendarController.updateColor(calendar);
-    }
-
-    @FXML
-    protected void onNextMonthClick() {
-        CalendarController calendarController = new CalendarController();
-
-        calendarController.updateSelectedDate(calendar, "month", "next");
-        calendarController.updateColor(calendar);
-    }
-
-    @FXML
-    protected void onPrevYearClick() {
-        CalendarController calendarController = new CalendarController();
-
-        calendarController.updateSelectedDate(calendar, "year", "prev");
-        calendarController.updateColor(calendar);
-    }
-
-    @FXML
-    protected void onNextYearClick() {
-        CalendarController calendarController = new CalendarController();
-
-        calendarController.updateSelectedDate(calendar, "year", "next");
-        calendarController.updateColor(calendar);
-    }
-
-    @FXML
-    protected void onWorkerButtonClick() {
-
-        // Pass Stage to Worker Controller
-        workerController.setStage(stage);
-
-        // Pass Calendar Scene to Worker Controller
-        workerController.setCalendarScene(workerButton.getScene());
-
-        stage.setScene(workerScene);
-    }
-
     @FXML
     protected void onDayButtonClick(ActionEvent e) {
 
@@ -321,14 +268,59 @@ public class CalendarControllerSecondaryGUI {
         // Pass Stage to Day Controller
         dayController.setStage(stage);
 
+        dayController.setCalendar(calendar);
+
         // Pass Calendar Scene Reference to Day Controller
         dayController.setCalendarScene(day1.getScene());
-
-        dayController.setCalendar(calendar);
 
         dayController.loadDay(((Button) e.getSource()).getText());
 
         stage.setScene(dayScene);
+    }
+
+
+    @FXML
+    protected void onWorkerButtonClick() {
+
+        // Pass Calendar Scene to Worker Controller
+        workerController.setCalendarScene(workerButton.getScene());
+
+        // Pass Stage to Worker Controller
+        workerController.setStage(stage);
+
+        stage.setScene(workerScene);
+    }
+
+    @FXML
+    protected void onPrevYearClick() {
+        CalendarController calendarController = new CalendarController();
+
+        calendarController.updateSelectedDate(calendar, "year", "prev");
+        calendarController.updateColor(calendar);
+    }
+
+    @FXML
+    protected void onPrevMonthClick() {
+        CalendarController calendarController = new CalendarController();
+
+        calendarController.updateSelectedDate(calendar, "month", "prev");
+        calendarController.updateColor(calendar);
+    }
+
+    @FXML
+    protected void onNextYearClick() {
+        CalendarController calendarController = new CalendarController();
+
+        calendarController.updateSelectedDate(calendar, "year", "next");
+        calendarController.updateColor(calendar);
+    }
+
+    @FXML
+    protected void onNextMonthClick() {
+        CalendarController calendarController = new CalendarController();
+
+        calendarController.updateSelectedDate(calendar, "month", "next");
+        calendarController.updateColor(calendar);
     }
 
     @FXML
@@ -351,16 +343,25 @@ public class CalendarControllerSecondaryGUI {
         stage.setScene(calendarScene);
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    @FXML
+    protected void onResetClick() {
+        CalendarController calendarController = new CalendarController();
+
+        calendarController.resetCalendar(calendar);
+        calendarController.updateColor(calendar);
     }
 
-
-    public void setDayScene(Scene dayScene) {
-        this.dayScene = dayScene;
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     public void setWorkerScene(Scene workerScene) {
         this.workerScene = workerScene;
     }
+
+    public void setDayScene(Scene dayScene) {
+        this.dayScene = dayScene;
+    }
+
+
 }

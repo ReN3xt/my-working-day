@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class TestSalaryController {
 
-    // Person in charge: Marco Isopi
+    // Person in charge: Valerio Pernasetti
     // Test purpose: Check if a specific month is correctly filled in order to calculate the salary
     @Test
     public void checkValidMonth() {
@@ -22,7 +22,7 @@ class TestSalaryController {
     }
 
 
-    // Person in charge: Valerio Pernasetti
+    // Person in charge: Marco Isopi
     // Test purpose: Calculate the salary of a regular working day
     @Test
     public void workingSalary() {
