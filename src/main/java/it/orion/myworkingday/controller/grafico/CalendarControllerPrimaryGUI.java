@@ -20,7 +20,9 @@ public class CalendarControllerPrimaryGUI {
     private Scene workerScene;
 
     private Calendar calendar;
+
     private Worker worker;
+
     private Stage stage;
 
     private Button[] days;

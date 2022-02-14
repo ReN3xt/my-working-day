@@ -24,12 +24,12 @@ public class CalendarControllerSecondaryGUI {
 
     private Worker worker;
 
-    private Scene dayScene;
-    private Scene workerScene;
+    private Button[] days;
 
     private Stage stage;
 
-    private Button[] days;
+    private Scene dayScene;
+    private Scene workerScene;
 
     @FXML
     private Label yearText;
