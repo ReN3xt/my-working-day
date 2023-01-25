@@ -359,7 +359,7 @@ public class DayControllerGUI {
     }
 
     @FXML
-    protected void onRestButtonClick() {
+    protected void onRestAndHolidayButtonClick() {
         DayController dayController = new DayController();
 
         dayController.disableWorkingDayForm(day, true);
@@ -370,13 +370,6 @@ public class DayControllerGUI {
         DayController dayController = new DayController();
 
         dayController.disableSickLeaveForm(day, !day.isSickLeaveButtonSelect());
-    }
-
-    @FXML
-    protected void onHolidayButtonClick() {
-        DayController dayController = new DayController();
-
-        dayController.disableWorkingDayForm(day, true);
     }
 
     @FXML

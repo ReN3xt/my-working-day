@@ -78,19 +78,7 @@ public class CalendarController {
                     if (i < calendar.getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
                         dayData = (JSONObject) dayList.get(getDateValue(calendar, i - firstDayOfMonth + 1));
 
-                        if (dayData == null) {
-                            calendar.setDaysColor(i, "#999999");
-                        } else if (dayData.get(LoadDataController.DAY_TYPE) == null) {
-                            calendar.setDaysColor(i, "#111111");
-                        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.WORKING_DAY)) {
-                            calendar.setDaysColor(i, "#75c900");
-                        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.REST)) {
-                            calendar.setDaysColor(i, "#2986cc");
-                        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.SICK)) {
-                            calendar.setDaysColor(i, "#c90076");
-                        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
-                            calendar.setDaysColor(i, "#6a329f");
-                        }
+                        setColor(calendar, dayData, i);
                     }
                 }
             } catch (FileNotFoundException ignored) {
@@ -98,6 +86,22 @@ public class CalendarController {
             } catch (IOException | ParseException ignored) {
                 LoadDataController.initializeFile(file);
             }
+        }
+    }
+
+    public void setColor(Calendar calendar, JSONObject dayData, int day) {
+        if (dayData == null) {
+            calendar.setDaysColor(day, "#999999");
+        } else if (dayData.get(LoadDataController.DAY_TYPE) == null) {
+            calendar.setDaysColor(day, "#111111");
+        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.WORKING_DAY)) {
+            calendar.setDaysColor(day, "#75c900");
+        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.REST)) {
+            calendar.setDaysColor(day, "#2986cc");
+        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.SICK)) {
+            calendar.setDaysColor(day, "#c90076");
+        } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
+            calendar.setDaysColor(day, "#6a329f");
         }
     }
 

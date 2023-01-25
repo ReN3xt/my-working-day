@@ -36,13 +36,13 @@
                 </toggleGroup>
             </ToggleButton>
             <ToggleButton fx:id="restButton" disable="true" maxWidth="85.0" mnemonicParsing="false"
-                          onAction="#onRestButtonClick" text="Rest" toggleGroup="$day_type"
+                          onAction="#onRestAndHolidayButtonClick" text="Rest" toggleGroup="$day_type"
                           GridPane.columnIndex="1"/>
             <ToggleButton fx:id="sickLeaveButton" disable="true" maxWidth="85.0" mnemonicParsing="false"
                           onAction="#onSickLeaveButtonClick" text="Sick leave" toggleGroup="$day_type"
                           GridPane.columnIndex="3"/>
             <ToggleButton fx:id="holidayButton" disable="true" maxWidth="85.0" mnemonicParsing="false"
-                          onAction="#onHolidayButtonClick" text="Holiday" toggleGroup="$day_type"
+                          onAction="#onRestAndHolidayButtonClick" text="Holiday" toggleGroup="$day_type"
                           GridPane.columnIndex="4"/>
         </GridPane>
     </StackPane>

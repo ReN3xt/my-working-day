@@ -213,57 +213,16 @@ public class SaveDataController {
         JSONObject dayJson = new JSONObject();
 
         if(day.isWorkingDayButtonSelect()){
-            dayJson.put(LoadDataController.DAY_TYPE, LoadDataController.WORKING_DAY);
-            dayJson.put(LoadDataController.WORKING_HOURS, getWorkingHoursJson(day));
-
-            if(day.isLaunchBreakSelect()){
-                dayJson.put(LoadDataController.LAUNCH_BREAK, getLaunchBreakJson(day));
-            } else {
-                dayJson.put(LoadDataController.LAUNCH_BREAK, null);
-            }
-
-            if(day.isOvertimeSelect()) {
-                dayJson.put(LoadDataController.OVERTIME, getOvertimeJson(day));
-            } else {
-                dayJson.put(LoadDataController.OVERTIME, null);
-            }
-
-            if(day.isPermitSelect()){
-                dayJson.put(LoadDataController.PERMIT, getPermitJson(day));
-            } else {
-                dayJson.put(LoadDataController.PERMIT, null);
-            }
-
-            dayJson.put(LoadDataController.SICK_LEAVE, null);
+            setWorkingDayJson(day, dayJson);
 
         } else if (day.isRestButtonSelect()) {
-            dayJson.put(LoadDataController.DAY_TYPE, LoadDataController.REST);
-            dayJson.put(LoadDataController.WORKING_HOURS, null);
-            dayJson.put(LoadDataController.LAUNCH_BREAK, null);
-            dayJson.put(LoadDataController.OVERTIME, null);
-            dayJson.put(LoadDataController.PERMIT, null);
-            dayJson.put(LoadDataController.SICK_LEAVE, null);
+            setRestJson(dayJson);
 
         } else if (day.isSickLeaveButtonSelect()) {
-            dayJson.put(LoadDataController.DAY_TYPE, LoadDataController.SICK);
-            dayJson.put(LoadDataController.WORKING_HOURS, null);
-            dayJson.put(LoadDataController.LAUNCH_BREAK, null);
-            dayJson.put(LoadDataController.OVERTIME, null);
-            dayJson.put(LoadDataController.PERMIT, null);
-
-            if(day.getSickLeaveProtocolContent() == null) {
-                dayJson.put(LoadDataController.SICK_LEAVE, null);
-            } else{
-                dayJson.put(LoadDataController.SICK_LEAVE, getSickLeaveJson(day));
-            }
+            setSickLeaveJson(day, dayJson);
 
         } else if (day.isHolidayButtonSelect()) {
-            dayJson.put(LoadDataController.DAY_TYPE, LoadDataController.HOLIDAY);
-            dayJson.put(LoadDataController.WORKING_HOURS, null);
-            dayJson.put(LoadDataController.LAUNCH_BREAK, null);
-            dayJson.put(LoadDataController.OVERTIME, null);
-            dayJson.put(LoadDataController.PERMIT, null);
-            dayJson.put(LoadDataController.SICK_LEAVE, null);
+            setHolidayJson(dayJson);
 
         }
 
@@ -280,6 +239,63 @@ public class SaveDataController {
         }
 
         return dayJson;
+    }
+
+    public void setWorkingDayJson(Day day, JSONObject dayJson){
+        dayJson.put(LoadDataController.DAY_TYPE, LoadDataController.WORKING_DAY);
+        dayJson.put(LoadDataController.WORKING_HOURS, getWorkingHoursJson(day));
+
+        if(day.isLaunchBreakSelect()){
+            dayJson.put(LoadDataController.LAUNCH_BREAK, getLaunchBreakJson(day));
+        } else {
+            dayJson.put(LoadDataController.LAUNCH_BREAK, null);
+        }
+
+        if(day.isOvertimeSelect()) {
+            dayJson.put(LoadDataController.OVERTIME, getOvertimeJson(day));
+        } else {
+            dayJson.put(LoadDataController.OVERTIME, null);
+        }
+
+        if(day.isPermitSelect()){
+            dayJson.put(LoadDataController.PERMIT, getPermitJson(day));
+        } else {
+            dayJson.put(LoadDataController.PERMIT, null);
+        }
+
+        dayJson.put(LoadDataController.SICK_LEAVE, null);
+    }
+
+    public void setRestJson(JSONObject dayJson){
+        dayJson.put(LoadDataController.DAY_TYPE, LoadDataController.REST);
+        dayJson.put(LoadDataController.WORKING_HOURS, null);
+        dayJson.put(LoadDataController.LAUNCH_BREAK, null);
+        dayJson.put(LoadDataController.OVERTIME, null);
+        dayJson.put(LoadDataController.PERMIT, null);
+        dayJson.put(LoadDataController.SICK_LEAVE, null);
+    }
+
+    public void setSickLeaveJson(Day day, JSONObject dayJson){
+        dayJson.put(LoadDataController.DAY_TYPE, LoadDataController.SICK);
+        dayJson.put(LoadDataController.WORKING_HOURS, null);
+        dayJson.put(LoadDataController.LAUNCH_BREAK, null);
+        dayJson.put(LoadDataController.OVERTIME, null);
+        dayJson.put(LoadDataController.PERMIT, null);
+
+        if(day.getSickLeaveProtocolContent() == null) {
+            dayJson.put(LoadDataController.SICK_LEAVE, null);
+        } else{
+            dayJson.put(LoadDataController.SICK_LEAVE, getSickLeaveJson(day));
+        }
+    }
+
+    public void setHolidayJson(JSONObject dayJson){
+        dayJson.put(LoadDataController.DAY_TYPE, LoadDataController.HOLIDAY);
+        dayJson.put(LoadDataController.WORKING_HOURS, null);
+        dayJson.put(LoadDataController.LAUNCH_BREAK, null);
+        dayJson.put(LoadDataController.OVERTIME, null);
+        dayJson.put(LoadDataController.PERMIT, null);
+        dayJson.put(LoadDataController.SICK_LEAVE, null);
     }
 
     public JSONObject getWorkingHoursJson(Day day) {

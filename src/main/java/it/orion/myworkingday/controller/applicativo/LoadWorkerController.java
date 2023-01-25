@@ -35,44 +35,7 @@ public class LoadWorkerController {
             if(workerProfile == null || workerProfile.isEmpty()) {
                 worker.setLoad(false);
             } else {
-
-                if(workerProfile.get(FIRST_NAME) != null) {
-                    worker.setFirstNameContent(workerProfile.get(FIRST_NAME).toString());
-                } else {
-                    worker.setFirstNameContent(null);
-                }
-
-                if(workerProfile.get(LAST_NAME) != null) {
-                    worker.setLastNameContent(workerProfile.get(LAST_NAME).toString());
-                } else {
-                    worker.setLastNameContent(null);
-                }
-
-                if(workerProfile.get(WORK) != null) {
-                    worker.setWorkContent(workerProfile.get(WORK).toString());
-                } else {
-                    worker.setWorkContent(null);
-                }
-
-                if(workerProfile.get(DEFAULT_HOURS) != null) {
-                    worker.getDefaultWorkingHoursHSelectionModel().select(((JSONObject) (workerProfile.get(DEFAULT_HOURS))).get(HOUR).toString());
-                    worker.getDefaultWorkingHoursMSelectionModel().select(((JSONObject) (workerProfile.get(DEFAULT_HOURS))).get(MINUTE).toString());
-                } else {
-                    worker.getDefaultWorkingHoursHSelectionModel().clearSelection();
-                    worker.getDefaultWorkingHoursMSelectionModel().clearSelection();
-                }
-
-                if(workerProfile.get(SALARY_PER_HOUR) != null) {
-                    worker.setSalaryPerHourContent(workerProfile.get(SALARY_PER_HOUR).toString());
-                } else {
-                    worker.setSalaryPerHourContent(null);
-                }
-
-                if(workerProfile.get(OVERTIME_PERCENT) != null) {
-                    worker.setOvertimeSalaryContent(workerProfile.get(OVERTIME_PERCENT).toString());
-                } else {
-                    worker.setOvertimeSalaryContent(null);
-                }
+                fillWorkerForm(worker, workerProfile);
 
                 worker.setLoad(true);
             }
@@ -82,6 +45,46 @@ public class LoadWorkerController {
         } catch (IOException | ParseException ignored) {
             LoadDataController.initializeFile(file);
             worker.setLoad(false);
+        }
+    }
+
+    public void fillWorkerForm(Worker worker, JSONObject workerProfile){
+        if(workerProfile.get(FIRST_NAME) != null) {
+            worker.setFirstNameContent(workerProfile.get(FIRST_NAME).toString());
+        } else {
+            worker.setFirstNameContent(null);
+        }
+
+        if(workerProfile.get(LAST_NAME) != null) {
+            worker.setLastNameContent(workerProfile.get(LAST_NAME).toString());
+        } else {
+            worker.setLastNameContent(null);
+        }
+
+        if(workerProfile.get(WORK) != null) {
+            worker.setWorkContent(workerProfile.get(WORK).toString());
+        } else {
+            worker.setWorkContent(null);
+        }
+
+        if(workerProfile.get(DEFAULT_HOURS) != null) {
+            worker.getDefaultWorkingHoursHSelectionModel().select(((JSONObject) (workerProfile.get(DEFAULT_HOURS))).get(HOUR).toString());
+            worker.getDefaultWorkingHoursMSelectionModel().select(((JSONObject) (workerProfile.get(DEFAULT_HOURS))).get(MINUTE).toString());
+        } else {
+            worker.getDefaultWorkingHoursHSelectionModel().clearSelection();
+            worker.getDefaultWorkingHoursMSelectionModel().clearSelection();
+        }
+
+        if(workerProfile.get(SALARY_PER_HOUR) != null) {
+            worker.setSalaryPerHourContent(workerProfile.get(SALARY_PER_HOUR).toString());
+        } else {
+            worker.setSalaryPerHourContent(null);
+        }
+
+        if(workerProfile.get(OVERTIME_PERCENT) != null) {
+            worker.setOvertimeSalaryContent(workerProfile.get(OVERTIME_PERCENT).toString());
+        } else {
+            worker.setOvertimeSalaryContent(null);
         }
     }
 }

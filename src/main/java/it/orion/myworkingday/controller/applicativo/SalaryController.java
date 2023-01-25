@@ -35,29 +35,7 @@ public class SalaryController {
 
                         dayData = (JSONObject) dayList.get(CalendarController.getDateValue(calendar, i));
 
-                        if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.WORKING_DAY)){
-
-                            if(dayData.get(LoadDataController.WORKING_HOURS) != null) {
-                                totalSalary += workingSalary((JSONObject) dayData.get(LoadDataController.WORKING_HOURS), worker.getSalaryPerHourContent());
-                            }
-
-                            if(dayData.get(LoadDataController.LAUNCH_BREAK) != null) {
-                                totalSalary -= workingSalary((JSONObject) dayData.get(LoadDataController.LAUNCH_BREAK), worker.getSalaryPerHourContent());
-                            }
-
-                            if(dayData.get(LoadDataController.PERMIT) != null) {
-                                totalSalary += permitSalary((JSONObject) dayData.get(LoadDataController.PERMIT), worker.getSalaryPerHourContent());
-                            }
-
-                            if(dayData.get(LoadDataController.OVERTIME) != null) {
-                                totalSalary += overtimeSalary((JSONObject) dayData.get(LoadDataController.OVERTIME), worker.getSalaryPerHourContent(), worker.getOvertimeSalaryContent());
-                            }
-
-                        } else if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.REST)) {
-                            totalSalary += 0;
-                        } else if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.SICK) || dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
-                            totalSalary += extraSalary(worker);
-                        }
+                        totalSalary += calculateDaySalary(worker, dayData);
                     }
 
                     calendar.setMonthSalary("€ " +  (double) Math.round(totalSalary * 100) / 100);
@@ -74,6 +52,37 @@ public class SalaryController {
 
                 calendar.setMonthSalary("DATA ERROR");
             }
+    }
+
+    public double calculateDaySalary(Worker worker, JSONObject dayData){
+
+        double daySalary = 0;
+
+        if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.WORKING_DAY)){
+
+            if(dayData.get(LoadDataController.WORKING_HOURS) != null) {
+                daySalary += workingSalary((JSONObject) dayData.get(LoadDataController.WORKING_HOURS), worker.getSalaryPerHourContent());
+            }
+
+            if(dayData.get(LoadDataController.LAUNCH_BREAK) != null) {
+                daySalary -= workingSalary((JSONObject) dayData.get(LoadDataController.LAUNCH_BREAK), worker.getSalaryPerHourContent());
+            }
+
+            if(dayData.get(LoadDataController.PERMIT) != null) {
+                daySalary += permitSalary((JSONObject) dayData.get(LoadDataController.PERMIT), worker.getSalaryPerHourContent());
+            }
+
+            if(dayData.get(LoadDataController.OVERTIME) != null) {
+                daySalary += overtimeSalary((JSONObject) dayData.get(LoadDataController.OVERTIME), worker.getSalaryPerHourContent(), worker.getOvertimeSalaryContent());
+            }
+
+        } else if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.REST)) {
+            daySalary += 0;
+        } else if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.SICK) || dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
+            daySalary += extraSalary(worker);
+        }
+
+        return daySalary;
     }
 
     public boolean checkValidMonth(Calendar calendar) {
