@@ -295,10 +295,6 @@ public class DayControllerGUI {
         this.calendarScene = calendarScene;
     }
 
-    /*public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
-    }*/
-
     public void loadDay(String day) {
         DayController dayController = new DayController();
 

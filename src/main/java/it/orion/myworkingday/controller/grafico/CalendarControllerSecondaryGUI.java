@@ -259,8 +259,6 @@ public class CalendarControllerSecondaryGUI {
         // Pass Stage to Day Controller
         dayController.setStage(stage);
 
-        //dayController.setCalendar(Calendar.getInstance());
-
         // Pass Calendar Scene Reference to Day Controller
         dayController.setCalendarScene(day1.getScene());
 

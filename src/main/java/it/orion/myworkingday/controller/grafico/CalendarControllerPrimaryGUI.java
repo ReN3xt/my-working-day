@@ -275,8 +275,6 @@ public class CalendarControllerPrimaryGUI {
         // Get Day View Controller Reference
         dayController = dayFxml.getController();
 
-        //dayController.setCalendar(Calendar.getInstance());
-
         // Pass Stage to Day Controller
         dayController.setStage(stage);
 

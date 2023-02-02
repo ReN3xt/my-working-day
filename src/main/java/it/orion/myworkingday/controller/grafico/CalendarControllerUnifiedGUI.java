@@ -317,8 +317,6 @@ public class CalendarControllerUnifiedGUI {
         // Pass Calendar Scene Reference to Day Controller
         dayController.setCalendarScene(day1.getScene());
 
-        //dayController.setCalendar(Calendar.getInstance());
-
         dayController.loadDay(((Button) e.getSource()).getText());
 
         stage.setScene(dayScene);
