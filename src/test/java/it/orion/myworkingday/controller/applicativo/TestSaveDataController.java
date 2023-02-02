@@ -27,12 +27,10 @@ class TestSaveDataController {
     public void testCheckNotesAndRemindersValidForm() {
         SaveDataController saveDataController = new SaveDataController();
 
-        Day day = new Day();
+        Day.getInstance().setNotesTextAreaContent(null);
+        Day.getInstance().setRemindersTextAreaContent("Some Reminders");
 
-        day.setNotesTextAreaContent(null);
-        day.setRemindersTextAreaContent("Some Reminders");
-
-        boolean result = saveDataController.checkNotesAndRemindersValidForm(day);
+        boolean result = saveDataController.checkNotesAndRemindersValidForm();
 
         assertTrue(result);
     }

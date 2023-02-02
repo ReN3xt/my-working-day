@@ -11,10 +11,8 @@ class TestCalendarController {
     // Test purpose: Generate a unique ID that identify a specific date in the JSON file
     @Test
     public void testGetDayValue() {
-        Calendar calendar = new Calendar();
+        String result = CalendarController.getDateValue(7);
 
-        String result = CalendarController.getDateValue(calendar, 7);
-
-        assertEquals("20220207", result);
+        assertEquals("20230207", result);
     }
 }

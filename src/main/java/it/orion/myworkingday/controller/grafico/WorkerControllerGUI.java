@@ -14,8 +14,6 @@ public class WorkerControllerGUI {
 
     private Stage stage;
 
-    private Worker worker;
-
     @FXML
     private Label firstNameLabel;
 
@@ -68,13 +66,12 @@ public class WorkerControllerGUI {
     private Button saveButton;
 
     public void initialize() {
-        worker = new Worker();
 
         initializePropertyBinding();
 
         LoadWorkerController loadWorkerController = new LoadWorkerController();
 
-        loadWorkerController.loadWorker(worker);
+        loadWorkerController.loadWorker();
     }
 
     public void initializePropertyBinding() {
@@ -88,48 +85,52 @@ public class WorkerControllerGUI {
     }
 
     public void labelPropertyBinding() {
-        firstNameLabel.disableProperty().bind(worker.firstNameDisableProperty());
-        lastNameLabel.disableProperty().bind(worker.lastNameDisableProperty());
-        workLabel.disableProperty().bind(worker.workDisableProperty());
-        defaultWorkingHoursLabel.disableProperty().bind(worker.defaultWorkingHoursDisableProperty());
-        defaultWorkingHoursColonLabel.disableProperty().bind(worker.defaultWorkingHoursColonDisableProperty());
-        salaryPerHourLabel.disableProperty().bind(worker.salaryPerHourDisableProperty());
-        overtimeSalaryLabel.disableProperty().bind(worker.overtimeSalaryDisableProperty());
+        firstNameLabel.disableProperty().bind(Worker.getInstance().firstNameDisableProperty());
+        lastNameLabel.disableProperty().bind(Worker.getInstance().lastNameDisableProperty());
+        workLabel.disableProperty().bind(Worker.getInstance().workDisableProperty());
+        defaultWorkingHoursLabel.disableProperty().bind(Worker.getInstance().defaultWorkingHoursDisableProperty());
+        defaultWorkingHoursColonLabel.disableProperty().bind(Worker.getInstance().defaultWorkingHoursColonDisableProperty());
+        salaryPerHourLabel.disableProperty().bind(Worker.getInstance().salaryPerHourDisableProperty());
+        overtimeSalaryLabel.disableProperty().bind(Worker.getInstance().overtimeSalaryDisableProperty());
     }
 
     public void comboBoxPropertyBinding() {
-        defaultWorkingHoursH.disableProperty().bind(worker.defaultWorkingHoursHDisableProperty());
-        worker.defaultWorkingHoursHSelectionModelProperty().bind(defaultWorkingHoursH.selectionModelProperty());
+        defaultWorkingHoursH.disableProperty().bind(Worker.getInstance().defaultWorkingHoursHDisableProperty());
+        Worker.getInstance().defaultWorkingHoursHSelectionModelProperty().bind(defaultWorkingHoursH.selectionModelProperty());
 
-        defaultWorkingHoursM.disableProperty().bind(worker.defaultWorkingHoursMDisableProperty());
-        worker.defaultWorkingHoursMSelectionModelProperty().bind(defaultWorkingHoursM.selectionModelProperty());
+        defaultWorkingHoursM.disableProperty().bind(Worker.getInstance().defaultWorkingHoursMDisableProperty());
+        Worker.getInstance().defaultWorkingHoursMSelectionModelProperty().bind(defaultWorkingHoursM.selectionModelProperty());
     }
 
     public void buttonPropertyBinding() {
-        editButton.disableProperty().bind(worker.editButtonDisableProperty());
-        cancelButton.disableProperty().bind(worker.cancelButtonDisableProperty());
-        saveButton.disableProperty().bind(worker.saveButtonDisableProperty());
+        editButton.disableProperty().bind(Worker.getInstance().editButtonDisableProperty());
+        cancelButton.disableProperty().bind(Worker.getInstance().cancelButtonDisableProperty());
+        saveButton.disableProperty().bind(Worker.getInstance().saveButtonDisableProperty());
     }
 
     public void textFieldPropertyBinding() {
-        firstNameTextField.disableProperty().bind(worker.firstNameContentDisableProperty());
-        firstNameTextField.textProperty().bindBidirectional(worker.firstNameContentProperty());
+        firstNameTextField.disableProperty().bind(Worker.getInstance().firstNameContentDisableProperty());
+        firstNameTextField.textProperty().bindBidirectional(Worker.getInstance().firstNameContentProperty());
 
-        lastNameTextField.disableProperty().bind(worker.lastNameContentDisableProperty());
-        lastNameTextField.textProperty().bindBidirectional(worker.lastNameContentProperty());
+        lastNameTextField.disableProperty().bind(Worker.getInstance().lastNameContentDisableProperty());
+        lastNameTextField.textProperty().bindBidirectional(Worker.getInstance().lastNameContentProperty());
 
-        workTextField.disableProperty().bind(worker.workContentDisableProperty());
-        workTextField.textProperty().bindBidirectional(worker.workContentProperty());
+        workTextField.disableProperty().bind(Worker.getInstance().workContentDisableProperty());
+        workTextField.textProperty().bindBidirectional(Worker.getInstance().workContentProperty());
 
-        salaryPerHourTextField.disableProperty().bind(worker.salaryPerHourContentDisableProperty());
-        salaryPerHourTextField.textProperty().bindBidirectional(worker.salaryPerHourContentProperty());
+        salaryPerHourTextField.disableProperty().bind(Worker.getInstance().salaryPerHourContentDisableProperty());
+        salaryPerHourTextField.textProperty().bindBidirectional(Worker.getInstance().salaryPerHourContentProperty());
 
-        overtimeSalaryTextField.disableProperty().bind(worker.overtimeSalaryContentDisableProperty());
-        overtimeSalaryTextField.textProperty().bindBidirectional(worker.overtimeSalaryContentProperty());
+        overtimeSalaryTextField.disableProperty().bind(Worker.getInstance().overtimeSalaryContentDisableProperty());
+        overtimeSalaryTextField.textProperty().bindBidirectional(Worker.getInstance().overtimeSalaryContentProperty());
     }
 
     @FXML
     protected void onCalendarButtonClick() {
+        WorkerController controller = new WorkerController();
+
+        controller.cancel();
+
         stage.setScene(calendarScene);
     }
 
@@ -137,21 +138,21 @@ public class WorkerControllerGUI {
     protected void onEditButtonClick() {
         WorkerController controller = new WorkerController();
 
-        controller.disableWorkingForm(worker, false);
+        controller.disableWorkingForm(false);
     }
 
     @FXML
     public void onCancelButtonClick() {
         WorkerController controller = new WorkerController();
 
-        controller.cancel(worker);
+        controller.cancel();
     }
 
     @FXML
     public void onSaveButtonClick() {
         WorkerController controller = new WorkerController();
 
-        controller.save(worker);
+        controller.save();
     }
 
     public void setStage(Stage stage) {
@@ -161,10 +162,5 @@ public class WorkerControllerGUI {
     public void setCalendarScene(Scene calendarScene) {
         this.calendarScene = calendarScene;
     }
-
-    public Worker getWorker() {
-        return this.worker;
-    }
-
 
 }

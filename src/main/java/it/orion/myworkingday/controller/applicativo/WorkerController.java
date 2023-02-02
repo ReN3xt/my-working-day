@@ -4,61 +4,61 @@ import it.orion.myworkingday.model.Worker;
 
 public class WorkerController {
 
-    public void disableWorkingForm(Worker worker, boolean b) {
+    public void disableWorkingForm(boolean b) {
 
-        worker.setEditButtonDisable(!b);
-        worker.setCancelButtonDisable(b);
-        worker.setSaveButtonDisable(b);
+        Worker.getInstance().setEditButtonDisable(!b);
+        Worker.getInstance().setCancelButtonDisable(b);
+        Worker.getInstance().setSaveButtonDisable(b);
 
-        worker.setFirstNameDisable(b);
-        worker.setLastNameDisable(b);
-        worker.setWorkDisable(b);
-        worker.setDefaultWorkingHoursDisable(b);
-        worker.setDefaultWorkingHoursColonDisable(b);
-        worker.setSalaryPerHourDisable(b);
-        worker.setOvertimeSalaryDisable(b);
-        worker.setFirstNameContentDisable(b);
-        worker.setLastNameContentDisable(b);
-        worker.setWorkContentDisable(b);
-        worker.setSalaryPerHourContentDisable(b);
-        worker.setOvertimeSalaryContentDisable(b);
-        worker.setDefaultWorkingHoursHDisable(b);
-        worker.setDefaultWorkingHoursMDisable(b);
+        Worker.getInstance().setFirstNameDisable(b);
+        Worker.getInstance().setLastNameDisable(b);
+        Worker.getInstance().setWorkDisable(b);
+        Worker.getInstance().setDefaultWorkingHoursDisable(b);
+        Worker.getInstance().setDefaultWorkingHoursColonDisable(b);
+        Worker.getInstance().setSalaryPerHourDisable(b);
+        Worker.getInstance().setOvertimeSalaryDisable(b);
+        Worker.getInstance().setFirstNameContentDisable(b);
+        Worker.getInstance().setLastNameContentDisable(b);
+        Worker.getInstance().setWorkContentDisable(b);
+        Worker.getInstance().setSalaryPerHourContentDisable(b);
+        Worker.getInstance().setOvertimeSalaryContentDisable(b);
+        Worker.getInstance().setDefaultWorkingHoursHDisable(b);
+        Worker.getInstance().setDefaultWorkingHoursMDisable(b);
     }
 
-    public void cancel(Worker worker) {
-        if(worker.isLoad()){
+    public void cancel() {
+        if(Worker.getInstance().isLoad()){
             LoadWorkerController controller = new LoadWorkerController();
 
-            controller.loadWorker(worker);
+            controller.loadWorker();
         } else {
-            clearForm(worker);
+            clearForm();
         }
 
-        disableWorkingForm(worker, true);
+        disableWorkingForm(true);
     }
 
-    public void save(Worker worker) {
+    public void save() {
         SaveWorkerController controller = new SaveWorkerController();
 
-        if(controller.saveWorker(worker)) {
-            clearForm(worker);
+        if(controller.saveWorker()) {
+            clearForm();
 
-            disableWorkingForm(worker, true);
+            disableWorkingForm(true);
 
             LoadWorkerController loadController = new LoadWorkerController();
 
-            loadController.loadWorker(worker);
+            loadController.loadWorker();
         }
     }
 
-    public void clearForm(Worker worker) {
-        worker.setFirstNameContent(null);
-        worker.setLastNameContent(null);
-        worker.setWorkContent(null);
-        worker.getDefaultWorkingHoursHSelectionModel().clearSelection();
-        worker.getDefaultWorkingHoursMSelectionModel().clearSelection();
-        worker.setSalaryPerHourContent(null);
-        worker.setOvertimeSalaryContent(null);
+    public void clearForm() {
+        Worker.getInstance().setFirstNameContent(null);
+        Worker.getInstance().setLastNameContent(null);
+        Worker.getInstance().setWorkContent(null);
+        Worker.getInstance().getDefaultWorkingHoursHSelectionModel().clearSelection();
+        Worker.getInstance().getDefaultWorkingHoursMSelectionModel().clearSelection();
+        Worker.getInstance().setSalaryPerHourContent(null);
+        Worker.getInstance().setOvertimeSalaryContent(null);
     }
 }

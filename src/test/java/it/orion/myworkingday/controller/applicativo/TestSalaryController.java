@@ -13,10 +13,10 @@ class TestSalaryController {
     @Test
     public void checkValidMonth() {
         SalaryController salaryController = new SalaryController();
-        Calendar calendar = new Calendar();
-        calendar.setPrevMonth();
 
-        boolean result = salaryController.checkValidMonth(calendar);
+        Calendar.getInstance().setPrevMonth();
+
+        boolean result = salaryController.checkValidMonth();
 
         assertTrue(result);
     }

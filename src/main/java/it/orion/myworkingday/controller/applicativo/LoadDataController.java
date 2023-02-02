@@ -32,7 +32,7 @@ public class LoadDataController {
     public static final String NOTES = "notes";
     public static final String REMINDERS = "reminders";
 
-    public void loadData(Day day) {
+    public void loadData() {
 
         File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
@@ -42,37 +42,37 @@ public class LoadDataController {
 
             JSONObject dayList = (JSONObject) parser.parse(fileReader);
 
-            JSONObject dayData = (JSONObject) dayList.get(day.getSelectedDate());
+            JSONObject dayData = (JSONObject) dayList.get(Day.getInstance().getSelectedDate());
 
 
             if(dayData == null){
-                day.setDeleteButtonDisable(true);
-                day.setLoad(false);
+                Day.getInstance().setDeleteButtonDisable(true);
+                Day.getInstance().setLoad(false);
             } else {
-                loadDayType(day, dayData);
+                loadDayType(dayData);
 
                 if(dayData.get(NOTES) != null) {
-                    day.setNotesTextAreaContent(dayData.get(NOTES).toString());
+                    Day.getInstance().setNotesTextAreaContent(dayData.get(NOTES).toString());
                 } else {
-                    day.setNotesTextAreaContent(null);
+                    Day.getInstance().setNotesTextAreaContent(null);
                 }
 
                 if(dayData.get(REMINDERS) != null) {
-                    day.setRemindersTextAreaContent(dayData.get(REMINDERS).toString());
+                    Day.getInstance().setRemindersTextAreaContent(dayData.get(REMINDERS).toString());
                 } else {
-                    day.setRemindersTextAreaContent(null);
+                    Day.getInstance().setRemindersTextAreaContent(null);
                 }
 
-                day.setDeleteButtonDisable(false);
-                day.setLoad(true);
+                Day.getInstance().setDeleteButtonDisable(false);
+                Day.getInstance().setLoad(true);
             }
 
         } catch (FileNotFoundException ignored) {
             createFile(file);
-            day.setLoad(false);
+            Day.getInstance().setLoad(false);
         } catch (IOException | ParseException ignored) {
             initializeFile(file);
-            day.setLoad(false);
+            Day.getInstance().setLoad(false);
         }
     }
 
@@ -99,73 +99,73 @@ public class LoadDataController {
         }
     }
 
-    public void loadDayType(Day day, JSONObject dayData) {
+    public void loadDayType(JSONObject dayData) {
         if(dayData.get(DAY_TYPE) != null) {
             if (dayData.get(DAY_TYPE).equals(WORKING_DAY)) {
-                day.setWorkingDayButtonSelect(true);
-                loadWorkingHours(day, (JSONObject) dayData.get(WORKING_HOURS));
-                loadLaunchBreak(day, (JSONObject) dayData.get(LAUNCH_BREAK));
-                loadOvertime(day, (JSONObject) dayData.get(OVERTIME));
-                loadPermit(day, (JSONObject) dayData.get(PERMIT));
+                Day.getInstance().setWorkingDayButtonSelect(true);
+                loadWorkingHours((JSONObject) dayData.get(WORKING_HOURS));
+                loadLaunchBreak((JSONObject) dayData.get(LAUNCH_BREAK));
+                loadOvertime((JSONObject) dayData.get(OVERTIME));
+                loadPermit((JSONObject) dayData.get(PERMIT));
             } else if (dayData.get(DAY_TYPE).equals(REST)) {
-                day.setRestButtonSelect(true);
+                Day.getInstance().setRestButtonSelect(true);
             } else if (dayData.get(DAY_TYPE).equals(SICK)) {
-                day.setSickLeaveButtonSelect(true);
-                loadSickLeave(day, (JSONObject) dayData.get(SICK_LEAVE));
+                Day.getInstance().setSickLeaveButtonSelect(true);
+                loadSickLeave((JSONObject) dayData.get(SICK_LEAVE));
             } else if (dayData.get(DAY_TYPE).equals(HOLIDAY)) {
-                day.setHolidayButtonSelect(true);
+                Day.getInstance().setHolidayButtonSelect(true);
             }
         }
 
     }
 
-    public void loadWorkingHours(Day day, JSONObject workingHoursData) {
+    public void loadWorkingHours(JSONObject workingHoursData) {
         if(workingHoursData != null) {
-            day.getWorkingHoursStartHSelectionModel().select(workingHoursData.get(START_HOUR).toString());
-            day.getWorkingHoursStartMSelectionModel().select(workingHoursData.get(START_MINUTE).toString());
-            day.getWorkingHoursEndHSelectionModel().select(workingHoursData.get(END_HOUR).toString());
-            day.getWorkingHoursEndMSelectionModel().select(workingHoursData.get(END_MINUTE).toString());
+            Day.getInstance().getWorkingHoursStartHSelectionModel().select(workingHoursData.get(START_HOUR).toString());
+            Day.getInstance().getWorkingHoursStartMSelectionModel().select(workingHoursData.get(START_MINUTE).toString());
+            Day.getInstance().getWorkingHoursEndHSelectionModel().select(workingHoursData.get(END_HOUR).toString());
+            Day.getInstance().getWorkingHoursEndMSelectionModel().select(workingHoursData.get(END_MINUTE).toString());
         }
     }
 
-    public void loadLaunchBreak(Day day, JSONObject launchBreakData) {
+    public void loadLaunchBreak(JSONObject launchBreakData) {
         if(launchBreakData != null) {
-            day.setLaunchBreakSelect(true);
-            day.getLaunchBreakStartHSelectionModel().select(launchBreakData.get(START_HOUR).toString());
-            day.getLaunchBreakStartMSelectionModel().select(launchBreakData.get(START_MINUTE).toString());
-            day.getLaunchBreakEndHSelectionModel().select(launchBreakData.get(END_HOUR).toString());
-            day.getLaunchBreakEndMSelectionModel().select(launchBreakData.get(END_MINUTE).toString());
+            Day.getInstance().setLaunchBreakSelect(true);
+            Day.getInstance().getLaunchBreakStartHSelectionModel().select(launchBreakData.get(START_HOUR).toString());
+            Day.getInstance().getLaunchBreakStartMSelectionModel().select(launchBreakData.get(START_MINUTE).toString());
+            Day.getInstance().getLaunchBreakEndHSelectionModel().select(launchBreakData.get(END_HOUR).toString());
+            Day.getInstance().getLaunchBreakEndMSelectionModel().select(launchBreakData.get(END_MINUTE).toString());
         }
     }
 
-    public void loadOvertime(Day day, JSONObject overtimeData) {
+    public void loadOvertime(JSONObject overtimeData) {
         if(overtimeData != null) {
-            day.setOvertimeSelect(true);
-            day.getOvertimeHSelectionModel().select(overtimeData.get(HOUR).toString());
-            day.getOvertimeMSelectionModel().select(overtimeData.get(MINUTE).toString());
+            Day.getInstance().setOvertimeSelect(true);
+            Day.getInstance().getOvertimeHSelectionModel().select(overtimeData.get(HOUR).toString());
+            Day.getInstance().getOvertimeMSelectionModel().select(overtimeData.get(MINUTE).toString());
         }
     }
 
-    public void loadPermit(Day day, JSONObject permitData) {
+    public void loadPermit(JSONObject permitData) {
         if(permitData != null) {
-            day.setPermitSelect(true);
-            day.getPermitHSelectionModel().select(permitData.get(HOUR).toString());
-            day.getPermitMSelectionModel().select(permitData.get(MINUTE).toString());
+            Day.getInstance().setPermitSelect(true);
+            Day.getInstance().getPermitHSelectionModel().select(permitData.get(HOUR).toString());
+            Day.getInstance().getPermitMSelectionModel().select(permitData.get(MINUTE).toString());
 
             if(permitData.get(PERMIT_REASON) != null) {
-                day.setPermitReasonContent(permitData.get(PERMIT_REASON).toString());
+                Day.getInstance().setPermitReasonContent(permitData.get(PERMIT_REASON).toString());
             } else {
-                day.setPermitReasonContent(null);
+                Day.getInstance().setPermitReasonContent(null);
             }
         }
     }
 
-    public void loadSickLeave(Day day, JSONObject sickLeaveData) {
+    public void loadSickLeave(JSONObject sickLeaveData) {
         if(sickLeaveData != null) {
             if(sickLeaveData.get(SICK_LEAVE_PROTOCOL) != null) {
-                day.setSickLeaveProtocolContent(sickLeaveData.get(SICK_LEAVE_PROTOCOL).toString());
+                Day.getInstance().setSickLeaveProtocolContent(sickLeaveData.get(SICK_LEAVE_PROTOCOL).toString());
             } else {
-                day.setSickLeaveProtocolContent(null);
+                Day.getInstance().setSickLeaveProtocolContent(null);
             }
         }
     }

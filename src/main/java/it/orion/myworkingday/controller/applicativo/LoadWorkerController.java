@@ -22,7 +22,7 @@ public class LoadWorkerController {
     public static final String HOUR = "h";
     public static final String MINUTE = "m";
 
-    public void loadWorker(Worker worker) {
+    public void loadWorker() {
 
         File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","profile.json");
 
@@ -33,58 +33,58 @@ public class LoadWorkerController {
             JSONObject workerProfile = (JSONObject) parser.parse(fileReader);
 
             if(workerProfile == null || workerProfile.isEmpty()) {
-                worker.setLoad(false);
+                Worker.getInstance().setLoad(false);
             } else {
-                fillWorkerForm(worker, workerProfile);
+                fillWorkerForm(workerProfile);
 
-                worker.setLoad(true);
+                Worker.getInstance().setLoad(true);
             }
         } catch (FileNotFoundException ignored) {
             LoadDataController.createFile(file);
-            worker.setLoad(false);
+            Worker.getInstance().setLoad(false);
         } catch (IOException | ParseException ignored) {
             LoadDataController.initializeFile(file);
-            worker.setLoad(false);
+            Worker.getInstance().setLoad(false);
         }
     }
 
-    public void fillWorkerForm(Worker worker, JSONObject workerProfile){
+    public void fillWorkerForm(JSONObject workerProfile){
         if(workerProfile.get(FIRST_NAME) != null) {
-            worker.setFirstNameContent(workerProfile.get(FIRST_NAME).toString());
+            Worker.getInstance().setFirstNameContent(workerProfile.get(FIRST_NAME).toString());
         } else {
-            worker.setFirstNameContent(null);
+            Worker.getInstance().setFirstNameContent(null);
         }
 
         if(workerProfile.get(LAST_NAME) != null) {
-            worker.setLastNameContent(workerProfile.get(LAST_NAME).toString());
+            Worker.getInstance().setLastNameContent(workerProfile.get(LAST_NAME).toString());
         } else {
-            worker.setLastNameContent(null);
+            Worker.getInstance().setLastNameContent(null);
         }
 
         if(workerProfile.get(WORK) != null) {
-            worker.setWorkContent(workerProfile.get(WORK).toString());
+            Worker.getInstance().setWorkContent(workerProfile.get(WORK).toString());
         } else {
-            worker.setWorkContent(null);
+            Worker.getInstance().setWorkContent(null);
         }
 
         if(workerProfile.get(DEFAULT_HOURS) != null) {
-            worker.getDefaultWorkingHoursHSelectionModel().select(((JSONObject) (workerProfile.get(DEFAULT_HOURS))).get(HOUR).toString());
-            worker.getDefaultWorkingHoursMSelectionModel().select(((JSONObject) (workerProfile.get(DEFAULT_HOURS))).get(MINUTE).toString());
+            Worker.getInstance().getDefaultWorkingHoursHSelectionModel().select(((JSONObject) (workerProfile.get(DEFAULT_HOURS))).get(HOUR).toString());
+            Worker.getInstance().getDefaultWorkingHoursMSelectionModel().select(((JSONObject) (workerProfile.get(DEFAULT_HOURS))).get(MINUTE).toString());
         } else {
-            worker.getDefaultWorkingHoursHSelectionModel().clearSelection();
-            worker.getDefaultWorkingHoursMSelectionModel().clearSelection();
+            Worker.getInstance().getDefaultWorkingHoursHSelectionModel().clearSelection();
+            Worker.getInstance().getDefaultWorkingHoursMSelectionModel().clearSelection();
         }
 
         if(workerProfile.get(SALARY_PER_HOUR) != null) {
-            worker.setSalaryPerHourContent(workerProfile.get(SALARY_PER_HOUR).toString());
+            Worker.getInstance().setSalaryPerHourContent(workerProfile.get(SALARY_PER_HOUR).toString());
         } else {
-            worker.setSalaryPerHourContent(null);
+            Worker.getInstance().setSalaryPerHourContent(null);
         }
 
         if(workerProfile.get(OVERTIME_PERCENT) != null) {
-            worker.setOvertimeSalaryContent(workerProfile.get(OVERTIME_PERCENT).toString());
+            Worker.getInstance().setOvertimeSalaryContent(workerProfile.get(OVERTIME_PERCENT).toString());
         } else {
-            worker.setOvertimeSalaryContent(null);
+            Worker.getInstance().setOvertimeSalaryContent(null);
         }
     }
 }

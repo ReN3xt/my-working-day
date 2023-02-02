@@ -9,7 +9,7 @@ import java.io.*;
 
 public class DeleteDataController {
 
-    public void deleteData(Day day) {
+    public void deleteData() {
 
         File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
@@ -17,7 +17,7 @@ public class DeleteDataController {
 
             JSONObject dayList = (JSONObject) new JSONParser().parse(fileReader);
 
-            dayList.remove(day.getSelectedDate());
+            dayList.remove(Day.getInstance().getSelectedDate());
 
             SaveDataController.writeData(file, dayList);
 
@@ -30,7 +30,7 @@ public class DeleteDataController {
             LoadDataController.initializeFile(file);
 
         } finally {
-            day.setLoad(false);
+            Day.getInstance().setLoad(false);
         }
     }
 

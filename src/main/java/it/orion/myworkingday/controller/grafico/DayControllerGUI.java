@@ -12,10 +12,6 @@ import javafx.stage.Stage;
 
 public class DayControllerGUI {
 
-    Day day;
-
-    Calendar calendar;
-
     private Stage stage;
 
     private Scene calendarScene;
@@ -147,8 +143,6 @@ public class DayControllerGUI {
     private TextArea remindersTextArea;
 
     public void initialize() {
-        day = new Day();
-
         initializePropertyBinding();
     }
 
@@ -169,125 +163,126 @@ public class DayControllerGUI {
     }
 
     private void labelPropertyBinding() {
-        selectedDate.textProperty().bind(day.selectedDateContentProperty());
+        selectedDate.textProperty().bind(Day.getInstance().selectedDateContentProperty());
 
-        workingHours.disableProperty().bind(day.workingHoursDisableProperty());
-        workingHoursStartColon.disableProperty().bind(day.workingHoursStartColonDisableProperty());
-        workingHoursEndColon.disableProperty().bind(day.workingHoursEndColonDisableProperty());
-        workingHoursHyphen.disableProperty().bind(day.workingHoursHyphenDisableProperty());
+        workingHours.disableProperty().bind(Day.getInstance().workingHoursDisableProperty());
+        workingHoursStartColon.disableProperty().bind(Day.getInstance().workingHoursStartColonDisableProperty());
+        workingHoursEndColon.disableProperty().bind(Day.getInstance().workingHoursEndColonDisableProperty());
+        workingHoursHyphen.disableProperty().bind(Day.getInstance().workingHoursHyphenDisableProperty());
 
-        launchBreakStartColon.disableProperty().bind(day.launchBreakStartColonDisableProperty());
-        launchBreakEndColon.disableProperty().bind(day.launchBreakEndColonDisableProperty());
-        launchBreakHyphen.disableProperty().bind(day.launchBreakHyphenDisableProperty());
+        launchBreakStartColon.disableProperty().bind(Day.getInstance().launchBreakStartColonDisableProperty());
+        launchBreakEndColon.disableProperty().bind(Day.getInstance().launchBreakEndColonDisableProperty());
+        launchBreakHyphen.disableProperty().bind(Day.getInstance().launchBreakHyphenDisableProperty());
 
-        overtimeColon.disableProperty().bind(day.overtimeColonDisableProperty());
+        overtimeColon.disableProperty().bind(Day.getInstance().overtimeColonDisableProperty());
 
-        sickLeave.disableProperty().bind(day.sickLeaveDisableProperty());
-        sickLeaveColon.disableProperty().bind(day.sickLeaveColonDisableProperty());
+        sickLeave.disableProperty().bind(Day.getInstance().sickLeaveDisableProperty());
+        sickLeaveColon.disableProperty().bind(Day.getInstance().sickLeaveColonDisableProperty());
 
-        permitColon.disableProperty().bind(day.permitColonDisableProperty());
-        permitHyphen.disableProperty().bind(day.permitHyphenDisableProperty());
+        permitColon.disableProperty().bind(Day.getInstance().permitColonDisableProperty());
+        permitHyphen.disableProperty().bind(Day.getInstance().permitHyphenDisableProperty());
 
-        notes.disableProperty().bind(day.notesDisableProperty());
+        notes.disableProperty().bind(Day.getInstance().notesDisableProperty());
 
-        reminders.disableProperty().bind(day.remindersDisableProperty());
+        reminders.disableProperty().bind(Day.getInstance().remindersDisableProperty());
 
     }
 
     private void toggleButtonPropertyBinding() {
-        workingDayButton.disableProperty().bind(day.workingDayButtonDisableProperty());
-        workingDayButton.selectedProperty().bindBidirectional(day.workingDayButtonSelectProperty());
+        workingDayButton.disableProperty().bind(Day.getInstance().workingDayButtonDisableProperty());
+        workingDayButton.selectedProperty().bindBidirectional(Day.getInstance().workingDayButtonSelectProperty());
 
-        restButton.disableProperty().bind(day.restButtonDisableProperty());
-        restButton.selectedProperty().bindBidirectional(day.restButtonSelectProperty());
+        restButton.disableProperty().bind(Day.getInstance().restButtonDisableProperty());
+        restButton.selectedProperty().bindBidirectional(Day.getInstance().restButtonSelectProperty());
 
-        sickLeaveButton.disableProperty().bind(day.sickLeaveButtonDisableProperty());
-        sickLeaveButton.selectedProperty().bindBidirectional(day.sickLeaveButtonSelectProperty());
+        sickLeaveButton.disableProperty().bind(Day.getInstance().sickLeaveButtonDisableProperty());
+        sickLeaveButton.selectedProperty().bindBidirectional(Day.getInstance().sickLeaveButtonSelectProperty());
 
-        holidayButton.disableProperty().bind(day.holidayButtonDisableProperty());
-        holidayButton.selectedProperty().bindBidirectional(day.holidayButtonSelectProperty());
+        holidayButton.disableProperty().bind(Day.getInstance().holidayButtonDisableProperty());
+        holidayButton.selectedProperty().bindBidirectional(Day.getInstance().holidayButtonSelectProperty());
     }
 
     private void comboBoxPropertyBinding() {
-        workingHoursStartH.disableProperty().bind(day.workingHoursStartHDisableProperty());
-        day.workingHoursStartHSelectionModelProperty().bind(workingHoursStartH.selectionModelProperty());
+        workingHoursStartH.disableProperty().bind(Day.getInstance().workingHoursStartHDisableProperty());
+        Day.getInstance().workingHoursStartHSelectionModelProperty().bind(workingHoursStartH.selectionModelProperty());
 
-        workingHoursStartM.disableProperty().bind(day.workingHoursStartMDisableProperty());
-        day.workingHoursStartMSelectionModelProperty().bind(workingHoursStartM.selectionModelProperty());
+        workingHoursStartM.disableProperty().bind(Day.getInstance().workingHoursStartMDisableProperty());
+        Day.getInstance().workingHoursStartMSelectionModelProperty().bind(workingHoursStartM.selectionModelProperty());
 
-        workingHoursEndH.disableProperty().bind(day.workingHoursEndHDisableProperty());
-        day.workingHoursEndHSelectionModelProperty().bind(workingHoursEndH.selectionModelProperty());
+        workingHoursEndH.disableProperty().bind(Day.getInstance().workingHoursEndHDisableProperty());
+        Day.getInstance().workingHoursEndHSelectionModelProperty().bind(workingHoursEndH.selectionModelProperty());
 
-        workingHoursEndM.disableProperty().bind(day.workingHoursEndMDisableProperty());
-        day.workingHoursEndMSelectionModelProperty().bind(workingHoursEndM.selectionModelProperty());
+        workingHoursEndM.disableProperty().bind(Day.getInstance().workingHoursEndMDisableProperty());
+        Day.getInstance().workingHoursEndMSelectionModelProperty().bind(workingHoursEndM.selectionModelProperty());
 
-        launchBreakStartH.disableProperty().bind(day.launchBreakStartHDisableProperty());
-        day.launchBreakStartHSelectionModelProperty().bind(launchBreakStartH.selectionModelProperty());
+        launchBreakStartH.disableProperty().bind(Day.getInstance().launchBreakStartHDisableProperty());
+        Day.getInstance().launchBreakStartHSelectionModelProperty().bind(launchBreakStartH.selectionModelProperty());
 
-        launchBreakStartM.disableProperty().bind(day.launchBreakStartMDisableProperty());
-        day.launchBreakStartMSelectionModelProperty().bind(launchBreakStartM.selectionModelProperty());
+        launchBreakStartM.disableProperty().bind(Day.getInstance().launchBreakStartMDisableProperty());
+        Day.getInstance().launchBreakStartMSelectionModelProperty().bind(launchBreakStartM.selectionModelProperty());
 
-        launchBreakEndH.disableProperty().bind(day.launchBreakEndHDisableProperty());
-        day.launchBreakEndHSelectionModelProperty().bind(launchBreakEndH.selectionModelProperty());
+        launchBreakEndH.disableProperty().bind(Day.getInstance().launchBreakEndHDisableProperty());
+        Day.getInstance().launchBreakEndHSelectionModelProperty().bind(launchBreakEndH.selectionModelProperty());
 
-        launchBreakEndM.disableProperty().bind(day.launchBreakEndMDisableProperty());
-        day.launchBreakEndMSelectionModelProperty().bind(launchBreakEndM.selectionModelProperty());
+        launchBreakEndM.disableProperty().bind(Day.getInstance().launchBreakEndMDisableProperty());
+        Day.getInstance().launchBreakEndMSelectionModelProperty().bind(launchBreakEndM.selectionModelProperty());
 
-        overtimeH.disableProperty().bind(day.overtimeHDisableProperty());
-        day.overtimeHSelectionModelProperty().bind(overtimeH.selectionModelProperty());
+        overtimeH.disableProperty().bind(Day.getInstance().overtimeHDisableProperty());
+        Day.getInstance().overtimeHSelectionModelProperty().bind(overtimeH.selectionModelProperty());
 
-        overtimeM.disableProperty().bind(day.overtimeMDisableProperty());
-        day.overtimeMSelectionModelProperty().bind(overtimeM.selectionModelProperty());
+        overtimeM.disableProperty().bind(Day.getInstance().overtimeMDisableProperty());
+        Day.getInstance().overtimeMSelectionModelProperty().bind(overtimeM.selectionModelProperty());
 
-        permitH.disableProperty().bind(day.permitHDisableProperty());
-        day.permitHSelectionModelProperty().bind(permitH.selectionModelProperty());
+        permitH.disableProperty().bind(Day.getInstance().permitHDisableProperty());
+        Day.getInstance().permitHSelectionModelProperty().bind(permitH.selectionModelProperty());
 
-        permitM.disableProperty().bind(day.permitMDisableProperty());
-        day.permitMSelectionModelProperty().bind(permitM.selectionModelProperty());
+        permitM.disableProperty().bind(Day.getInstance().permitMDisableProperty());
+        Day.getInstance().permitMSelectionModelProperty().bind(permitM.selectionModelProperty());
     }
 
     private void buttonPropertyBinding() {
-        deleteButton.disableProperty().bind(day.deleteButtonDisableProperty());
-        editButton.disableProperty().bind(day.editButtonDisableProperty());
-        cancelButton.disableProperty().bind(day.cancelButtonDisableProperty());
-        saveButton.disableProperty().bind(day.saveButtonDisableProperty());
+        deleteButton.disableProperty().bind(Day.getInstance().deleteButtonDisableProperty());
+        editButton.disableProperty().bind(Day.getInstance().editButtonDisableProperty());
+        cancelButton.disableProperty().bind(Day.getInstance().cancelButtonDisableProperty());
+        saveButton.disableProperty().bind(Day.getInstance().saveButtonDisableProperty());
     }
 
 
     private void checkBoxPropertyBinding() {
-        launchBreak.disableProperty().bind(day.launchBreakDisableProperty());
-        launchBreak.selectedProperty().bindBidirectional(day.launchBreakSelectProperty());
+        launchBreak.disableProperty().bind(Day.getInstance().launchBreakDisableProperty());
+        launchBreak.selectedProperty().bindBidirectional(Day.getInstance().launchBreakSelectProperty());
 
-        overtime.disableProperty().bind(day.overtimeDisableProperty());
-        overtime.selectedProperty().bindBidirectional(day.overtimeSelectProperty());
+        overtime.disableProperty().bind(Day.getInstance().overtimeDisableProperty());
+        overtime.selectedProperty().bindBidirectional(Day.getInstance().overtimeSelectProperty());
 
-        permit.disableProperty().bind(day.permitDisableProperty());
-        permit.selectedProperty().bindBidirectional(day.permitSelectProperty());
+        permit.disableProperty().bind(Day.getInstance().permitDisableProperty());
+        permit.selectedProperty().bindBidirectional(Day.getInstance().permitSelectProperty());
     }
 
     private void textFieldPropertyBinding() {
-        sickLeaveProtocol.textProperty().bindBidirectional(day.sickLeaveProtocolContentProperty());
-        sickLeaveProtocol.disableProperty().bind(day.sickLeaveProtocolDisableProperty());
+        sickLeaveProtocol.textProperty().bindBidirectional(Day.getInstance().sickLeaveProtocolContentProperty());
+        sickLeaveProtocol.disableProperty().bind(Day.getInstance().sickLeaveProtocolDisableProperty());
 
-        permitReason.textProperty().bindBidirectional(day.permitReasonContentProperty());
-        permitReason.disableProperty().bind(day.permitReasonDisableProperty());
+        permitReason.textProperty().bindBidirectional(Day.getInstance().permitReasonContentProperty());
+        permitReason.disableProperty().bind(Day.getInstance().permitReasonDisableProperty());
     }
 
     private void textAreaPropertyBinding() {
-        notesTextArea.textProperty().bindBidirectional(day.notesTextAreaContentProperty());
-        notesTextArea.disableProperty().bind(day.notesTextAreaDisableProperty());
+        notesTextArea.textProperty().bindBidirectional(Day.getInstance().notesTextAreaContentProperty());
+        notesTextArea.disableProperty().bind(Day.getInstance().notesTextAreaDisableProperty());
 
-        remindersTextArea.textProperty().bindBidirectional(day.remindersTextAreaContentProperty());
-        remindersTextArea.disableProperty().bind(day.remindersTextAreaDisableProperty());
+        remindersTextArea.textProperty().bindBidirectional(Day.getInstance().remindersTextAreaContentProperty());
+        remindersTextArea.disableProperty().bind(Day.getInstance().remindersTextAreaDisableProperty());
     }
 
     @FXML
     protected void onCalendarButtonClick() {
-
+        DayController dayController = new DayController();
         CalendarController calendarController = new CalendarController();
 
-        calendarController.updateColor(calendar);
-        calendarController.updateUnderline(calendar);
+        dayController.cancel();
+        calendarController.updateColor();
+        calendarController.updateUnderline();
 
         stage.setScene(calendarScene);
     }
@@ -300,96 +295,94 @@ public class DayControllerGUI {
         this.calendarScene = calendarScene;
     }
 
-    public void setCalendar(Calendar calendar) {
+    /*public void setCalendar(Calendar calendar) {
         this.calendar = calendar;
-    }
+    }*/
 
     public void loadDay(String day) {
+        DayController dayController = new DayController();
 
-        this.day.setDayValue(day);
-        this.day.setMonth(String.valueOf(calendar.getCurrentDate().getMonth()));
-        this.day.setMonthValue(calendar.getCurrentDate().getMonthValue());
-        this.day.setYear(String.valueOf(calendar.getCurrentDate().getYear()));
+        dayController.clearForm();
 
-        this.day.updateSelectedDate();
+        Day.getInstance().setDayValue(day);
+        Day.getInstance().setMonth(String.valueOf(Calendar.getInstance().getCurrentDate().getMonth()));
+        Day.getInstance().setMonthValue(Calendar.getInstance().getCurrentDate().getMonthValue());
+        Day.getInstance().setYear(String.valueOf(Calendar.getInstance().getCurrentDate().getYear()));
+
+        Day.getInstance().updateSelectedDate();
 
         LoadDataController loadDataController = new LoadDataController();
 
-        loadDataController.loadData(this.day);
-    }
-
-    public Day getDay() {
-        return this.day;
+        loadDataController.loadData();
     }
 
     @FXML
     protected void onEditButtonClick() {
         DayController dayController = new DayController();
 
-        dayController.edit(day);
+        dayController.edit();
     }
 
     @FXML
     protected void onCancelButtonClick() {
         DayController dayController = new DayController();
 
-        dayController.cancel(day);
+        dayController.cancel();
     }
 
     @FXML
     protected void onDeleteButtonClick() {
         DayController dayController = new DayController();
 
-        dayController.delete(day);
-
+        dayController.delete();
     }
 
     @FXML
     protected void onSaveButtonClick() {
         DayController dayController = new DayController();
 
-        dayController.save(day);
+        dayController.save();
     }
 
     @FXML
     protected void onWorkingDayButtonClick() {
         DayController dayController = new DayController();
 
-        dayController.disableWorkingDayForm(day, !day.isWorkingDayButtonSelect());
+        dayController.disableWorkingDayForm(!Day.getInstance().isWorkingDayButtonSelect());
     }
 
     @FXML
     protected void onRestAndHolidayButtonClick() {
         DayController dayController = new DayController();
 
-        dayController.disableWorkingDayForm(day, true);
+        dayController.disableWorkingDayForm(true);
     }
 
     @FXML
     protected void onSickLeaveButtonClick() {
         DayController dayController = new DayController();
 
-        dayController.disableSickLeaveForm(day, !day.isSickLeaveButtonSelect());
+        dayController.disableSickLeaveForm(!Day.getInstance().isSickLeaveButtonSelect());
     }
 
     @FXML
     protected void onLaunchBreakCheck() {
         DayController dayController = new DayController();
 
-        dayController.disableLaunchBreakForm(day, !day.isLaunchBreakSelect());
+        dayController.disableLaunchBreakForm(!Day.getInstance().isLaunchBreakSelect());
     }
 
     @FXML
     protected void onOvertimeCheck() {
         DayController dayController = new DayController();
 
-        dayController.disableOvertimeForm(day, !day.isOvertimeSelect());
+        dayController.disableOvertimeForm(!Day.getInstance().isOvertimeSelect());
     }
 
     @FXML
     protected void onPermitCheck() {
         DayController dayController = new DayController();
 
-        dayController.disablePermitForm(day, !day.isPermitSelect());
+        dayController.disablePermitForm(!Day.getInstance().isPermitSelect());
     }
 }

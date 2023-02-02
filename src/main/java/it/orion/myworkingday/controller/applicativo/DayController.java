@@ -4,189 +4,192 @@ import it.orion.myworkingday.model.Day;
 
 public class DayController {
 
-    public void edit(Day day) {
-        disableTextArea(day, false);
-        disableDayTypeSelection(day, false);
-        day.setDeleteButtonDisable(true);
-        day.setEditButtonDisable(true);
-        day.setCancelButtonDisable(false);
-        day.setSaveButtonDisable(false);
+    public void edit() {
+        disableTextArea(false);
+        disableDayTypeSelection(false);
+        Day.getInstance().setDeleteButtonDisable(true);
+        Day.getInstance().setEditButtonDisable(true);
+        Day.getInstance().setCancelButtonDisable(false);
+        Day.getInstance().setSaveButtonDisable(false);
 
-        if(day.isWorkingDayButtonSelect()) {
-            disableWorkingDayForm(day, false);
-        } else if(day.isSickLeaveButtonSelect()) {
-            disableSickLeaveForm(day, false);
+        if(Day.getInstance().isWorkingDayButtonSelect()) {
+            disableWorkingDayForm(false);
+        } else if(Day.getInstance().isSickLeaveButtonSelect()) {
+            disableSickLeaveForm(false);
         }
     }
 
-    public void disableWorkingDayForm(Day day, boolean b) {
-        day.setWorkingHoursStartColonDisable(b);
-        day.setWorkingHoursEndColonDisable(b);
-        day.setWorkingHoursHyphenDisable(b);
-        day.setWorkingHoursStartHDisable(b);
-        day.setWorkingHoursStartMDisable(b);
-        day.setWorkingHoursEndHDisable(b);
-        day.setWorkingHoursEndMDisable(b);
-        day.setWorkingHoursDisable(b);
-        day.setLaunchBreakDisable(b);
-        day.setOvertimeDisable(b);
-        day.setPermitDisable(b);
+    public void disableWorkingDayForm(boolean b) {
+        Day.getInstance().setWorkingHoursStartColonDisable(b);
+        Day.getInstance().setWorkingHoursEndColonDisable(b);
+        Day.getInstance().setWorkingHoursHyphenDisable(b);
+        Day.getInstance().setWorkingHoursStartHDisable(b);
+        Day.getInstance().setWorkingHoursStartMDisable(b);
+        Day.getInstance().setWorkingHoursEndHDisable(b);
+        Day.getInstance().setWorkingHoursEndMDisable(b);
+        Day.getInstance().setWorkingHoursDisable(b);
+        Day.getInstance().setLaunchBreakDisable(b);
+        Day.getInstance().setOvertimeDisable(b);
+        Day.getInstance().setPermitDisable(b);
 
         if(b) {
-            day.clearWorkingHours();
-            day.setLaunchBreakSelect(false);
-            day.setOvertimeSelect(false);
-            day.setPermitSelect(false);
-            disableLaunchBreakForm(day, true);
-            disableOvertimeForm(day, true);
-            disablePermitForm(day, true);
+            Day.getInstance().clearWorkingHours();
+            Day.getInstance().setLaunchBreakSelect(false);
+            Day.getInstance().setOvertimeSelect(false);
+            Day.getInstance().setPermitSelect(false);
+            disableLaunchBreakForm(true);
+            disableOvertimeForm(true);
+            disablePermitForm(true);
 
-            if(day.isRestButtonSelect() || day.isHolidayButtonSelect()) {
-                disableSickLeaveForm(day, true);
+            if(Day.getInstance().isRestButtonSelect() || Day.getInstance().isHolidayButtonSelect()) {
+                disableSickLeaveForm(true);
             }
 
         } else {
-            disableSickLeaveForm(day, true);
+            disableSickLeaveForm(true);
         }
 
-        if(day.isLaunchBreakSelect()) {
-            disableLaunchBreakForm(day, b);
+        if(Day.getInstance().isLaunchBreakSelect()) {
+            disableLaunchBreakForm(b);
         }
 
-        if(day.isOvertimeSelect()) {
-            disableOvertimeForm(day, b);
+        if(Day.getInstance().isOvertimeSelect()) {
+            disableOvertimeForm(b);
         }
 
-        if(day.isPermitSelect()) {
-            disablePermitForm(day, b);
+        if(Day.getInstance().isPermitSelect()) {
+            disablePermitForm( b);
         }
     }
 
-    public void disableLaunchBreakForm(Day day, boolean b) {
+    public void disableLaunchBreakForm(boolean b) {
         if(b) {
-            day.clearLaunchBreak();
+            Day.getInstance().clearLaunchBreak();
         }
-        day.setLaunchBreakStartColonDisable(b);
-        day.setLaunchBreakEndColonDisable(b);
-        day.setLaunchBreakHyphenDisable(b);
-        day.setLaunchBreakStartHDisable(b);
-        day.setLaunchBreakStartMDisable(b);
-        day.setLaunchBreakEndHDisable(b);
-        day.setLaunchBreakEndMDisable(b);
+        Day.getInstance().setLaunchBreakStartColonDisable(b);
+        Day.getInstance().setLaunchBreakEndColonDisable(b);
+        Day.getInstance().setLaunchBreakHyphenDisable(b);
+        Day.getInstance().setLaunchBreakStartHDisable(b);
+        Day.getInstance().setLaunchBreakStartMDisable(b);
+        Day.getInstance().setLaunchBreakEndHDisable(b);
+        Day.getInstance().setLaunchBreakEndMDisable(b);
     }
 
-    public void disableOvertimeForm(Day day, boolean b) {
+    public void disableOvertimeForm(boolean b) {
         if(b) {
-            day.clearOvertime();
+            Day.getInstance().clearOvertime();
         }
-        day.setOvertimeColonDisable(b);
-        day.setOvertimeHDisable(b);
-        day.setOvertimeMDisable(b);
+        Day.getInstance().setOvertimeColonDisable(b);
+        Day.getInstance().setOvertimeHDisable(b);
+        Day.getInstance().setOvertimeMDisable(b);
     }
 
-    public void disablePermitForm(Day day, boolean b) {
+    public void disablePermitForm(boolean b) {
         if(b){
-            day.clearPermit();
+            Day.getInstance().clearPermit();
         }
 
-        day.setPermitColonDisable(b);
-        day.setPermitHyphenDisable(b);
-        day.setPermitHDisable(b);
-        day.setPermitMDisable(b);
-        day.setPermitReasonDisable(b);
+        Day.getInstance().setPermitColonDisable(b);
+        Day.getInstance().setPermitHyphenDisable(b);
+        Day.getInstance().setPermitHDisable(b);
+        Day.getInstance().setPermitMDisable(b);
+        Day.getInstance().setPermitReasonDisable(b);
     }
 
-    public void disableSickLeaveForm(Day day, boolean b) {
-        day.setSickLeaveDisable(b);
-        day.setSickLeaveColonDisable(b);
-        day.setSickLeaveProtocolDisable(b);
+    public void disableSickLeaveForm(boolean b) {
+        Day.getInstance().setSickLeaveDisable(b);
+        Day.getInstance().setSickLeaveColonDisable(b);
+        Day.getInstance().setSickLeaveProtocolDisable(b);
 
         if(!b) {
-            disableWorkingDayForm(day, true);
-            disableLaunchBreakForm(day, true);
-            disableOvertimeForm(day, true);
-            disablePermitForm(day, true);
+            disableWorkingDayForm(true);
+            disableLaunchBreakForm(true);
+            disableOvertimeForm(true);
+            disablePermitForm(true);
         } else {
-            day.clearSickLeave();
+            Day.getInstance().clearSickLeave();
         }
     }
 
-    public void disableTextArea(Day day, boolean b) {
+    public void disableTextArea(boolean b) {
         if(b) {
-            day.clearNotes();
-            day.clearReminders();
+            Day.getInstance().clearNotes();
+            Day.getInstance().clearReminders();
         }
 
-        day.setNotesDisable(b);
-        day.setNotesTextAreaDisable(b);
-        day.setRemindersDisable(b);
-        day.setRemindersTextAreaDisable(b);
+        Day.getInstance().setNotesDisable(b);
+        Day.getInstance().setNotesTextAreaDisable(b);
+        Day.getInstance().setRemindersDisable(b);
+        Day.getInstance().setRemindersTextAreaDisable(b);
     }
 
-    public void disableDayTypeSelection(Day day, boolean b) {
+    public void disableDayTypeSelection(boolean b) {
         if(b) {
-            day.setWorkingDayButtonSelect(false);
-            day.setRestButtonSelect(false);
-            day.setSickLeaveButtonSelect(false);
-            day.setHolidayButtonSelect(false);
+            Day.getInstance().setWorkingDayButtonSelect(false);
+            Day.getInstance().setRestButtonSelect(false);
+            Day.getInstance().setSickLeaveButtonSelect(false);
+            Day.getInstance().setHolidayButtonSelect(false);
         }
 
-        day.setWorkingDayButtonDisable(b);
-        day.setRestButtonDisable(b);
-        day.setSickLeaveButtonDisable(b);
-        day.setHolidayButtonDisable(b);
+        Day.getInstance().setWorkingDayButtonDisable(b);
+        Day.getInstance().setRestButtonDisable(b);
+        Day.getInstance().setSickLeaveButtonDisable(b);
+        Day.getInstance().setHolidayButtonDisable(b);
     }
 
-    public void cancel(Day day) {
-        day.setEditButtonDisable(false);
-        day.setCancelButtonDisable(true);
-        day.setSaveButtonDisable(true);
+    public void cancel() {
+        Day.getInstance().setEditButtonDisable(false);
+        Day.getInstance().setCancelButtonDisable(true);
+        Day.getInstance().setSaveButtonDisable(true);
 
-        disableTextArea(day, true);
-        disableDayTypeSelection(day, true);
-        disableWorkingDayForm(day, true);
-        disableSickLeaveForm(day, true);
+        disableTextArea(true);
+        disableDayTypeSelection(true);
+        disableWorkingDayForm(true);
+        disableSickLeaveForm(true);
 
-        if(day.isLoad()){
-            day.setDeleteButtonDisable(false);
+        if(Day.getInstance().isLoad()){
+            Day.getInstance().setDeleteButtonDisable(false);
 
             LoadDataController controller = new LoadDataController();
 
-            controller.loadData(day);
+            controller.loadData();
         }
     }
 
-    public void delete(Day day) {
+    public void clearForm() {
+        disableTextArea(true);
+        disableDayTypeSelection(true);
+        disableWorkingDayForm(true);
+        disableSickLeaveForm(true);
+    }
 
-        disableTextArea(day, true);
-        disableDayTypeSelection(day, true);
-        disableWorkingDayForm(day, true);
-        disableSickLeaveForm(day, true);
+    public void delete() {
+        clearForm();
 
         DeleteDataController controller = new DeleteDataController();
 
-        controller.deleteData(day);
+        controller.deleteData();
 
-        day.setDeleteButtonDisable(true);
+        Day.getInstance().setDeleteButtonDisable(true);
     }
 
-    public void save(Day day) {
+    public void save() {
         SaveDataController controller = new SaveDataController();
 
-        if(controller.saveData(day)) {
-            day.setDeleteButtonDisable(true);
-            day.setEditButtonDisable(false);
-            day.setCancelButtonDisable(true);
-            day.setSaveButtonDisable(true);
+        if(controller.saveData()) {
+            Day.getInstance().setDeleteButtonDisable(true);
+            Day.getInstance().setEditButtonDisable(false);
+            Day.getInstance().setCancelButtonDisable(true);
+            Day.getInstance().setSaveButtonDisable(true);
 
-            disableTextArea(day, true);
-            disableDayTypeSelection(day, true);
-            disableWorkingDayForm(day, true);
-            disableSickLeaveForm(day, true);
+            disableTextArea(true);
+            disableDayTypeSelection(true);
+            disableWorkingDayForm(true);
+            disableSickLeaveForm(true);
 
             LoadDataController loadController = new LoadDataController();
 
-            loadController.loadData(day);
+            loadController.loadData();
         }
     }
 }

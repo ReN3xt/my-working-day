@@ -7,6 +7,8 @@ import java.time.LocalDate;
 
 public class Calendar {
 
+    private static Calendar instance;
+
     private final StringProperty monthSalary;
     private final StringProperty year;
     private final StringProperty month;
@@ -31,6 +33,13 @@ public class Calendar {
         this.daysUnderline = new SimpleBooleanProperty[37];
         this.daysColor = new SimpleObjectProperty[37];
         this.secondView = false;
+    }
+
+    public static Calendar getInstance() {
+        if(instance == null) {
+            instance = new Calendar();
+        }
+        return instance;
     }
 
     public StringProperty monthSalaryProperty() {

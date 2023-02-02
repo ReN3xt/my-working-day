@@ -14,52 +14,52 @@ import java.time.LocalDate;
 
 public class CalendarController {
 
-    public void updateCalendar(Calendar calendar) {
+    public void updateCalendar() {
 
-        calendar.updateDateLabel();
+        Calendar.getInstance().updateDateLabel();
 
-        int firstDayOfMonth = DayOfWeek.from(calendar.getCurrentDate()).getValue() - 1;
+        int firstDayOfMonth = DayOfWeek.from(Calendar.getInstance().getCurrentDate()).getValue() - 1;
 
         for (int i = 0; i < 37; i++) {
             if (i < firstDayOfMonth) {
-                calendar.setDaysVisibility(i,false);
-            } else if (i < calendar.getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
-                calendar.setDaysVisibility(i,true);
-                calendar.setDays(i, i - firstDayOfMonth + 1);
+                Calendar.getInstance().setDaysVisibility(i,false);
+            } else if (i < Calendar.getInstance().getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
+                Calendar.getInstance().setDaysVisibility(i,true);
+                Calendar.getInstance().setDays(i, i - firstDayOfMonth + 1);
             } else {
-                calendar.setDaysVisibility(i,false);
+                Calendar.getInstance().setDaysVisibility(i,false);
             }
         }
 
-        updateUnderline(calendar);
+        updateUnderline();
     }
 
-    public void updateSelectedDate(Calendar calendar, String type, String operation) {
+    public void updateSelectedDate(String type, String operation) {
         if(type.equals("month")) {
             if(operation.equals("next")) {
-                calendar.setNextMonth();
+                Calendar.getInstance().setNextMonth();
             } else if(operation.equals("prev")) {
-                calendar.setPrevMonth();
+                Calendar.getInstance().setPrevMonth();
             }
         } else if(type.equals("year")) {
             if(operation.equals("next")) {
-                calendar.setNextYear();
+                Calendar.getInstance().setNextYear();
             } else if(operation.equals("prev")) {
-                calendar.setPrevYear();
+                Calendar.getInstance().setPrevYear();
             }
         }
 
-        updateCalendar(calendar);
+        updateCalendar();
     }
 
-    public void resetCalendar(Calendar calendar) {
-        calendar.setCurrentDate(LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 1));
+    public void resetCalendar() {
+        Calendar.getInstance().setCurrentDate(LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 1));
 
-        updateCalendar(calendar);
+        updateCalendar();
     }
 
-    public void updateColor(Calendar calendar) {
-        if(calendar.isSecondView()) {
+    public void updateColor() {
+        if(Calendar.getInstance().isSecondView()) {
             File file = new File(System.getenv("LOCALAPPDATA") + "/MWD", "local_db.json");
 
             JSONParser parser = new JSONParser();
@@ -68,17 +68,17 @@ public class CalendarController {
 
                 JSONObject dayList = (JSONObject) parser.parse(fileReader);
 
-                calendar.updateDateLabel();
+                Calendar.getInstance().updateDateLabel();
 
-                int firstDayOfMonth = DayOfWeek.from(calendar.getCurrentDate()).getValue() - 1;
+                int firstDayOfMonth = DayOfWeek.from(Calendar.getInstance().getCurrentDate()).getValue() - 1;
 
                 JSONObject dayData;
 
                 for (int i = 0; i < 37; i++) {
-                    if (i < calendar.getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
-                        dayData = (JSONObject) dayList.get(getDateValue(calendar, i - firstDayOfMonth + 1));
+                    if (i < Calendar.getInstance().getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
+                        dayData = (JSONObject) dayList.get(getDateValue(i - firstDayOfMonth + 1));
 
-                        setColor(calendar, dayData, i);
+                        setColor(dayData, i);
                     }
                 }
             } catch (FileNotFoundException ignored) {
@@ -89,42 +89,42 @@ public class CalendarController {
         }
     }
 
-    public void setColor(Calendar calendar, JSONObject dayData, int day) {
+    public void setColor(JSONObject dayData, int day) {
         if (dayData == null) {
-            calendar.setDaysColor(day, "#999999");
+            Calendar.getInstance().setDaysColor(day, "#999999");
         } else if (dayData.get(LoadDataController.DAY_TYPE) == null) {
-            calendar.setDaysColor(day, "#111111");
+            Calendar.getInstance().setDaysColor(day, "#111111");
         } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.WORKING_DAY)) {
-            calendar.setDaysColor(day, "#75c900");
+            Calendar.getInstance().setDaysColor(day, "#75c900");
         } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.REST)) {
-            calendar.setDaysColor(day, "#2986cc");
+            Calendar.getInstance().setDaysColor(day, "#2986cc");
         } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.SICK)) {
-            calendar.setDaysColor(day, "#c90076");
+            Calendar.getInstance().setDaysColor(day, "#c90076");
         } else if (dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
-            calendar.setDaysColor(day, "#6a329f");
+            Calendar.getInstance().setDaysColor(day, "#6a329f");
         }
     }
 
-    public void updateUnderline(Calendar calendar) {
+    public void updateUnderline() {
         JSONParser parser = new JSONParser();
 
         File fileData = new File(System.getenv("LOCALAPPDATA") + "/MWD", "local_db.json");
 
         try (FileReader fileReader = new FileReader(fileData)) {
 
-            calendar.updateDateLabel();
+            Calendar.getInstance().updateDateLabel();
 
             JSONObject dayData;
 
             JSONObject dayList = (JSONObject) parser.parse(fileReader);
 
-            int firstDayOfMonth = DayOfWeek.from(calendar.getCurrentDate()).getValue() - 1;
+            int firstDayOfMonth = DayOfWeek.from(Calendar.getInstance().getCurrentDate()).getValue() - 1;
 
             for (int i = 0; i < 37; i++) {
-                if (i < calendar.getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
-                    dayData = (JSONObject) dayList.get(getDateValue(calendar, i - firstDayOfMonth + 1));
+                if (i < Calendar.getInstance().getCurrentDate().lengthOfMonth() + firstDayOfMonth) {
+                    dayData = (JSONObject) dayList.get(getDateValue(i - firstDayOfMonth + 1));
 
-                    calendar.setDaysUnderline(i, dayData != null && (dayData.get(LoadDataController.REMINDERS) != null && dayData.get(LoadDataController.REMINDERS) != ""));
+                    Calendar.getInstance().setDaysUnderline(i, dayData != null && (dayData.get(LoadDataController.REMINDERS) != null && dayData.get(LoadDataController.REMINDERS) != ""));
                 }
             }
         } catch (FileNotFoundException ignored) {
@@ -134,14 +134,14 @@ public class CalendarController {
         }
     }
 
-    public static String getDateValue(Calendar calendar, int day) {
-        String date = String.valueOf(calendar.getCurrentDate().getYear());
+    public static String getDateValue(int day) {
+        String date = String.valueOf(Calendar.getInstance().getCurrentDate().getYear());
 
-        if(calendar.getCurrentDate().getMonthValue() <= 9){
+        if(Calendar.getInstance().getCurrentDate().getMonthValue() <= 9){
             date += "0";
         }
 
-        date += String.valueOf(calendar.getCurrentDate().getMonthValue());
+        date += String.valueOf(Calendar.getInstance().getCurrentDate().getMonthValue());
 
         if(day <= 9) {
             date += "0";

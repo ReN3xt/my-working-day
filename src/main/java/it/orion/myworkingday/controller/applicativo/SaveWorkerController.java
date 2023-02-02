@@ -9,22 +9,22 @@ import java.io.IOException;
 
 public class SaveWorkerController {
 
-    public boolean saveWorker(Worker worker) {
-        if(checkValidForm(worker)) {
+    public boolean saveWorker() {
+        if(checkValidForm()) {
             File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","profile.json");
 
             try(FileWriter fileWriter = new FileWriter(file)) {
 
-                fileWriter.write(getWorkerJson(worker).toJSONString());
+                fileWriter.write(getWorkerJson().toJSONString());
 
                 fileWriter.flush();
             } catch (IOException ignored) {
-                worker.setLoad(false);
+                Worker.getInstance().setLoad(false);
 
                 return false;
             }
 
-            worker.setLoad(true);
+            Worker.getInstance().setLoad(true);
 
             return true;
         } else {
@@ -32,18 +32,18 @@ public class SaveWorkerController {
         }
     }
 
-    public boolean checkValidForm(Worker worker) {
-        return checkWorkingHoursValidForm(worker) && checkSalaryPerHourValidForm(worker) && checkOvertimeSalaryForm(worker);
+    public boolean checkValidForm() {
+        return checkWorkingHoursValidForm() && checkSalaryPerHourValidForm() && checkOvertimeSalaryForm();
     }
 
-    public boolean checkWorkingHoursValidForm(Worker worker) {
-        return !worker.getDefaultWorkingHoursHSelectionModel().isEmpty() && !worker.getDefaultWorkingHoursMSelectionModel().isEmpty();
+    public boolean checkWorkingHoursValidForm() {
+        return !Worker.getInstance().getDefaultWorkingHoursHSelectionModel().isEmpty() && !Worker.getInstance().getDefaultWorkingHoursMSelectionModel().isEmpty();
     }
 
-    public boolean checkSalaryPerHourValidForm(Worker worker) {
-        if(worker.getSalaryPerHourContent() != null) {
+    public boolean checkSalaryPerHourValidForm() {
+        if(Worker.getInstance().getSalaryPerHourContent() != null) {
             try {
-                Double.parseDouble(worker.getSalaryPerHourContent());
+                Double.parseDouble(Worker.getInstance().getSalaryPerHourContent());
                 return true;
             } catch (NumberFormatException ignored) {
                 return false;
@@ -53,10 +53,10 @@ public class SaveWorkerController {
         }
     }
 
-    public boolean checkOvertimeSalaryForm(Worker worker) {
-        if(worker.getOvertimeSalaryContent() != null) {
+    public boolean checkOvertimeSalaryForm() {
+        if(Worker.getInstance().getOvertimeSalaryContent() != null) {
             try {
-                Integer.parseInt(worker.getOvertimeSalaryContent());
+                Integer.parseInt(Worker.getInstance().getOvertimeSalaryContent());
                 return true;
             } catch (NumberFormatException ignored) {
                 return false;
@@ -66,39 +66,39 @@ public class SaveWorkerController {
         }
     }
 
-    public JSONObject getWorkerJson (Worker worker){
+    public JSONObject getWorkerJson (){
         JSONObject workerJson = new JSONObject();
 
-        if(worker.getFirstNameContent() == null) {
+        if(Worker.getInstance().getFirstNameContent() == null) {
             workerJson.put(LoadWorkerController.FIRST_NAME, null);
         } else {
-            workerJson.put(LoadWorkerController.FIRST_NAME, worker.getFirstNameContent());
+            workerJson.put(LoadWorkerController.FIRST_NAME, Worker.getInstance().getFirstNameContent());
         }
 
-        if(worker.getLastNameContent() == null) {
+        if(Worker.getInstance().getLastNameContent() == null) {
             workerJson.put(LoadWorkerController.LAST_NAME, null);
         } else {
-            workerJson.put(LoadWorkerController.LAST_NAME, worker.getLastNameContent());
+            workerJson.put(LoadWorkerController.LAST_NAME, Worker.getInstance().getLastNameContent());
         }
 
-        if(worker.getWorkContent() == null) {
+        if(Worker.getInstance().getWorkContent() == null) {
             workerJson.put(LoadWorkerController.WORK, null);
         } else {
-            workerJson.put(LoadWorkerController.WORK, worker.getWorkContent());
+            workerJson.put(LoadWorkerController.WORK, Worker.getInstance().getWorkContent());
         }
 
-        workerJson.put(LoadWorkerController.DEFAULT_HOURS, getDefaultWorkingHoursJson(worker));
-        workerJson.put(LoadWorkerController.SALARY_PER_HOUR, worker.getSalaryPerHourContent());
-        workerJson.put(LoadWorkerController.OVERTIME_PERCENT, worker.getOvertimeSalaryContent());
+        workerJson.put(LoadWorkerController.DEFAULT_HOURS, getDefaultWorkingHoursJson());
+        workerJson.put(LoadWorkerController.SALARY_PER_HOUR, Worker.getInstance().getSalaryPerHourContent());
+        workerJson.put(LoadWorkerController.OVERTIME_PERCENT, Worker.getInstance().getOvertimeSalaryContent());
 
         return workerJson;
     }
 
-    public JSONObject getDefaultWorkingHoursJson(Worker worker) {
+    public JSONObject getDefaultWorkingHoursJson() {
         JSONObject defaultWorkingHoursJson = new JSONObject();
 
-        defaultWorkingHoursJson.put(LoadWorkerController.HOUR, worker.getDefaultWorkingHoursHSelectionModel().getSelectedItem());
-        defaultWorkingHoursJson.put(LoadWorkerController.MINUTE, worker.getDefaultWorkingHoursMSelectionModel().getSelectedItem());
+        defaultWorkingHoursJson.put(LoadWorkerController.HOUR, Worker.getInstance().getDefaultWorkingHoursHSelectionModel().getSelectedItem());
+        defaultWorkingHoursJson.put(LoadWorkerController.MINUTE, Worker.getInstance().getDefaultWorkingHoursMSelectionModel().getSelectedItem());
 
         return defaultWorkingHoursJson;
     }

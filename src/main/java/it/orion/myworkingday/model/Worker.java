@@ -5,6 +5,8 @@ import javafx.scene.control.SingleSelectionModel;
 
 public class Worker {
 
+    private static Worker instance;
+
     private boolean load;
 
     private final StringProperty firstNameContent;
@@ -61,6 +63,14 @@ public class Worker {
 
         this.defaultWorkingHoursHSelectionModel = new SimpleObjectProperty<>();
         this.defaultWorkingHoursMSelectionModel = new SimpleObjectProperty<>();
+    }
+
+    public static Worker getInstance() {
+        if(instance == null) {
+            instance = new Worker();
+        }
+
+        return instance;
     }
 
     public String getFirstNameContent() {

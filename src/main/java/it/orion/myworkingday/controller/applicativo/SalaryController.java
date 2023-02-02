@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class SalaryController {
 
-    public void calculateSalary(Calendar calendar, Worker worker) {
+    public void calculateSalary() {
 
         File dataFile = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
@@ -23,69 +23,69 @@ public class SalaryController {
 
                 JSONObject dayList = (JSONObject) parser.parse(fileReader);
 
-                if(checkValidMonth(calendar) && worker.isLoad()){
+                if(checkValidMonth() && Worker.getInstance().isLoad()){
 
                     JSONObject dayData;
 
-                    int dayCount = calendar.getCurrentDate().lengthOfMonth();
+                    int dayCount = Calendar.getInstance().getCurrentDate().lengthOfMonth();
 
                     double totalSalary = 0;
 
                     for(int i = 1; i <= dayCount; i++) {
 
-                        dayData = (JSONObject) dayList.get(CalendarController.getDateValue(calendar, i));
+                        dayData = (JSONObject) dayList.get(CalendarController.getDateValue(i));
 
-                        totalSalary += calculateDaySalary(worker, dayData);
+                        totalSalary += calculateDaySalary(dayData);
                     }
 
-                    calendar.setMonthSalary("€ " +  (double) Math.round(totalSalary * 100) / 100);
+                    Calendar.getInstance().setMonthSalary("€ " +  (double) Math.round(totalSalary * 100) / 100);
 
                 } else {
-                    calendar.setMonthSalary("MISSING DATA");
+                    Calendar.getInstance().setMonthSalary("MISSING DATA");
                 }
             } catch (FileNotFoundException e) {
                 LoadDataController.createFile(dataFile);
 
-                calendar.setMonthSalary("FILE ERROR");
+                Calendar.getInstance().setMonthSalary("FILE ERROR");
             } catch (IOException | ParseException ignored) {
                 LoadDataController.initializeFile(dataFile);
 
-                calendar.setMonthSalary("DATA ERROR");
+                Calendar.getInstance().setMonthSalary("DATA ERROR");
             }
     }
 
-    public double calculateDaySalary(Worker worker, JSONObject dayData){
+    public double calculateDaySalary(JSONObject dayData){
 
         double daySalary = 0;
 
         if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.WORKING_DAY)){
 
             if(dayData.get(LoadDataController.WORKING_HOURS) != null) {
-                daySalary += workingSalary((JSONObject) dayData.get(LoadDataController.WORKING_HOURS), worker.getSalaryPerHourContent());
+                daySalary += workingSalary((JSONObject) dayData.get(LoadDataController.WORKING_HOURS), Worker.getInstance().getSalaryPerHourContent());
             }
 
             if(dayData.get(LoadDataController.LAUNCH_BREAK) != null) {
-                daySalary -= workingSalary((JSONObject) dayData.get(LoadDataController.LAUNCH_BREAK), worker.getSalaryPerHourContent());
+                daySalary -= workingSalary((JSONObject) dayData.get(LoadDataController.LAUNCH_BREAK), Worker.getInstance().getSalaryPerHourContent());
             }
 
             if(dayData.get(LoadDataController.PERMIT) != null) {
-                daySalary += permitSalary((JSONObject) dayData.get(LoadDataController.PERMIT), worker.getSalaryPerHourContent());
+                daySalary += permitSalary((JSONObject) dayData.get(LoadDataController.PERMIT), Worker.getInstance().getSalaryPerHourContent());
             }
 
             if(dayData.get(LoadDataController.OVERTIME) != null) {
-                daySalary += overtimeSalary((JSONObject) dayData.get(LoadDataController.OVERTIME), worker.getSalaryPerHourContent(), worker.getOvertimeSalaryContent());
+                daySalary += overtimeSalary((JSONObject) dayData.get(LoadDataController.OVERTIME), Worker.getInstance().getSalaryPerHourContent(), Worker.getInstance().getOvertimeSalaryContent());
             }
 
         } else if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.REST)) {
             daySalary += 0;
         } else if(dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.SICK) || dayData.get(LoadDataController.DAY_TYPE).equals(LoadDataController.HOLIDAY)) {
-            daySalary += extraSalary(worker);
+            daySalary += extraSalary();
         }
 
         return daySalary;
     }
 
-    public boolean checkValidMonth(Calendar calendar) {
+    public boolean checkValidMonth() {
 
         File file = new File(System.getenv("LOCALAPPDATA") + "/MWD","local_db.json");
 
@@ -93,11 +93,11 @@ public class SalaryController {
             if(file.exists()) {
                 JSONObject dayList = (JSONObject) new JSONParser().parse(new FileReader(file));
 
-                int dayCount = calendar.getCurrentDate().lengthOfMonth();
+                int dayCount = Calendar.getInstance().getCurrentDate().lengthOfMonth();
 
                 for(int i = 1; i <= dayCount; i++) {
 
-                    if(!checkValidDay(dayList, CalendarController.getDateValue(calendar, i))){
+                    if(!checkValidDay(dayList, CalendarController.getDateValue(i))){
                         return false;
                     }
 
@@ -146,8 +146,8 @@ public class SalaryController {
         return calculateMinutes(overtimeData.get(LoadDataController.HOUR).toString(), overtimeData.get(LoadDataController.MINUTE).toString()) * ((Double.parseDouble(overtimePercent) / 100) + 1) * (Double.parseDouble(salaryPerHour) / 60);
     }
 
-    public double extraSalary(Worker worker) {
-        return calculateMinutes(worker.getDefaultWorkingHoursHSelectionModel().getSelectedItem(), worker.getDefaultWorkingHoursMSelectionModel().getSelectedItem()) * (Double.parseDouble(worker.getSalaryPerHourContent()) / 60);
+    public double extraSalary() {
+        return calculateMinutes(Worker.getInstance().getDefaultWorkingHoursHSelectionModel().getSelectedItem(), Worker.getInstance().getDefaultWorkingHoursMSelectionModel().getSelectedItem()) * (Double.parseDouble(Worker.getInstance().getSalaryPerHourContent()) / 60);
     }
 
     public int calculateMinutes(String hours, String minutes) {

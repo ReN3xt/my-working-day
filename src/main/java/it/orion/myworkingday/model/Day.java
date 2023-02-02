@@ -5,6 +5,8 @@ import javafx.scene.control.SingleSelectionModel;
 
 public class Day {
 
+    private static Day instance;
+
     private String dayValue;
     private String month;
     private String year;
@@ -156,6 +158,14 @@ public class Day {
         this.overtimeMSelectionModel = new SimpleObjectProperty<>();
         this.permitHSelectionModel = new SimpleObjectProperty<>();
         this.permitMSelectionModel = new SimpleObjectProperty<>();
+    }
+
+    public static Day getInstance() {
+        if(instance == null) {
+            instance = new Day();
+        }
+
+        return instance;
     }
 
     public StringProperty selectedDateContentProperty() {
