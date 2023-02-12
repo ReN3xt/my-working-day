@@ -36,7 +36,7 @@ public class Worker {
     private final ObjectProperty<SingleSelectionModel<String>> defaultWorkingHoursHSelectionModel;
     private final ObjectProperty<SingleSelectionModel<String>> defaultWorkingHoursMSelectionModel;
 
-    public Worker() {
+    private Worker() {
         this.firstNameContent = new SimpleStringProperty();
         this.lastNameContent = new SimpleStringProperty();
         this.workContent = new SimpleStringProperty();

@@ -22,7 +22,7 @@ public class Calendar {
 
     private boolean secondView;
 
-    public Calendar() {
+    private Calendar() {
         this.monthSalary = new SimpleStringProperty();
         this.year = new SimpleStringProperty(String.valueOf(LocalDate.now().getYear()));
         this.month = new SimpleStringProperty(String.valueOf(LocalDate.now().getMonth()));

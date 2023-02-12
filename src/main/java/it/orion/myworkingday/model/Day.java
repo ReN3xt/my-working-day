@@ -89,7 +89,7 @@ public class Day {
     private final ObjectProperty<SingleSelectionModel<String>> permitMSelectionModel;
 
 
-    public Day() {
+    private Day() {
         this.selectedDateContent = new SimpleStringProperty();
         this.sickLeaveProtocolContent = new SimpleStringProperty();
         this.permitReasonContent = new SimpleStringProperty();
